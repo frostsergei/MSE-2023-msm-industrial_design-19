@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup_database_for_device", "Setup_database_for_device\Setup_database_for_device.csproj", "{886897B1-0683-435D-AC6B-A8166CC5AF2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup_database_for_device", "Setup_database_for_device\Setup_database_for_device.csproj", "{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{886897B1-0683-435D-AC6B-A8166CC5AF2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{886897B1-0683-435D-AC6B-A8166CC5AF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{886897B1-0683-435D-AC6B-A8166CC5AF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{886897B1-0683-435D-AC6B-A8166CC5AF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5B99FE73-2470-483B-A381-DF63186A59FC}
+		SolutionGuid = {8C673924-0E4D-42B0-A4D5-CFB567C9C927}
 	EndGlobalSection
 EndGlobal
