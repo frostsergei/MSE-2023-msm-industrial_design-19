@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\AbstractTag.cs" />
+    <Compile Include="DB\Channel.cs" />
+    <Compile Include="DB\GroupTag.cs" />
+    <Compile Include="DB\DateBase.cs" />
+    <Compile Include="DB\Tag.cs" />
+    <Compile Include="DB\TagGroup.cs" />
+    <Compile Include="DB\Test.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
