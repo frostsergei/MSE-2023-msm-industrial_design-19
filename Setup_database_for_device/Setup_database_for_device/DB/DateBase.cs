@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.IO;
 
 namespace Setup_database_for_device.DB
 {
@@ -58,12 +54,6 @@ namespace Setup_database_for_device.DB
 
             return result;
 
-            //foreach (Channel channel in _channelList)
-            //{
-            //    if (channel.Prefix == prefix) result.Add(channel);
-            //}
-
-            //return result;
         }
 
         public Channel getChannelByName(string name)

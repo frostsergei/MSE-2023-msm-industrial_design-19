@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Setup_database_for_device.DB
 {
@@ -39,7 +34,7 @@ namespace Setup_database_for_device.DB
             XAttribute name = new XAttribute("Name", _name);
             XAttribute id = new XAttribute("Id", _id);
             XAttribute value = new XAttribute("Value", _value);
-            XAttribute eu = new XAttribute("EU", _EU);
+            XAttribute eu = new XAttribute("Eu", _EU);
 
             newTag.Add(name, id, value, eu);
 

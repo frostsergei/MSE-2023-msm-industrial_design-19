@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Setup_database_for_device.DB
@@ -15,16 +11,18 @@ namespace Setup_database_for_device.DB
         private string _name;
         private string _kind;
         private string _prefix;
+        private string _description;
         private List<Tag> _tagList;
         private List<TagGroup> _tagGroupList;
         private XElement _XML;
 
-        public Channel(string no, string name, string kind, string prefix)
+        public Channel(string no, string name, string kind, string prefix, string description)
         {
             _no = no;
             _name = name;
             _kind = kind;
             _prefix = prefix;
+            _description = description;
             _tagList = new List<Tag>(s_maxTagCountInChannel);
             _tagGroupList = new List<TagGroup>(s_maxTagCountInChannel);
             _XML = createTag();
@@ -44,6 +42,11 @@ namespace Setup_database_for_device.DB
 
         public string Prefix { 
             get { return _prefix; } 
+        }
+
+        public string Description
+        {
+            get { return _description; }
         }
 
         public XElement XML { 
@@ -80,7 +83,7 @@ namespace Setup_database_for_device.DB
             _tagList.Add(tag);
         }
 
-        public Tag GetTagByOrdinal(string ordinal)
+        public Tag GetTagByOrdinal(int ordinal)
         {
             foreach (Tag tag in _tagList)
             {
@@ -90,7 +93,7 @@ namespace Setup_database_for_device.DB
             return null;
         }
 
-        public TagGroup GetTagGroupByOrdinal(string ordinal)
+        public TagGroup GetTagGroupByOrdinal(int ordinal)
         {
             foreach (TagGroup tag in _tagGroupList)
             {

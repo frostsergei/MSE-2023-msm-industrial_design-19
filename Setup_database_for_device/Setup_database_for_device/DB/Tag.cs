@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Setup_database_for_device.DB
 {
     class Tag : AbstractTag
     {
-        private string _ordinal;
+        private int _ordinal;
 
-        public string Ordinal {
+        public int Ordinal {
             get { return _ordinal; } 
         }
 
-        public Tag(string ordinal, string id, string value = "нет данных???", string name = "", string eu = "") : base(id, value, name, eu)
+        public Tag(int ordinal, string id = "", string value = "нет данных???", string name = "", string eu = "") : base(id, value, name, eu)
         {
             _ordinal = ordinal;
 

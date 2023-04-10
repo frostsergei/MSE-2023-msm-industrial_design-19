@@ -9,13 +9,13 @@ namespace Setup_database_for_device.DB
 {
     class GroupTag : AbstractTag
     {
-        private string _index;
+        private int _index;
 
-        public string Index {
+        public int Index {
             get { return _index; } 
         }
 
-        public GroupTag(string index, string id, string value = "нет данных???", string name = "", string eu = "") : base(id, value, name, eu)
+        public GroupTag(int index, string id, string value = "нет данных???", string name = "", string eu = "") : base(id, value, name, eu)
         {
             _index = index;
 

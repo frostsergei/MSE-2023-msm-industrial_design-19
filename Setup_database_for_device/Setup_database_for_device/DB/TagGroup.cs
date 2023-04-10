@@ -12,12 +12,12 @@ namespace Setup_database_for_device.DB
 
         private static int s_maxCountElementsInTagGroup = 150;
 
-        private string _ordinal;
+        private int _ordinal;
         private string _name;
         private XElement _XML;
         private List<GroupTag> _tagList;
 
-        public TagGroup(string ordinal, string name = "")
+        public TagGroup(int ordinal, string name = "")
         {
             _ordinal = ordinal;
             _name = name;
@@ -28,7 +28,7 @@ namespace Setup_database_for_device.DB
             
         }
 
-        public string Ordinal { 
+        public int Ordinal { 
             get { return _ordinal; } 
         }
 
@@ -49,7 +49,7 @@ namespace Setup_database_for_device.DB
             _tagList.Add(tag);
         }
 
-        public GroupTag GetGroupTagByIndex(string index)
+        public GroupTag GetGroupTagByIndex(int index)
         {
             foreach (GroupTag tag in _tagList)
             {
