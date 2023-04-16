@@ -35,10 +35,6 @@ namespace Setup_database_for_device
             this.panelLeft = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.типВычислителяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сПТ9611ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сПТ962ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сПТ963ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
@@ -48,8 +44,7 @@ namespace Setup_database_for_device
             this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.типВычислителяToolStripMenuItem});
+            this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(986, 28);
@@ -61,13 +56,13 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // panelLeft
@@ -99,34 +94,6 @@ namespace Setup_database_for_device
             this.panelContent.Size = new System.Drawing.Size(818, 541);
             this.panelContent.TabIndex = 5;
             // 
-            // типВычислителяToolStripMenuItem
-            // 
-            this.типВычислителяToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сПТ9611ToolStripMenuItem,
-            this.сПТ962ToolStripMenuItem,
-            this.сПТ963ToolStripMenuItem});
-            this.типВычислителяToolStripMenuItem.Name = "типВычислителяToolStripMenuItem";
-            this.типВычислителяToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
-            this.типВычислителяToolStripMenuItem.Text = "Тип вычислителя";
-            // 
-            // сПТ9611ToolStripMenuItem
-            // 
-            this.сПТ9611ToolStripMenuItem.Name = "сПТ9611ToolStripMenuItem";
-            this.сПТ9611ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.сПТ9611ToolStripMenuItem.Text = "СПТ 961.1";
-            // 
-            // сПТ962ToolStripMenuItem
-            // 
-            this.сПТ962ToolStripMenuItem.Name = "сПТ962ToolStripMenuItem";
-            this.сПТ962ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.сПТ962ToolStripMenuItem.Text = "СПТ 962";
-            // 
-            // сПТ963ToolStripMenuItem
-            // 
-            this.сПТ963ToolStripMenuItem.Name = "сПТ963ToolStripMenuItem";
-            this.сПТ963ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.сПТ963ToolStripMenuItem.Text = "СПТ 963";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -155,10 +122,6 @@ namespace Setup_database_for_device
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.ToolStripMenuItem типВычислителяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сПТ9611ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сПТ962ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сПТ963ToolStripMenuItem;
     }
 }
 
