@@ -23,5 +23,6 @@ namespace Setup_database_for_device
         {
             label3.Text = "Кнопка нажата";
         }
+
     }
 }
