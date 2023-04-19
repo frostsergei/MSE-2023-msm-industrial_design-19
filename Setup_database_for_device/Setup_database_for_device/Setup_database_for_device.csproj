@@ -67,6 +67,12 @@
     <Compile Include="View\CheckBoxesControl.Designer.cs">
       <DependentUpon>CheckBoxesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ConfirmNewInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ConfirmNewInputForm.Designer.cs">
+      <DependentUpon>ConfirmNewInputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ConsumerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,12 @@
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeviceFirstSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeviceFirstSelectionForm.Designer.cs">
+      <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -91,11 +103,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ConfirmNewInputForm.resx">
+      <DependentUpon>ConfirmNewInputForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ConsumerForm.resx">
       <DependentUpon>ConsumerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeviceFirstSelectionForm.resx">
+      <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
