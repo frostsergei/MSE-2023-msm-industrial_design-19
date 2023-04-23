@@ -60,6 +60,7 @@
     <Compile Include="DB\Tag.cs" />
     <Compile Include="DB\TagGroup.cs" />
     <Compile Include="DB\Test.cs" />
+
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
