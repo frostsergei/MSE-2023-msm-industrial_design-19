@@ -76,8 +76,29 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+    <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
+      <DependentUpon>CheckboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\ComboboxControl.xaml.cs">
+      <DependentUpon>ComboboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\MeasureUnitsControl.xaml.cs">
+      <DependentUpon>MeasureUnitsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\PipelineControl.xaml.cs">
+      <DependentUpon>PipelineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SpecificationControl.xaml.cs">
+      <DependentUpon>SpecificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SystemControl.xaml.cs">
+      <DependentUpon>SystemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SystemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SystemForm\SystemForm.Designer.cs">
+      <DependentUpon>SystemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CheckBoxesControl.cs">
       <SubType>Component</SubType>
@@ -115,6 +136,9 @@
     <Compile Include="View\DeviceFirstSelectionForm.Designer.cs">
       <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SystemForm\TextBoxControl.xaml.cs">
+      <DependentUpon>TextBoxControl.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,6 +166,9 @@
     <EmbeddedResource Include="View\DeviceFirstSelectionForm.resx">
       <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SystemForm\SystemForm.resx">
+      <DependentUpon>SystemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -160,7 +187,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl1.xaml">
+    <Page Include="View\SystemForm\CheckboxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\ComboboxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\MeasureUnitsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\PipelineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SpecificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SystemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\TextBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
