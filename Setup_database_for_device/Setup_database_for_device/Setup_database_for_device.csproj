@@ -79,14 +79,26 @@
     <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
       <DependentUpon>CheckboxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SystemForm\CheckboxesBlock.xaml.cs">
+      <DependentUpon>CheckboxesBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SystemForm\ComboboxControl.xaml.cs">
       <DependentUpon>ComboboxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SystemForm\MeasureUnitsControl.xaml.cs">
       <DependentUpon>MeasureUnitsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SystemForm\ParticipatedPipelinesBlock.xaml.cs">
+      <DependentUpon>ParticipatedPipelinesBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\PipelineBlock.xaml.cs">
+      <DependentUpon>PipelineBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SystemForm\PipelineControl.xaml.cs">
       <DependentUpon>PipelineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SpecificationBlock.xaml.cs">
+      <DependentUpon>SpecificationBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SystemForm\SpecificationControl.xaml.cs">
       <DependentUpon>SpecificationControl.xaml</DependentUpon>
@@ -138,6 +150,9 @@
     </Compile>
     <Compile Include="View\SystemForm\TextBoxControl.xaml.cs">
       <DependentUpon>TextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\TextDataBlock.xaml.cs">
+      <DependentUpon>TextDataBlock.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -191,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SystemForm\CheckboxesBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SystemForm\ComboboxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,7 +218,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SystemForm\ParticipatedPipelinesBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\PipelineBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SystemForm\PipelineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SpecificationBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SystemForm\TextBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\TextDataBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

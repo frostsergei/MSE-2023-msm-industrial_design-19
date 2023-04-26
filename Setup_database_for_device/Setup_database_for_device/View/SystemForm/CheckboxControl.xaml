@@ -13,7 +13,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.8*"></ColumnDefinition>
             <ColumnDefinition Width="0.2*"></ColumnDefinition>
-            <ColumnDefinition Width="40"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Name="InputLabel" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
         <CheckBox Name="CheckboxInput" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Checked="CheckboxInput_Checked" />

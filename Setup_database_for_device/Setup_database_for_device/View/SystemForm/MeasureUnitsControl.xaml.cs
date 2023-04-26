@@ -21,17 +21,16 @@ namespace Setup_database_for_device.View.SystemForm
         private ComboboxControl _pressureCombobox;
         private ComboboxControl _powerCombobox;
 
-        public MeasureUnitsControl(ComboboxControl pressureCombobox, ComboboxControl powerCombobox)
+        public MeasureUnitsControl()
         {
             InitializeComponent();
 
-            _pressureCombobox = pressureCombobox;
-            _powerCombobox = powerCombobox;
+
+            _pressureCombobox = new ComboboxControl("Давление/перепады давления:", new string[] { "СИ(МПа, кПа)", "Практическая система(кгс/ см ^ 2, кгс / м ^ 2)" }); 
+            _powerCombobox = new ComboboxControl("Тепловая энергия/мощность:", new string[] { "энергия - ГДж, мощность - Гдж / ч", "энергия - Гкал, мощность - Гкал / ч", "энергия - МВт * ч, мощность - МВт" });
 
             _pressureCombobox.SetValue(Grid.RowProperty, 1);
             _pressureCombobox.SetValue(Grid.ColumnProperty, 0);
-            //_checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.CheckedEvent, new RoutedEventHandler(CheckBoxChanged));
-            //_checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.UncheckedEvent, new RoutedEventHandler(CheckBoxChanged));
             _powerCombobox.SetValue(Grid.RowProperty, 2);
             _powerCombobox.SetValue(Grid.ColumnProperty, 0);
 

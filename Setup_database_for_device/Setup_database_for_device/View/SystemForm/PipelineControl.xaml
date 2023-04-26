@@ -5,7 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Setup_database_for_device.View.SystemForm"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="800">
+             d:DesignHeight="100" d:DesignWidth="800" BorderBrush="#eee" BorderThickness="1">
+    <UserControl.Resources>
+        <Style x:Key="Enabled">
+
+        </Style>
+    </UserControl.Resources>
     <Grid Name="PipelineControlBlock">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

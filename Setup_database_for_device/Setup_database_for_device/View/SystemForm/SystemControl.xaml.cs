@@ -20,32 +20,38 @@ namespace Setup_database_for_device.View.SystemForm
     /// </summary>
     public partial class SystemControl : UserControl
     {
+
+
         public SystemControl()
         {
             InitializeComponent();
 
-            ComboboxControl comb1 = new ComboboxControl("Давление/перепады давления:", new string[] { "СИ(МПа, кПа)", "Практическая система(кгс/ см ^ 2, кгс / м ^ 2)" });
-            ComboboxControl comb2 = new ComboboxControl("Тепловая энергия/мощность:", new string[] { "энергия - ГДж, мощность - Гдж / ч", "энергия - Гкал, мощность - Гкал / ч", "энергия - МВт * ч, мощность - МВт" }); ;
-            
+            MeasureUnitsControl measureUnitsBlock = new MeasureUnitsControl();
+            TextDataBlock textDataBlock = new TextDataBlock();
+            SpecificationBlock specificationBlock = new SpecificationBlock();
+            ParticipatedPipelinesBlock participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 0);
 
-
-
-            //SpecificationControl spec1 = new SpecificationControl(checkBox, textBox);
-            //PipelineControl spec1 = new PipelineControl("Давление холодной воды", checkBox, textBox);
-
-            MeasureUnitsControl measureUnitsBlock = new MeasureUnitsControl(comb1, comb2);
-
-            //_pressureCombobox.SetValue(Grid.RowProperty, 1);
-            //_pressureCombobox.SetValue(Grid.ColumnProperty, 0);
-            ////_checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.CheckedEvent, new RoutedEventHandler(CheckBoxChanged));
-            ////_checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.UncheckedEvent, new RoutedEventHandler(CheckBoxChanged));
-            //_powerCombobox.SetValue(Grid.RowProperty, 2);
-            //_powerCombobox.SetValue(Grid.ColumnProperty, 0);
+            participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
+            participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 3);
+            participatedPipelinesBlock.SetValue(Grid.ColumnProperty, 0);
 
             measureUnitsBlock.SetValue(Grid.RowProperty, 0);
+            measureUnitsBlock.SetValue(Grid.RowSpanProperty, 3);
             measureUnitsBlock.SetValue(Grid.ColumnProperty, 2);
 
+            textDataBlock.SetValue(Grid.RowProperty, 3);
+            textDataBlock.SetValue(Grid.RowSpanProperty, 5);
+            textDataBlock.SetValue(Grid.ColumnProperty, 2);
+
+            specificationBlock.SetValue(Grid.RowProperty, 8);
+            specificationBlock.SetValue(Grid.RowSpanProperty, 3);
+            specificationBlock.SetValue(Grid.ColumnProperty, 2);
+
             SystemWindowBlock.Children.Add(measureUnitsBlock);
+            SystemWindowBlock.Children.Add(textDataBlock);
+            SystemWindowBlock.Children.Add(specificationBlock);
+            SystemWindowBlock.Children.Add(participatedPipelinesBlock);
         }
+
     }
 }

@@ -5,7 +5,7 @@ namespace Setup_database_for_device.View.SystemForm
 {
     public partial class TextBoxControl : UserControl
     {
-        public TextBoxControl(string label, string measureUnit = "", int controlWidth = -1)
+        public TextBoxControl(string label, string defaultValue = "", int controlWidth = -1)
         {
             InitializeComponent();
 
@@ -14,8 +14,8 @@ namespace Setup_database_for_device.View.SystemForm
                 Width = controlWidth;
             }
 
+            TextField.Text = defaultValue;
             InputLabel.Content = label;
-            MeasureInitLabel.Content = measureUnit;
         }
 
         public void DisableTextBox()
