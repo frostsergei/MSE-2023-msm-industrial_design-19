@@ -20,16 +20,23 @@ namespace Setup_database_for_device.View.SystemForm
 
         private PipelineControl[] _pipelinesSettings;
 
-        public PipelineBlock()
+
+        public PipelineBlock(bool isEnabled)
         {
             InitializeComponent();
 
             _pipelinesSettings = new PipelineControl[4];
 
-            //_pipelinesSettings[0] = new PipelineControl("Температура холодной воды:");
-            //_pipelinesSettings[1] = new PipelineControl("Давление холодной воды:");
-            //_pipelinesSettings[2] = new PipelineControl("Барометрическое давление:");
-            //_pipelinesSettings[3] = new PipelineControl("Температура наружного воздуха:");
+
+            _pipelinesSettings[0] = new PipelineControl("Температура холодной воды:", "0", isEnabled);
+            _pipelinesSettings[1] = new PipelineControl("Давление холодной воды:", "0,1", isEnabled);
+            _pipelinesSettings[2] = new PipelineControl("Барометрическое давление:", "760", isEnabled);
+            _pipelinesSettings[3] = new PipelineControl("Температура наружного воздуха:", "20", isEnabled);
+
+            for (int i = 0; i < _pipelinesSettings.Length; i++)
+            {
+                PipelineSettings.Children.Add(_pipelinesSettings[i]);
+            }
 
 
         }

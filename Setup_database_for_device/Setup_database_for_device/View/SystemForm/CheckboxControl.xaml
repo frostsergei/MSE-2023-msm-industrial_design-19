@@ -11,10 +11,10 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*"></ColumnDefinition>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Name="InputLabel" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
-        <CheckBox Name="CheckboxInput" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Checked="CheckboxInput_Checked" />
+        <Label Name="InputLabel" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontFamily="Verdana" FontSize="9pt"  />
+        <CheckBox Name="CheckboxInput" VerticalAlignment="Center" FontFamily="Verdana" FontSize="9pt" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Checked="CheckboxInput_Checked" Unchecked="CheckboxInput_Checked" />
     </Grid>
 </UserControl>

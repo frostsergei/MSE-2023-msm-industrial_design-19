@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Setup_database_for_device.View.SystemForm"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Name="PipelineSettings">
+        
+    </StackPanel>
 </UserControl>

@@ -15,25 +15,27 @@ using System.Windows.Shapes;
 
 namespace Setup_database_for_device.View.SystemForm
 {
-    /// <summary>
-    /// Interaction logic for SystemControl.xaml
-    /// </summary>
     public partial class SystemControl : UserControl
     {
 
 
-        public SystemControl()
+        public SystemControl(bool isBacked)
         {
             InitializeComponent();
 
             MeasureUnitsControl measureUnitsBlock = new MeasureUnitsControl();
             TextDataBlock textDataBlock = new TextDataBlock();
             SpecificationBlock specificationBlock = new SpecificationBlock();
-            ParticipatedPipelinesBlock participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 0);
+            ParticipatedPipelinesBlock participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 8, !isBacked);
+            PipelineBlock pipelineBlock = new PipelineBlock(isBacked);
 
             participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
-            participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 3);
+            participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 5);
             participatedPipelinesBlock.SetValue(Grid.ColumnProperty, 0);
+
+            pipelineBlock.SetValue(Grid.RowProperty, 5);
+            pipelineBlock.SetValue(Grid.RowSpanProperty, 7);
+            pipelineBlock.SetValue(Grid.ColumnProperty, 0);
 
             measureUnitsBlock.SetValue(Grid.RowProperty, 0);
             measureUnitsBlock.SetValue(Grid.RowSpanProperty, 3);
@@ -51,6 +53,7 @@ namespace Setup_database_for_device.View.SystemForm
             SystemWindowBlock.Children.Add(textDataBlock);
             SystemWindowBlock.Children.Add(specificationBlock);
             SystemWindowBlock.Children.Add(participatedPipelinesBlock);
+            SystemWindowBlock.Children.Add(pipelineBlock);
         }
 
     }

@@ -32,6 +32,7 @@ namespace Setup_database_for_device.View.SystemForm
 
             spec1.SetValue(Grid.RowProperty, 0);
             spec1.SetValue(Grid.ColumnProperty, 0);
+            spec1.SetValue(Grid.ColumnSpanProperty, 2);
             spec2.SetValue(Grid.RowProperty, 1);
             spec2.SetValue(Grid.ColumnProperty, 0);
 

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media;
 
 namespace Setup_database_for_device.View.SystemForm
 {
@@ -20,11 +18,20 @@ namespace Setup_database_for_device.View.SystemForm
             _checkbox = new CheckboxControl("Датчик");
             _textbox = new TextBoxControl("Константное значение", defaultValue);
 
+            if(!isEnabled)
+            {
+                BorderBrush = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+                PipelineSettingLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+                _textbox.DisableControl();
+                _checkbox.DisableControl();
+            }
+
             PipelineSettingLabel.Content = physicParam;
+            DataContext = isEnabled;
 
 
             _checkbox.SetValue(Grid.RowProperty, 1);
-            _checkbox.SetValue(Grid.ColumnProperty, 1);
+            _checkbox.SetValue(Grid.ColumnProperty, 2);
             _textbox.SetValue(Grid.RowProperty, 1);
             _textbox.SetValue(Grid.ColumnProperty, 0);
 

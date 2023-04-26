@@ -30,13 +30,35 @@ namespace Setup_database_for_device.View.SystemForm
             get { return _result; }
         }
 
-        public CheckboxesBlock(int countCheckboxes, string prefix)
+        public CheckboxesBlock(int countCheckboxes, string prefix, bool isEnabled)
         {
             InitializeComponent();
 
             _checkboxes = new CheckBox[countCheckboxes];
- 
 
+            
+            Style labelStyle = new Style();
+
+            if(!isEnabled)
+            {
+                labelStyle.Setters.Add(
+                new Setter
+                {
+                    Property = ForegroundProperty,
+                    Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
+                });
+
+            } else
+            {
+                labelStyle.Setters.Add(
+                new Setter
+                {
+                    Property = ForegroundProperty,
+                    Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+                });
+            }
+            
+        
             for (int i = 0; i < countCheckboxes; i++)
             {
 
@@ -55,18 +77,21 @@ namespace Setup_database_for_device.View.SystemForm
                 {
                     Content = $"{prefix}{i + 1}",
                     VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    FontFamily = new FontFamily("Vendena"),
+                    FontSize = 9 * (96.0 / 72.0),
+                    Style = labelStyle
                 };
 
                 CheckBox currentCheckbox = new CheckBox
                 {
                     Width = 20,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    IsEnabled = isEnabled
                 };
 
                 currentCheckbox.Click += new RoutedEventHandler(Checkbox_Checked);
 
-                //currentCheckbox.AddHandler(CheckBox.CheckedEvent, R)
 
                 _checkboxes[i] = currentCheckbox;
 
@@ -81,6 +106,14 @@ namespace Setup_database_for_device.View.SystemForm
             }
 
              
+        }
+
+        public void DisableBlock()
+        {
+            for(int i = 0; i < _checkboxes.Length; i++)
+            {
+
+            }
         }
 
         private void Checkbox_Checked(object sender, RoutedEventArgs e)

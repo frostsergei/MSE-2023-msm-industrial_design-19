@@ -31,8 +31,8 @@ namespace Setup_database_for_device.View.SystemForm
 
             _checkbox.SetValue(Grid.RowProperty, 0);
             _checkbox.SetValue(Grid.ColumnProperty, 0);
-            _checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.CheckedEvent, new RoutedEventHandler(CheckBoxChanged));
-            _checkbox.AddHandler(System.Windows.Controls.Primitives.ToggleButton.CheckedEvent, new RoutedEventHandler(CheckBoxChanged));
+            _checkbox.SetValue(Grid.ColumnSpanProperty, 2);
+            _checkbox.CheckBoxChecked += new EventHandler(CheckBoxChanged);    
             _textBox.SetValue(Grid.RowProperty, 1);
             _textBox.SetValue(Grid.ColumnProperty, 0);
 
@@ -43,7 +43,7 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
 
-        private void CheckBoxChanged(object sender, RoutedEventArgs e)
+        private void CheckBoxChanged(object sender, EventArgs e)
         {
             if (_checkbox.IsControlCheck())
             { 
@@ -52,8 +52,6 @@ namespace Setup_database_for_device.View.SystemForm
             {
                 _textBox.DisableTextBox();
             }
-            //    _checkbox.IsControlCheck ? _textBox.DisableTextForm() : _textBox.EnableTextFrom();
-            //}
         }
 
     }

@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Setup_database_for_device.View.SystemForm"
-             mc:Ignorable="d" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Margin="0,0,0,15">
     <Grid Name="Checkboxes">
+        <Grid.Resources>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
