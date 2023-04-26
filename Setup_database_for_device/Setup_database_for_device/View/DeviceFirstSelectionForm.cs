@@ -17,5 +17,26 @@ namespace Setup_database_for_device.View
             InitializeComponent();
             comboBoxDevice.SelectedIndex = 0;
         }
+
+        private void buttonContinue_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = null;
+            switch (comboBoxDevice.SelectedIndex)  
+            {
+                case 0:
+                    mainForm = new MainForm(Model.Device.SPT961, this);
+                    break;
+                case 1:
+                    mainForm = new MainForm(Model.Device.SPT962, this);
+                    break;
+                case 2:
+                    mainForm = new MainForm(Model.Device.SPT963, this);
+                    break;
+                default:
+                    break;
+            }
+            mainForm.Show();
+            this.Hide();
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Setup_database_for_device
             this.panelLeft = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +48,7 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(986, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(986, 31);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,15 +56,16 @@ namespace Setup_database_for_device
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem,
-            this.создатьToolStripMenuItem});
+            this.createToolStripMenuItem});
+            this.файлToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(64, 27);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // panelLeft
@@ -72,18 +73,18 @@ namespace Setup_database_for_device
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.label1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 28);
+            this.panelLeft.Location = new System.Drawing.Point(0, 31);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(168, 541);
+            this.panelLeft.Size = new System.Drawing.Size(168, 538);
             this.panelLeft.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 29);
+            this.label1.Size = new System.Drawing.Size(132, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Навигация";
             // 
@@ -91,16 +92,17 @@ namespace Setup_database_for_device
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(168, 28);
+            this.panelContent.Location = new System.Drawing.Point(168, 31);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(818, 541);
+            this.panelContent.Size = new System.Drawing.Size(818, 538);
             this.panelContent.TabIndex = 5;
             // 
-            // создатьToolStripMenuItem
+            // createToolStripMenuItem
             // 
-            this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.создатьToolStripMenuItem.Text = "Создать";
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.createToolStripMenuItem.Text = "Создать";
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -114,6 +116,7 @@ namespace Setup_database_for_device
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Настройщик базы данных";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panelLeft.ResumeLayout(false);
@@ -130,7 +133,7 @@ namespace Setup_database_for_device
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.ToolStripMenuItem создатьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
     }
 }
 

@@ -16,7 +16,7 @@ namespace Setup_database_for_device
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new View.DeviceFirstSelectionForm());
         }
     }
 }
