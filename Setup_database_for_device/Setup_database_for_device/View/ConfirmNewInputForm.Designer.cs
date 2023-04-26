@@ -40,9 +40,9 @@ namespace Setup_database_for_device.View
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelTitle.Location = new System.Drawing.Point(62, 29);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(520, 31);
+            this.labelTitle.Size = new System.Drawing.Size(578, 31);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Оставить уже введенную информацию?";
+            this.labelTitle.Text = "Вы уверены, что хотите начать ввод заново?";
             // 
             // buttonYes
             // 
@@ -68,13 +68,13 @@ namespace Setup_database_for_device.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 230);
+            this.ClientSize = new System.Drawing.Size(708, 230);
             this.Controls.Add(this.buttonNo);
             this.Controls.Add(this.buttonYes);
             this.Controls.Add(this.labelTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ConfirmNewInputForm";
-            this.Text = "Смена вычислителя - подтверждение";
+            this.Text = "Создание новой БД - подтверждение";
             this.ResumeLayout(false);
             this.PerformLayout();
 

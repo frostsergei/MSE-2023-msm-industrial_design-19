@@ -76,6 +76,7 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
+
     <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
       <DependentUpon>CheckboxControl.xaml</DependentUpon>
     </Compile>
