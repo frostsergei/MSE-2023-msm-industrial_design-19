@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 
@@ -13,9 +14,34 @@ namespace Setup_database_for_device
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private Model.Device _device;
+
+        private Form _deviceSelectionForm;
+
+        private bool _exitFlag;
+
+        public MainForm(Model.Device device, Form deviceSelectionForm)
         {
             InitializeComponent();
+            _device = device;
+            _deviceSelectionForm = deviceSelectionForm;
+            _exitFlag = true;
+            string title = "Настройщик базы данных ";
+            switch (_device)
+            {
+                case Model.Device.SPT961:
+                    title = title + "СПТ 961";
+                    break;
+                case Model.Device.SPT962:
+                    title = title + "СПТ 962";
+                    break;
+                case Model.Device.SPT963:
+                    title = title + "СПТ 963";
+                    break;
+                default:
+                    break;
+            }
+            this.Text = title;
             //DB.Test test = new DB.Test();
             TestForm subForm = new TestForm();
             subForm.TopLevel = false;
@@ -25,6 +51,24 @@ namespace Setup_database_for_device
             panelContent.Controls.Add(subForm);
             subForm.BringToFront();
             subForm.Show();
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBoxResult confirmResult = System.Windows.MessageBox.Show("Вы уверены, что хотите начать ввод заново?", "Создание новой БД - подтверждение", MessageBoxButton.YesNo);
+
+            if (confirmResult == MessageBoxResult.Yes)
+            {
+                _deviceSelectionForm.Show();
+                _exitFlag = false;
+                this.Close();
+            }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_exitFlag == true)
+                _deviceSelectionForm.Close();
         }
     }
 }

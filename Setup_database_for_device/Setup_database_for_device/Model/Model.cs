@@ -7,6 +7,13 @@ using Setup_database_for_device.DB;
 
 namespace Setup_database_for_device.Model
 {
+    public enum Device
+    {
+        SPT961,
+        SPT962,
+        SPT963
+    }
+
     class Model
     {
         private SystemWideSettings _systemWideSettings;
@@ -14,13 +21,6 @@ namespace Setup_database_for_device.Model
         private List<Pipeline> _pipelines;
 
         private List<Consumer> _consumers;
-
-        public enum Device
-        {
-            SPT961,
-            SPT962,
-            SPT963
-        }
 
         private Device _device;
 
