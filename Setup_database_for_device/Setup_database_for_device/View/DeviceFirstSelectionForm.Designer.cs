@@ -38,7 +38,7 @@ namespace Setup_database_for_device.View
             // 
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Verdana", 9F);
-            this.labelTitle.Location = new System.Drawing.Point(78, 24);
+            this.labelTitle.Location = new System.Drawing.Point(12, 9);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(223, 18);
             this.labelTitle.TabIndex = 0;
@@ -54,17 +54,17 @@ namespace Setup_database_for_device.View
             "СПТ 961.1",
             "СПТ 962",
             "СПТ 963"});
-            this.comboBoxDevice.Location = new System.Drawing.Point(120, 58);
+            this.comboBoxDevice.Location = new System.Drawing.Point(12, 30);
             this.comboBoxDevice.Name = "comboBoxDevice";
-            this.comboBoxDevice.Size = new System.Drawing.Size(97, 26);
+            this.comboBoxDevice.Size = new System.Drawing.Size(247, 26);
             this.comboBoxDevice.TabIndex = 1;
             // 
             // buttonContinue
             // 
             this.buttonContinue.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonContinue.Location = new System.Drawing.Point(99, 101);
+            this.buttonContinue.Location = new System.Drawing.Point(12, 62);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(134, 32);
+            this.buttonContinue.Size = new System.Drawing.Size(247, 32);
             this.buttonContinue.TabIndex = 2;
             this.buttonContinue.Text = "Продолжить";
             this.buttonContinue.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@ namespace Setup_database_for_device.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 165);
+            this.ClientSize = new System.Drawing.Size(272, 106);
             this.Controls.Add(this.buttonContinue);
             this.Controls.Add(this.comboBoxDevice);
             this.Controls.Add(this.labelTitle);
@@ -82,7 +82,7 @@ namespace Setup_database_for_device.View
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "DeviceFirstSelectionForm";
-            this.Text = "Выбор типа вычислителя";
+            this.Text = "Тип вычислителя";
             this.ResumeLayout(false);
             this.PerformLayout();
 
