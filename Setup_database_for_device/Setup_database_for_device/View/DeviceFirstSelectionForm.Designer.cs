@@ -37,33 +37,33 @@ namespace Setup_database_for_device.View
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTitle.Location = new System.Drawing.Point(28, 24);
+            this.labelTitle.Font = new System.Drawing.Font("Verdana", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTitle.Location = new System.Drawing.Point(32, 27);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(325, 32);
+            this.labelTitle.Size = new System.Drawing.Size(336, 26);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Выберите тип вычислителя:";
             // 
             // comboBoxDevice
             // 
             this.comboBoxDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDevice.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxDevice.Font = new System.Drawing.Font("Verdana", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxDevice.FormattingEnabled = true;
             this.comboBoxDevice.Items.AddRange(new object[] {
             "СПТ 961.1",
             "СПТ 962",
             "СПТ 963"});
-            this.comboBoxDevice.Location = new System.Drawing.Point(35, 83);
+            this.comboBoxDevice.Location = new System.Drawing.Point(39, 93);
             this.comboBoxDevice.Name = "comboBoxDevice";
-            this.comboBoxDevice.Size = new System.Drawing.Size(253, 39);
+            this.comboBoxDevice.Size = new System.Drawing.Size(284, 34);
             this.comboBoxDevice.TabIndex = 1;
             // 
             // buttonContinue
             // 
-            this.buttonContinue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonContinue.Location = new System.Drawing.Point(35, 183);
+            this.buttonContinue.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonContinue.Location = new System.Drawing.Point(39, 206);
             this.buttonContinue.Name = "buttonContinue";
-            this.buttonContinue.Size = new System.Drawing.Size(253, 47);
+            this.buttonContinue.Size = new System.Drawing.Size(285, 53);
             this.buttonContinue.TabIndex = 2;
             this.buttonContinue.Text = "Продолжить";
             this.buttonContinue.UseVisualStyleBackColor = true;
@@ -71,12 +71,13 @@ namespace Setup_database_for_device.View
             // 
             // DeviceFirstSelectionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 302);
+            this.ClientSize = new System.Drawing.Size(541, 340);
             this.Controls.Add(this.buttonContinue);
             this.Controls.Add(this.comboBoxDevice);
             this.Controls.Add(this.labelTitle);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DeviceFirstSelectionForm";
             this.Text = "Выбор типа вычислителя";

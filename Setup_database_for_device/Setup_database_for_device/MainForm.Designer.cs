@@ -48,7 +48,8 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(986, 31);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(904, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -57,9 +58,9 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem,
             this.createToolStripMenuItem});
-            this.файлToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.файлToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(64, 27);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // сохранитьToolStripMenuItem
@@ -73,18 +74,18 @@ namespace Setup_database_for_device
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.label1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 31);
+            this.panelLeft.Location = new System.Drawing.Point(0, 26);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(168, 538);
+            this.panelLeft.Size = new System.Drawing.Size(189, 614);
             this.panelLeft.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Font = new System.Drawing.Font("Verdana", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(14, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 32);
+            this.label1.Size = new System.Drawing.Size(133, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Навигация";
             // 
@@ -92,9 +93,9 @@ namespace Setup_database_for_device
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(168, 31);
+            this.panelContent.Location = new System.Drawing.Point(189, 26);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(818, 538);
+            this.panelContent.Size = new System.Drawing.Size(715, 614);
             this.panelContent.TabIndex = 5;
             // 
             // createToolStripMenuItem
@@ -106,13 +107,14 @@ namespace Setup_database_for_device
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(986, 569);
+            this.ClientSize = new System.Drawing.Size(904, 640);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Настройщик базы данных";
