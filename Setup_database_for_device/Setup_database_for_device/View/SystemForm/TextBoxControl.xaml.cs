@@ -6,32 +6,17 @@ namespace Setup_database_for_device.View.SystemForm
     public partial class TextBoxControl : UserControl
     {
 
-        private Label _inputLabel;
-        private TextBox _textField;
-
-        public TextBoxControl(string label, string defaultValue = "", int controlWidth = -1)
+        public TextBoxControl(string label, string defaultValue = "")
         {
             InitializeComponent();
-
-            if(controlWidth != -1)
-            {
-                Width = controlWidth;
-            }
 
             TextField.Text = defaultValue;
             InputLabel.Content = label;
 
-            _inputLabel = InputLabel;
-            _textField = TextField;
+            TextFieldEl = TextField;
         }
 
-        public TextBox TextFieldEl
-        {
-            get
-            {
-                return _textField;
-            }
-        }
+        public TextBox TextFieldEl { get; }
 
         public void DisableTextBox()
         {
