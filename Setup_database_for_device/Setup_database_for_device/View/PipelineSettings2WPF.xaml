@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Setup_database_for_device.View.PipelineSettings2WPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Setup_database_for_device.View"
+             mc:Ignorable="d" d:DesignWidth="800" Height="514"
+             >
+    <Grid Background="White" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Текущее значение 115т01н00:" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top" Height="25" Width="201" FontFamily="Verdana"/>
+        <ComboBox x:Name="Combo1" SelectionChanged="comboChanged" HorizontalAlignment="Left" Margin="22,137,0,0" VerticalAlignment="Top" Width="363">
+            <ComboBoxItem>
+                <StackPanel>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana">0 - диапазон изменений ограничивается по нижнему</TextBlock>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana">пределу вычисленного массового расхода</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana">1 - диапазон ограничивается по измененным</TextBlock>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana">значениям перепада давления/объемного расхода</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+        <Label FontSize="9 pt" Content="Признак выбора ограничения." HorizontalAlignment="Left" Margin="22,62,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Первая цифра - тип ограничения диапазона измерений:" HorizontalAlignment="Left" Margin="22,100,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="9 pt" Width="363"/>
+        <Label HorizontalAlignment="Left" Margin="425,100,0,0" VerticalAlignment="Top" FontFamily="Verdana" Width="339">
+            <StackPanel>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="Вторая цифра - алгоритм усреднения температуры"/></TextBlock>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana" Text="и давления:"/>
+            </StackPanel>
+        </Label>
+        <Label HorizontalAlignment="Left" Margin="180,185,0,0" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="Средние значения параметров, измеренных дополнительными датчиками,"/></TextBlock>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="вычисляются независимо от величины расхода."/></TextBlock>
+            </StackPanel>
+        </Label>
+        <Label FontSize="9 pt" Content="Вы ввели нижний предел частоты входного сигнала равный:" HorizontalAlignment="Left" Margin="22,274,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox FontSize="9 pt" x:Name="LowerValueTextBox" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=lowerlimitValue}" IsReadOnly ="True" HorizontalAlignment="Left" Height="23" Margin="421,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" FontFamily="Verdana" VerticalContentAlignment="Center"/>
+
+        <CheckBox Checked="CheckBoxChecked" Unchecked="CheckBoxUnchecked" HorizontalAlignment="Left" Margin="516,274,0,0" VerticalAlignment="Top" IsChecked="True" Height="36">
+            <TextBlock FontSize="9 pt" FontFamily="Verdana">Если введённое значение  неверно, то <LineBreak/>уберите галочку и измените данные</TextBlock>
+        </CheckBox>
+        <ComboBox x:Name="Combo2" SelectionChanged="comboChanged" HorizontalAlignment="Left" Margin="425,137,0,0" VerticalAlignment="Top" Width="339">
+            <ComboBoxItem>
+                <StackPanel>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="0 - вычисляются средневзвешенные значения"/></TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="1 - усреднение производится независимо от"/></TextBlock>
+                    <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="величины расхода"/></TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+        <TextBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=constConsumptionValue}"  FontSize="9 pt" HorizontalAlignment="Left" Height="23" Margin="457,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" FontFamily="Verdana" VerticalContentAlignment="Center"/>
+        <Label FontSize="9 pt" Content="Укажите константное значение массового расхода теплоносителя:" HorizontalAlignment="Left" Margin="22,364,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Button HorizontalAlignment="Left" Margin="242,441,0,0" VerticalAlignment="Top" Width="114" Height="42" FontFamily="Verdana">
+            <StackPanel>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="К следующему"/></TextBlock>
+                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="трубопроводу"/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button FontSize="9 pt" Content="Назад" HorizontalAlignment="Left" Margin="453,441,0,0" VerticalAlignment="Top" Width="114" Height="42" FontFamily="Verdana"/>
+        <Label FontSize="9 pt" x:Name="Par115" Content="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=par115t01n00Value}" FontFamily="Verdana" HorizontalAlignment="Left" Margin="215,26,0,0" VerticalAlignment="Top" Height="25" RenderTransformOrigin="0.497,0.528" Width="41" FontWeight="Bold"/>
+        <Label x:Name="notDefinedLabel" FontSize="9 pt" Content="не определено" HorizontalAlignment="Left" Margin="215,26,0,0" VerticalAlignment="Top"  FontFamily="Verdana" FontWeight="Bold" />
+        <Line X1="22" Y1="250" X2="765" Y2="250" StrokeThickness="1"  Stroke="Black" Margin="0,0,0.2,0"/>
+        <Line X1="22" Y1="340" X2="765" Y2="340" StrokeThickness="1"  Stroke="Black" Margin="0,0,0.2,0"/>
+
+    </Grid>
+</UserControl>
