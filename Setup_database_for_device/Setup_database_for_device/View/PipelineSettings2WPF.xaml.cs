@@ -50,11 +50,11 @@ namespace Setup_database_for_device.View
         }
         private void CheckBoxChecked(object sender, RoutedEventArgs e)
         {
-            LowerValueTextBox.IsReadOnly = true;
+            LowerValueTextBox.IsEnabled = false;
         }
         private void CheckBoxUnchecked(object sender, RoutedEventArgs e)
         {
-            LowerValueTextBox.IsReadOnly = false;
+            LowerValueTextBox.IsEnabled = true;
         }
         private void comboChanged(object sender, RoutedEventArgs e)
         {
@@ -69,6 +69,40 @@ namespace Setup_database_for_device.View
                 Par115.Content = Combo1.SelectedIndex.ToString() + Combo2.SelectedIndex.ToString();
                 SetValue(par115, Combo1.SelectedIndex.ToString() + Combo2.SelectedIndex.ToString());
             }
+        }
+
+        private void Resize(object sender, RoutedEventArgs e)
+        {
+            if (Combo2.ActualWidth > 440.0f)
+            {
+                combo2textblock21.Text = "1 - усреднение производится независимо от величины расхода";
+                combo2textblock22.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                combo2textblock21.Text = "1 - усреднение производится независимо от";
+                combo2textblock22.Visibility = Visibility.Visible;
+            }
+
+
+            if (Combo1.ActualWidth > 625.0f)
+            {
+                combo1textblock11.Text = "0 - диапазон изменений ограничивается по нижнему пределу вычисленного массового расхода";
+                combo1textblock12.Visibility = Visibility.Hidden;
+
+                combo1textblock21.Text = "1 - диапазон ограничивается по измененным значениям перепада давления/объемного расхода";
+                combo1textblock22.Visibility = Visibility.Hidden;
+            }
+            
+            else
+            {
+                combo1textblock11.Text = "0 - диапазон изменений ограничивается по нижнему";
+                combo1textblock12.Visibility = Visibility.Visible;
+
+                combo1textblock21.Text = "1 - диапазон ограничивается по измененным";
+                combo1textblock22.Visibility = Visibility.Visible;
+            }
+            
         }
     }
 }
