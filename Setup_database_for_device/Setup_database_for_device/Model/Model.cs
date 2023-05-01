@@ -7,6 +7,13 @@ using Setup_database_for_device.DB;
 
 namespace Setup_database_for_device.Model
 {
+    public enum Device
+    {
+        SPT961,
+        SPT962,
+        SPT963
+    }
+
     class Model
     {
         private SystemWideSettings _systemWideSettings;
@@ -14,13 +21,6 @@ namespace Setup_database_for_device.Model
         private List<Pipeline> _pipelines;
 
         private List<Consumer> _consumers;
-
-        public enum Device
-        {
-            SPT961,
-            SPT962,
-            SPT963
-        }
 
         private Device _device;
 
@@ -162,10 +162,13 @@ namespace Setup_database_for_device.Model
                 parameters = currentPipeline.Parameters;
                 bool freqWater = false; // относится ли к листу "Чатота вода"
                 bool impSteam = false; //относится ли к листу "Имп пар"
+                bool param125needed = false; // нужно ли вводить параметры 125н*;
                 if (parameters["034н00"].Value.Contains("3") || parameters["034н00"].Value.Contains("4")) // Условие перехода на лист "Частота вода"
                     freqWater = true;
                 if (parameters["101"].Value.Contains("1") || parameters["101"].Value.Contains("2")) // Условие перехода на лист "Частота вода"
                     impSteam = true;
+                if (parameters["101"].Value.Contains("3"))
+                    param125needed = true;
                 tagGroups = new List<TagGroup>();
                 string suffixT = "т" + (i + 1).ToString();
                 string suffixK = "к" + (i + 1).ToString();
@@ -176,6 +179,9 @@ namespace Setup_database_for_device.Model
                 {
                     string name = item.Key;
                     Parameter parameter = item.Value;
+
+                    if (name.StartsWith("125") && param125needed == false) // Если параметр 125 не нужен
+                        continue;
 
                     if (name == "034н06" || name == "034н07") // Только для листа "Частота вода"
                         if (freqWater == false)

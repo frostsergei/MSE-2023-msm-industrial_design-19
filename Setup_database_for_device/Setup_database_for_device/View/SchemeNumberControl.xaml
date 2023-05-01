@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Setup_database_for_device.View.SchemeNumberControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+             xmlns:local="clr-namespace:Setup_database_for_device.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <ComboBox x:Name="ComboBoxMain" FontFamily="Verdana" MaxDropDownHeight="600" FontSize="13">
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 0</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\left[ \sum_{i=1}^{i=a} G1_i\cdot(h1_i-h_2) - \sum_{j=1}^{i=b} G2_j\cdot(h2_j-h_x) \right]" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 1</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\sum_{i=1}^{i=a} G1_i\cdot(h1_i-h_2)" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 2</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\sum_{j=1}^{i=b} G2_j\cdot(h1-h2_j)" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 3</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\left[ \sum_{i=1}^{i=a} G1_i\cdot h1_i - \sum_{j=1}^{i=b} G2_j\cdot h2_j - \sum_{k=1}^{k=c} G3_k\cdot h_x \right]" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 4</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\left[ \sum_{i=1}^{i=a} G1_i\cdot (h1_i-h_2) + \sum_{k=1}^{k=c} G3_k\cdot (h2-h_x) \right]" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem BorderBrush="Gray">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,2">Схема 5</TextBlock>
+                    <controls:FormulaControl Scale="17" Formula="\omega=10^{-3}\cdot\left[ \sum_{j=1}^{i=b} G2_j\cdot (h1-h2_j) + \sum_{k=1}^{k=c} G3_k\cdot (h1-h_x) \right]" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</UserControl>

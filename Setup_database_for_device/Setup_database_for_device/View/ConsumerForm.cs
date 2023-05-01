@@ -12,17 +12,19 @@ namespace Setup_database_for_device.View
 {
     public partial class ConsumerForm : Form
     {
+        public ImageList newImageList;
         public List<ComboBox> ComboBoxesList;
         //Конструктор принимает массив номеров активных трубопроводов
         public ConsumerForm(int[] pipelinesNumbers, int consumerNumber)
         {
             InitializeComponent();
+            schemeNumberControl.ComboBoxMain.SelectedIndex = 0;
             labelConsumerTitle.Text = "Потребитель №" + consumerNumber.ToString();
             int leftMargin = 10;
             int topMargin = 10;
-            int comboBoxWidth = 280;
+            int comboBoxWidth = 360;
             ComboBoxesList = new List<ComboBox>();
-            int curY = labelCountingScheme.Location.Y + labelCountingScheme.Height + topMargin * 2;
+            int curY = elementHost1.Location.Y + elementHost1.Height + topMargin * 2;
             for (int i = 0; i < pipelinesNumbers.Length; i++)
             {
                 Label label = new Label();
@@ -36,7 +38,7 @@ namespace Setup_database_for_device.View
                 comboBox.Items.Add("Задействован как подпитка или трубопровод ГВС");
                 comboBox.Width = comboBoxWidth;
                 label.Location = new Point(leftMargin, curY);
-                comboBox.Location = new Point(2 * leftMargin + label.Size.Width, curY);
+                comboBox.Location = new Point(3 * leftMargin + label.Size.Width, curY);
                 this.Controls.Add(label);
                 this.Controls.Add(comboBox);
                 ComboBoxesList.Add(comboBox);
