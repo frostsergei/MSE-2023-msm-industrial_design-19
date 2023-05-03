@@ -61,7 +61,7 @@ namespace Setup_database_for_device
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
-            ContentMenuPanel.Controls.Add(host);
+            panelLeft.Controls.Add(host);
 
         }
 
