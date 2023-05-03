@@ -35,6 +35,7 @@ namespace Setup_database_for_device
             this.panelLeft = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.ContentMenuPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +48,7 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(986, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(986, 30);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,23 +57,24 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelLeft.Controls.Add(this.ContentMenuPanel);
             this.panelLeft.Controls.Add(this.label1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 28);
+            this.panelLeft.Location = new System.Drawing.Point(0, 30);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(168, 541);
+            this.panelLeft.Size = new System.Drawing.Size(231, 539);
             this.panelLeft.TabIndex = 4;
             // 
             // label1
@@ -89,10 +91,20 @@ namespace Setup_database_for_device
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(168, 28);
+            this.panelContent.Location = new System.Drawing.Point(231, 30);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(818, 541);
+            this.panelContent.Size = new System.Drawing.Size(755, 539);
             this.panelContent.TabIndex = 5;
+            // 
+            // ContentMenuPanel
+            // 
+            this.ContentMenuPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContentMenuPanel.Location = new System.Drawing.Point(3, 60);
+            this.ContentMenuPanel.Name = "ContentMenuPanel";
+            this.ContentMenuPanel.Size = new System.Drawing.Size(228, 478);
+            this.ContentMenuPanel.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -122,6 +134,7 @@ namespace Setup_database_for_device
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.Panel ContentMenuPanel;
     }
 }
 

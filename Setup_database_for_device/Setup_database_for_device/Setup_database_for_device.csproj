@@ -76,9 +76,6 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CheckBoxesControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +99,9 @@
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContentMenuButton.xaml.cs">
+      <DependentUpon>ContentMenuButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CoolantSelectionForm.cs">
       <SubType>Form</SubType>
@@ -160,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl1.xaml">
+    <Page Include="View\ContentMenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
