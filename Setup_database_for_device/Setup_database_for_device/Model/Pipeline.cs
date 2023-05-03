@@ -56,6 +56,14 @@ namespace Setup_database_for_device.Model
             _parameters.Add("115н00", new Parameter("115н00", "11", ""));
             _parameters.Add("115н01", new Parameter("115н01", "6.298", "м3/ч"));
             _parameters.Add("120", new Parameter("120", "0", "т/час"));
+            _parameters.Add("125н00", new Parameter("125н00", "", ""));
+            _parameters.Add("125н01", new Parameter("125н01", "", ""));
+            _parameters.Add("125н02", new Parameter("125н02", "", ""));
+            _parameters.Add("125н03", new Parameter("125н03", "", ""));
+            _parameters.Add("125н04", new Parameter("125н04", "", ""));
+            _parameters.Add("125н05", new Parameter("125н05", "", ""));
+            _parameters.Add("125н06", new Parameter("125н06", "", ""));
+            _parameters.Add("125н07", new Parameter("125н07", "", ""));
         }
     }
 }
