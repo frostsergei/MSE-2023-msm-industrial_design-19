@@ -11,7 +11,7 @@ namespace Setup_database_for_device.View.SystemForm
             InitializeComponent();
 
             TextField.Text = defaultValue;
-            InputLabel.Content = label;
+            InputText.Text = label;
 
             TextFieldEl = TextField;
         }
@@ -30,7 +30,7 @@ namespace Setup_database_for_device.View.SystemForm
 
         public void DisableControl()
         {
-            InputLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+            InputText.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
             TextField.IsEnabled = false;
         }
 

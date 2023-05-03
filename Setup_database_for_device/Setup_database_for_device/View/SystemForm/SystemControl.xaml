@@ -27,7 +27,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="11" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Content="Ок" Width="100" Height="30"></Button>
+            <Button Content="Ок" Width="100" Height="30" Margin="0,0,30,0"></Button>
             <Button Content="Назад" Width="100" Height="30"></Button>
         </StackPanel>
     </Grid>

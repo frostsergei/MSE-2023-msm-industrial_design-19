@@ -15,13 +15,13 @@ namespace Setup_database_for_device.View.SystemForm
         {
             InitializeComponent();
 
-            InputLabel.Content = label;
+            CheckboxText.Text = label;
 
-            InputLabelEl = InputLabel;
+            CheckboxTextEl = CheckboxText;
             CheckboxElement = CheckboxInput;
         }
 
-        public Label InputLabelEl { get; }
+        public TextBlock CheckboxTextEl { get; }
 
         public CheckBox CheckboxElement { get; }
 
@@ -33,7 +33,7 @@ namespace Setup_database_for_device.View.SystemForm
         public void DisableControl()
         {
 
-            InputLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+            CheckboxText.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
             CheckboxInput.IsEnabled = false;
         }
 

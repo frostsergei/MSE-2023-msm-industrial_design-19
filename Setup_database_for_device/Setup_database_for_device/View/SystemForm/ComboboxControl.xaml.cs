@@ -13,7 +13,7 @@ namespace Setup_database_for_device.View.SystemForm
                 ComboboxInput.Items.Add(comboboxItems[i]);
             }
 
-            InputLabel.Content = label;
+            InputLabel.Text = label;
         }
     }
 }
