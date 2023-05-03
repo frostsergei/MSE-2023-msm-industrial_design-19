@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="View\SystemForm\TextDataBlock.xaml.cs">
       <DependentUpon>TextDataBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PipelineSettings2Form.cs">
       <SubType>Form</SubType>
     </Compile>
