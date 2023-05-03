@@ -80,16 +80,16 @@ namespace Setup_database_for_device
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 26);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(189, 614);
+            this.panelLeft.Size = new System.Drawing.Size(235, 614);
             this.panelLeft.TabIndex = 4;
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(189, 26);
+            this.panelContent.Location = new System.Drawing.Point(235, 26);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(715, 614);
+            this.panelContent.Size = new System.Drawing.Size(669, 614);
             this.panelContent.TabIndex = 5;
             // 
             // MainForm
