@@ -273,6 +273,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SystemForm\TextDataBlock.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="View\PipelineSettings2WPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
