@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-
+using System.Windows.Forms.Integration;
 
 namespace Setup_database_for_device
 {
@@ -51,6 +51,23 @@ namespace Setup_database_for_device
             panelContent.Controls.Add(subForm);
             subForm.BringToFront();
             subForm.Show();
+
+            ElementHost host = new ElementHost();
+
+
+            View.ContentMenu contentMenu = new View.ContentMenu("прибор СПТ963", 10, 4);
+            contentMenu.FormChanged += new EventHandler(ChangeForm);
+
+
+            host.Child = contentMenu;
+            host.Dock = DockStyle.Fill;
+            panelLeft.Controls.Add(host);
+
+        }
+
+        private void ChangeForm(object sender, EventArgs e)
+        {
+            panelContent.Controls.Clear();
         }
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)

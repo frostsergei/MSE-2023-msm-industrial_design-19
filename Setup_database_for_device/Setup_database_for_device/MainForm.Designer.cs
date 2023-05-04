@@ -32,12 +32,10 @@ namespace Setup_database_for_device
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelLeft = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelContent = new System.Windows.Forms.Panel();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelLeft = new System.Windows.Forms.Panel();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
-            this.panelLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -66,44 +64,33 @@ namespace Setup_database_for_device
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.createToolStripMenuItem.Text = "Создать";
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
-            this.panelLeft.Controls.Add(this.label1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 26);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(189, 614);
+            this.panelLeft.Size = new System.Drawing.Size(235, 614);
             this.panelLeft.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(14, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Навигация";
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(189, 26);
+            this.panelContent.Location = new System.Drawing.Point(235, 26);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(715, 614);
+            this.panelContent.Size = new System.Drawing.Size(669, 614);
             this.panelContent.TabIndex = 5;
-            // 
-            // createToolStripMenuItem
-            // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.createToolStripMenuItem.Text = "Создать";
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -121,8 +108,6 @@ namespace Setup_database_for_device
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panelLeft.ResumeLayout(false);
-            this.panelLeft.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,7 +118,6 @@ namespace Setup_database_for_device
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
     }

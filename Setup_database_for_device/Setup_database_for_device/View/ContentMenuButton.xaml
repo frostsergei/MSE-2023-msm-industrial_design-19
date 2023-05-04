@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Setup_database_for_device.View.ContentMenuButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Setup_database_for_device.View"
+             mc:Ignorable="d" FocusVisualStyle="{x:Null}">
+    <UserControl.Resources>
+        <Style TargetType="RadioButton">
+
+            <Setter Property="Background" Value="#E9E9E9"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="FontFamily" Value="Verdana"></Setter>
+            <Setter Property="FontSize" Value="9pt"></Setter>
+            <Setter Property="Focusable" Value="false"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border
+                            Padding="{TemplateBinding Padding}"
+                            Width="{TemplateBinding Width}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            FocusVisualStyle="{x:Null}"
+                            >
+                            <TextBlock 
+                                Name="ButtonText" 
+                                TextWrapping="Wrap" 
+                                TextAlignment="Center" 
+                                Text="{TemplateBinding Content}"
+                            />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                    <Setter Property="BorderThickness" Value="0"></Setter>
+                    <Setter Property="Foreground" Value="#767676"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="BorderBrush" Value="#000"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <RadioButton 
+        Name="RadioButtonControl" 
+        Checked="RadioButtonControl_Checked"
+        />
+</UserControl>
