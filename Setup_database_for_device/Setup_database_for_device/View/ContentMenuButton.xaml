@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Setup_database_for_device.View"
-             mc:Ignorable="d" FocusVisualStyle="{x:Null}">
+             mc:Ignorable="d">
+
     <UserControl.Resources>
         <Style TargetType="RadioButton">
 
@@ -13,19 +14,18 @@
             <Setter Property="BorderThickness" Value="1"></Setter>
             <Setter Property="FontFamily" Value="Verdana"></Setter>
             <Setter Property="FontSize" Value="9pt"></Setter>
-            <Setter Property="Focusable" Value="false"></Setter>
             <Setter Property="Padding" Value="5"></Setter>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Border
+                            Name="ButtonBorder"
                             Padding="{TemplateBinding Padding}"
                             Width="{TemplateBinding Width}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            FocusVisualStyle="{x:Null}"
                             >
                             <TextBlock 
                                 Name="ButtonText" 
@@ -39,7 +39,6 @@
             </Setter>
 
             <Style.Triggers>
-
                 <Trigger Property="IsEnabled" Value="false">
                     <Setter Property="Background" Value="Transparent"></Setter>
                     <Setter Property="BorderBrush" Value="Transparent"></Setter>
