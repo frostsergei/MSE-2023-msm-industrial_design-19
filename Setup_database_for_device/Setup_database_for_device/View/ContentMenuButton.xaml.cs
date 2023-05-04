@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace Setup_database_for_device.View
 {
     public partial class ContentMenuButton : UserControl
