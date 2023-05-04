@@ -18,91 +18,126 @@ namespace Setup_database_for_device.View
 
     public partial class ContentMenu : UserControl
     {
+
+        public event EventHandler FormChanged;
+
         private static readonly string s_topTreeGroupName = "ContentButtons";
-        private static readonly string s_pipelinesTreeGroupName = "PipelinesButtons";
-        private static readonly string s_consumersTreeGroupName = "ConsumersButtons";
-        private static readonly string s_pipelinePrefix = "Трубопровод";
-        private static readonly string s_consumersPrefix = "Потребитель";
+        private static readonly string s_pipelineGroupName = "PipelinesButton";
+        private static readonly string s_consumersGroupName = "ConsumersButton";
 
-        private TreeViewItem[] _pipelinesTreeViewItems;
-        private TreeViewItem[] _consumersTreeViewItems;
-
-        private int _pipelineCount = 2;
-        private int _consumersCount = 2;
-
-        public ContentMenu()
+        private static readonly Dictionary<string, string> s_russianNames = new Dictionary<string, string>
         {
-
-
-            InitializeComponent();
-            _pipelinesTreeViewItems = new TreeViewItem[_pipelineCount];
-
-            _pipelinesTreeViewItems = GetTreeViewItems(GetNamesArray(s_pipelinePrefix, _pipelineCount), s_pipelinesTreeGroupName);
-            _consumersTreeViewItems = GetTreeViewItems(GetNamesArray(s_consumersPrefix, _consumersCount), s_consumersTreeGroupName);
-
-            TreeViewItem pipelinesSettings = FindName("PipelinesSettings") as TreeViewItem;
-            TreeViewItem consumersSettings = FindName("ConsumersSettings") as TreeViewItem;
-
-            foreach (TreeViewItem item in _pipelinesTreeViewItems)
-            {
-                pipelinesSettings.Items.Add(item);
-            }
-
-            foreach (TreeViewItem item in _consumersTreeViewItems)
-            {
-                consumersSettings.Items.Add(item);
-            }
-
-        }
-
-        private RadioButton GetTreeViewItemInnerElement(string name, string groupName)
-        {
-
-            Style style = FindResource("SimpleButton") as Style;
-
-            return new RadioButton
-            {
-                Content = name,
-                GroupName = groupName,
-                IsEnabled = true,
-                Style = style,
-                Width = 130,
-                Margin = new Thickness(0, 10, 0, 0)
+            { "PipelinesButton", "Трубопровод" },
+            { "ConsumersButton", "Потребитель" }
         };
 
-        }
+        private ContentMenuButton[] _topButtons = new ContentMenuButton[5];
+        private ContentMenuButton[] _pipelinesButtons;
+        private ContentMenuButton[] _consumersButtons;
+        private ContentMenuButton[] _allButtons;
 
-        private string[] GetNamesArray(string prefix, int elementCount)
-        {
-            string[] names = new string[elementCount];
 
-            for(int i = 0; i < elementCount; i++)
-            {
-                names[i] = prefix + (i + 1).ToString();
-            }
+        private int _pipelineSettingsButtonIndex = 2;
+        private int _consumersSettingsButtonIndex = 4;
 
-            return names;
-        }
+        private int _pipelinesCount;
+        private int _consumersCount;
 
-        private TreeViewItem[] GetTreeViewItems(string[] names, string groupName)
+        public ContentMenu(string apparatusName, int pipelinesCount, int consumersCount)
         {
 
-            TreeViewItem[] result = new TreeViewItem[names.Length];
+            InitializeComponent();
 
-            for (int i = 0; i < names.Length; i++)
+            _pipelinesCount = pipelinesCount;
+            _consumersCount = consumersCount;
+
+            _topButtons[0] = new ContentMenuButton(apparatusName, s_topTreeGroupName);
+            _topButtons[1] = new ContentMenuButton("Общесистемные параметры", s_topTreeGroupName);
+            _topButtons[2] = new ContentMenuButton("Настройка трубопроводов", s_topTreeGroupName);
+            _topButtons[3] = new ContentMenuButton("Настройка датчиков", s_topTreeGroupName);
+            _topButtons[4] = new ContentMenuButton("Настройка потребителей", s_topTreeGroupName);
+
+            TreeViewItem[] topButtonsTreeViewItems = WrapButtonsInTreeViewItem(_topButtons);
+
+            topButtonsTreeViewItems[_pipelineSettingsButtonIndex].Name = "PipelinesSettings";
+            topButtonsTreeViewItems[_consumersSettingsButtonIndex].Name = "ConsumersSettings";
+
+            foreach(ContentMenuButton a in _topButtons)
             {
-                TreeViewItem currentTopTreeViewItem = new TreeViewItem();
-
-                RadioButton radioButtonInTreeViewItem = GetTreeViewItemInnerElement(names[i], groupName);
-                radioButtonInTreeViewItem.Name = s_topTreeGroupName + (i + 1).ToString();
-
-                currentTopTreeViewItem.Header = radioButtonInTreeViewItem;
-
-                result[i] = currentTopTreeViewItem;
-
+                a.RadioButtonChecked += new EventHandler(ButtonClicked);
             }
 
-            return result;
+            foreach (TreeViewItem el in topButtonsTreeViewItems)
+            {
+                ContentMenuEl.Items.Add(el);
+                
+            }
+
+            _pipelinesButtons = CreateDeepButtons(s_pipelineGroupName, _pipelinesCount);
+
+            foreach(TreeViewItem el in WrapButtonsInTreeViewItem(_pipelinesButtons))
+            {
+                topButtonsTreeViewItems[_pipelineSettingsButtonIndex].Items.Add(el);
+            }
+
+            _consumersButtons = CreateDeepButtons(s_consumersGroupName, _consumersCount);
+
+            foreach (TreeViewItem el in WrapButtonsInTreeViewItem(_consumersButtons))
+            {
+                topButtonsTreeViewItems[_consumersSettingsButtonIndex].Items.Add(el);
+            }
+
+            _allButtons = _topButtons.Concat(_pipelinesButtons).ToArray().Concat(_consumersButtons).ToArray();
+
+            EnableButtonByName("Настройка датчиков");
+            EnableButtonByName("Общесистемные параметры");
+
+        }
+
+        private void EnableButtonByName(string name)
+        {
+            foreach(ContentMenuButton button in _allButtons)
+            {
+                if(button.ButtonName == name)
+                {
+                    button.EnableButton();
+                    break;
+                }
+            }
+        }
+
+
+        private void ButtonClicked(object sender, EventArgs e)
+        {
+            FormChanged?.Invoke(sender, e);
+        }
+
+
+        private TreeViewItem[] WrapButtonsInTreeViewItem(ContentMenuButton[] buttons)
+        {
+
+            return buttons.Select((ContentMenuButton button) =>
+            {
+                return new TreeViewItem
+                {
+                    Header = button,
+                    Margin = new Thickness(0, 10, 0, 0)
+            };
+            }).ToArray();
+        }
+
+        private ContentMenuButton[] CreateDeepButtons(string name, int itemsCount)
+        {
+
+            ContentMenuButton[] buttons = new ContentMenuButton[itemsCount];
+
+            for (int i = 0; i < itemsCount; i++)
+            {
+                buttons[i] = new ContentMenuButton($"{s_russianNames[name]} {i + 1}", name, 120);
+                buttons[i].RadioButtonChecked += new EventHandler(ButtonClicked);
+            }
+
+            return buttons;
 
         }
     }
