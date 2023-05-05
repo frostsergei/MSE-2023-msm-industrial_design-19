@@ -31,7 +31,7 @@ namespace Setup_database_for_device
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelContent = new System.Windows.Forms.Panel();
@@ -47,30 +47,31 @@ namespace Setup_database_for_device
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(904, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(904, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьToolStripMenuItem,
+            this.saveToolStripMenuItem,
             this.createToolStripMenuItem});
             this.файлToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // сохранитьToolStripMenuItem
+            // saveToolStripMenuItem
             // 
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Text = "Сохранить";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.createToolStripMenuItem.Text = "Создать";
             this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
@@ -78,18 +79,18 @@ namespace Setup_database_for_device
             // 
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 26);
+            this.panelLeft.Location = new System.Drawing.Point(0, 28);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(235, 614);
+            this.panelLeft.Size = new System.Drawing.Size(235, 612);
             this.panelLeft.TabIndex = 4;
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.SystemColors.Info;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(235, 26);
+            this.panelContent.Location = new System.Drawing.Point(235, 28);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(669, 614);
+            this.panelContent.Size = new System.Drawing.Size(669, 612);
             this.panelContent.TabIndex = 5;
             // 
             // MainForm
@@ -116,7 +117,7 @@ namespace Setup_database_for_device
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;

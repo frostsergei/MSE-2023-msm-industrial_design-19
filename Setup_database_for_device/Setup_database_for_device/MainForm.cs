@@ -20,12 +20,15 @@ namespace Setup_database_for_device
 
         private bool _exitFlag;
 
+        private Model.Model _model;
+
         public MainForm(Model.Device device, Form deviceSelectionForm)
         {
             InitializeComponent();
             _device = device;
             _deviceSelectionForm = deviceSelectionForm;
             _exitFlag = true;
+            _model = new Model.Model(device);
             string title = "Настройщик базы данных ";
             switch (_device)
             {
@@ -86,6 +89,18 @@ namespace Setup_database_for_device
         {
             if (_exitFlag == true)
                 _deviceSelectionForm.Close();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Сохранение базы данных";
+            saveFileDialog.Filter = "Configurator DB files|*.xdb";
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != "")
+            {
+                _model.SaveDataToFile(saveFileDialog.FileName.Substring(0, saveFileDialog.FileName.Length-4), "");
+            }
         }
     }
 }
