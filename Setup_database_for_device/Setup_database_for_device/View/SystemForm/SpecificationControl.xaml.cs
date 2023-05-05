@@ -45,14 +45,18 @@ namespace Setup_database_for_device.View.SystemForm
 
         private void CheckBoxChanged(object sender, EventArgs e)
         {
+
             if (_checkbox.IsControlCheck())
-            { 
+            {
                 _textBox.EnableTextBox();
-            } else
+            }
+            else
             {
                 _textBox.DisableTextBox();
             }
         }
+
+        public string Value => _checkbox.IsControlCheck() ? _textBox.Value : "";
 
     }
 }

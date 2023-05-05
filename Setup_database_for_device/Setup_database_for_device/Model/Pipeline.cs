@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Setup_database_for_device.Model
 {
-    class Pipeline
+    public class Pipeline
     {
         private bool _active;
 

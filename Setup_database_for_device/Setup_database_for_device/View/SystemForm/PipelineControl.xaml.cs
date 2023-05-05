@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Setup_database_for_device.View.SystemForm
@@ -38,5 +39,11 @@ namespace Setup_database_for_device.View.SystemForm
             PipelineControlBlock.Children.Add(_textbox);
 
         }
+
+        public Dictionary<string, string> Value => new Dictionary<string, string>()
+            {
+                { "TextFieldValue", _textbox.Value },
+                { "CheckboxValue", _checkbox.Value }
+            };
     }
 }

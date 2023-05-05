@@ -17,6 +17,10 @@ namespace Setup_database_for_device.View.SystemForm
 {
     public partial class SpecificationBlock : UserControl
     {
+
+        private SpecificationControl _spec1;
+        private SpecificationControl _spec2;
+
         public SpecificationBlock()
         {
             InitializeComponent();
@@ -27,17 +31,25 @@ namespace Setup_database_for_device.View.SystemForm
             TextBoxControl spec2Textbox = new TextBoxControl("Текущее значение");
             CheckboxControl spec2Checkbox = new CheckboxControl("Изменить Спецификация-2 внешнего оборудования?");
 
-            SpecificationControl spec1 = new SpecificationControl(spec1Checkbox, spec1Textbox);
-            SpecificationControl spec2 = new SpecificationControl(spec2Checkbox, spec2Textbox);
+            _spec1 = new SpecificationControl(spec1Checkbox, spec1Textbox);
+            _spec2 = new SpecificationControl(spec2Checkbox, spec2Textbox);
 
-            spec1.SetValue(Grid.RowProperty, 0);
-            spec1.SetValue(Grid.ColumnProperty, 0);
-            spec1.SetValue(Grid.ColumnSpanProperty, 2);
-            spec2.SetValue(Grid.RowProperty, 1);
-            spec2.SetValue(Grid.ColumnProperty, 0);
+            _spec1.SetValue(Grid.RowProperty, 0);
+            _spec1.SetValue(Grid.ColumnProperty, 0);
+            _spec1.SetValue(Grid.ColumnSpanProperty, 2);
+            _spec2.SetValue(Grid.RowProperty, 1);
+            _spec2.SetValue(Grid.ColumnProperty, 0);
 
-            SpecificationSection.Children.Add(spec1);
-            SpecificationSection.Children.Add(spec2);
+            SpecificationSection.Children.Add(_spec1);
+            SpecificationSection.Children.Add(_spec2);
+        }
+
+        public Dictionary<string, string> GetResult()
+        {
+            return new Dictionary<string, string>() {
+                { "003", _spec1.Value },
+                { "004", _spec2.Value }
+            };
         }
     }
 }

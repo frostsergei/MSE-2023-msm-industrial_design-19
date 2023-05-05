@@ -1,10 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 
 namespace Setup_database_for_device.View.SystemForm
 {
     public partial class TextDataBlock : UserControl
     {
+
+        private static readonly string[] s_parametersNames = { "030н01", "030н02", "024", "025", "008" };
 
         private TextBoxControl[] _textFields;
         private CheckboxControl _checkbox;
@@ -32,6 +35,20 @@ namespace Setup_database_for_device.View.SystemForm
             _checkbox.SetValue(Grid.ColumnProperty, 0);
             TextDataSection.Children.Add(_checkbox);
 
+        }
+
+        public Dictionary<string, string> GetResult()
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            for(int i = 0; i < _textFields.Length; i++)
+            {
+                result.Add(s_parametersNames[i], _textFields[i].Value);
+            }
+
+            //result.Add(s_parametersNames[_textFields.Length], _checkbox.Value);
+
+            return result;
         }
     }
 }

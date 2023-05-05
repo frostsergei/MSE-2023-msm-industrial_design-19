@@ -62,6 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\SystemController.cs" />
     <Compile Include="DB\AbstractTag.cs" />
     <Compile Include="DB\Channel.cs" />
     <Compile Include="DB\GroupTag.cs" />
@@ -85,7 +87,6 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
       <DependentUpon>CheckboxControl.xaml</DependentUpon>
     </Compile>
@@ -276,9 +277,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SystemForm\TextDataBlock.xaml">
-		  <SubType>Designer</SubType>
-		  <Generator>MSBuild:Compile</Generator>
-	  </Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ContentMenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

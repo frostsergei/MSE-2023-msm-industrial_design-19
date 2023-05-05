@@ -34,9 +34,6 @@ namespace Setup_database_for_device.View.SystemForm
             TextField.IsEnabled = false;
         }
 
-        public string GetValue()
-        {
-            return TextField.Text;
-        }
+        public string Value => TextField.Text;
     }
 }

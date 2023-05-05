@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -90,6 +91,15 @@ namespace Setup_database_for_device.View.SystemForm
             }
 
             return result;
+        }
+
+        public Dictionary<string, string> GetResult()
+        {
+            return new Dictionary<string, string>()
+            {
+                { "031н00", _pipelinesResult },
+                { "031н01", _consumersResult }
+            };
         }
         
         private void ChangeParticipatedPipelinesResult(object sender, EventArgs e)

@@ -15,5 +15,13 @@ namespace Setup_database_for_device.View.SystemForm
 
             InputLabel.Text = label;
         }
+
+        public string Value { get; private set; }
+
+        private void ComboboxInput_Selected(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ComboBoxItem selectedItem = (ComboBoxItem)ComboboxInput.SelectedItem;
+            Value = selectedItem.Content.ToString();
+        }
     }
 }
