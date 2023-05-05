@@ -65,5 +65,10 @@ namespace Setup_database_for_device.Model
             _parameters.Add("125н06", new Parameter("125н06", "", ""));
             _parameters.Add("125н07", new Parameter("125н07", "", ""));
         }
+
+        public void ChangeParameterValue(string parameterName, string value)
+        {
+            _parameters[parameterName].Value = value;
+        }
     }
 }

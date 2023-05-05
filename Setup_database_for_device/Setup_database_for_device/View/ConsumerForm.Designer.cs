@@ -120,10 +120,10 @@ namespace Setup_database_for_device.View
 
         private System.Windows.Forms.Label labelConsumerTitle;
         private System.Windows.Forms.Label labelConsumerId;
-        private System.Windows.Forms.NumericUpDown numericUpDownConsumerId;
         private System.Windows.Forms.Label labelCountingScheme;
         private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private SchemeNumberControl schemeNumberControl;
+        public System.Windows.Forms.NumericUpDown numericUpDownConsumerId;
+        public System.Windows.Forms.Integration.ElementHost elementHost1;
+        public SchemeNumberControl schemeNumberControl;
     }
 }

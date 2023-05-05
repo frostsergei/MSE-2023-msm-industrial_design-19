@@ -104,7 +104,7 @@ namespace Setup_database_for_device.Model
             switch (_device)
             {
                 case Device.SPT961:
-                    targetDevice = "TSPT961";
+                    targetDevice = "TSPT961_1";
                     break;
                 case Device.SPT962:
                     targetDevice = "TSPT962";

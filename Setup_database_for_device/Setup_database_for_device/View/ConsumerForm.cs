@@ -31,11 +31,13 @@ namespace Setup_database_for_device.View
                 label.Text = "Трубопровод №" + pipelinesNumbers[i].ToString();
                 label.AutoSize = true;
                 ComboBox comboBox = new ComboBox();
+                comboBox.Name = "combobox" + pipelinesNumbers[i].ToString();
                 comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
                 comboBox.Items.Add("Не задействован в данной схеме");
                 comboBox.Items.Add("Задействован как подающий");
                 comboBox.Items.Add("Задействован как обратный");
                 comboBox.Items.Add("Задействован как подпитка или трубопровод ГВС");
+                comboBox.SelectedIndex = 0;
                 comboBox.Width = comboBoxWidth;
                 label.Location = new Point(leftMargin, curY);
                 comboBox.Location = new Point(3 * leftMargin + label.Size.Width, curY);
