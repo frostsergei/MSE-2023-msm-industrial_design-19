@@ -14,7 +14,7 @@ namespace Setup_database_for_device.Model
         SPT963
     }
 
-    class Model
+    public class Model
     {
         private SystemWideSettings _systemWideSettings;
 

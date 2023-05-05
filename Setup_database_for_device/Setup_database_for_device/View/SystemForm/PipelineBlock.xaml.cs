@@ -18,6 +18,7 @@ namespace Setup_database_for_device.View.SystemForm
     public partial class PipelineBlock : UserControl
     {
 
+        private static readonly string[] s_parametersNames = { "035н0", "036н0", "037н0", "040н0" };
         private PipelineControl[] _pipelinesSettings;
 
 
@@ -39,6 +40,21 @@ namespace Setup_database_for_device.View.SystemForm
             }
 
 
+        }
+    
+        public Dictionary<string, string> GetResult()
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            for(int i = 0; i < _pipelinesSettings.Length; i++)
+            {
+                Dictionary<string, string> pipelineSettingsValue = _pipelinesSettings[i].Value;
+
+                result.Add($"{s_parametersNames[i]}0", pipelineSettingsValue["TextFieldValue"]);
+                result.Add($"{s_parametersNames[i]}1", pipelineSettingsValue["CheckboxValue"]);
+            }
+
+            return result;
         }
     }
 }

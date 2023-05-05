@@ -13,7 +13,12 @@ namespace Setup_database_for_device.View.SystemForm
                 ComboboxInput.Items.Add(comboboxItems[i]);
             }
 
+            ComboboxInput.SelectedIndex = 0;
+
             InputLabel.Text = label;
         }
+
+        public string Value => ComboboxInput.SelectedIndex.ToString();
+
     }
 }

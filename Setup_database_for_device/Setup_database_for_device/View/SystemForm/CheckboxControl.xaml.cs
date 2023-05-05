@@ -16,6 +16,7 @@ namespace Setup_database_for_device.View.SystemForm
             InitializeComponent();
 
             CheckboxText.Text = label;
+            CheckboxInput.IsChecked = false;
 
             CheckboxTextEl = CheckboxText;
             CheckboxElement = CheckboxInput;
@@ -24,6 +25,8 @@ namespace Setup_database_for_device.View.SystemForm
         public TextBlock CheckboxTextEl { get; }
 
         public CheckBox CheckboxElement { get; }
+
+        public string Value => (bool)CheckboxInput.IsChecked ? "1" : "0";
 
         public bool IsControlCheck()
         {

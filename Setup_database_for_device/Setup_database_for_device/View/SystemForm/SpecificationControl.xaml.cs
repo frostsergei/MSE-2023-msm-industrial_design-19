@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Setup_database_for_device.View.SystemForm
 {
@@ -45,14 +34,18 @@ namespace Setup_database_for_device.View.SystemForm
 
         private void CheckBoxChanged(object sender, EventArgs e)
         {
+
             if (_checkbox.IsControlCheck())
-            { 
+            {
                 _textBox.EnableTextBox();
-            } else
+            }
+            else
             {
                 _textBox.DisableTextBox();
             }
         }
+
+        public string Value => _checkbox.IsControlCheck() ? _textBox.Value : "";
 
     }
 }

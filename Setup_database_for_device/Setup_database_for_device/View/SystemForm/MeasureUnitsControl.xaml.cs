@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 
 namespace Setup_database_for_device.View.SystemForm
@@ -24,6 +25,14 @@ namespace Setup_database_for_device.View.SystemForm
 
             MeasureUnitsControlBlock.Children.Add(_pressureCombobox);
             MeasureUnitsControlBlock.Children.Add(_powerCombobox);
+        }
+
+        public Dictionary<string, string> GetResult()
+        {
+            return new Dictionary<string, string>() {
+
+                { "030н00", $"{_pressureCombobox.Value}{_powerCombobox.Value}" }
+            };
         }
     }
 }

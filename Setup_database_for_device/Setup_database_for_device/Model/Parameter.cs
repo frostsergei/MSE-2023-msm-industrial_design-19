@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Setup_database_for_device.Model
 {
-    class Parameter
+    public class Parameter
     {
         private string _name;
 

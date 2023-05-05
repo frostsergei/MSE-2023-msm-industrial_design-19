@@ -131,16 +131,5 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
 
-        //private void Checkboxes_changed(object sender, RoutedEventArgs e)
-        //{
-        //    if (CheckBoxesChecked != null)
-        //    {
-        //        Console.WriteLine("checked");
-                
-        //    }
-
-        //}
-
-        //CheckBoxesChecked
     }
 }
