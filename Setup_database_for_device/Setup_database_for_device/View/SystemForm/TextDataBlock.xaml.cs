@@ -46,7 +46,7 @@ namespace Setup_database_for_device.View.SystemForm
                 result.Add(s_parametersNames[i], _textFields[i].Value);
             }
 
-            //result.Add(s_parametersNames[_textFields.Length], _checkbox.Value);
+            result.Add("CurrentTimeAndDate", _checkbox.Value);
 
             return result;
         }

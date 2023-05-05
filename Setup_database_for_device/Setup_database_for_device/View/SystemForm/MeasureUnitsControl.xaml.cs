@@ -30,8 +30,8 @@ namespace Setup_database_for_device.View.SystemForm
         public Dictionary<string, string> GetResult()
         {
             return new Dictionary<string, string>() {
-                { "unkown parameter", _pressureCombobox.Value },
-                { "030н01", _powerCombobox.Value }
+
+                { "030н00", $"{_pressureCombobox.Value}{_powerCombobox.Value}" }
             };
         }
     }

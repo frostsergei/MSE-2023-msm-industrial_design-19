@@ -21,6 +21,7 @@ namespace Setup_database_for_device.View.SystemForm
             host.Child = _systemWindow;
             host.Dock = DockStyle.Fill;
             Controls.Add(host);
+
         }
 
         public Dictionary<string, string> GetSystemWindowData()

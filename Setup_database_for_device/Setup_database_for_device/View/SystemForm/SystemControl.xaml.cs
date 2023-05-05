@@ -21,7 +21,8 @@ namespace Setup_database_for_device.View.SystemForm
             _measureUnitsBlock = new MeasureUnitsControl();
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
-            _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 8, !isBacked);
+// Change back pipelineblock and participatedpipelines
+            _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6, isBacked);
             _pipelineBlock = new PipelineBlock(isBacked);
 
             _participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
@@ -50,13 +51,10 @@ namespace Setup_database_for_device.View.SystemForm
             SystemWindowBlock.Children.Add(_participatedPipelinesBlock);
             SystemWindowBlock.Children.Add(_pipelineBlock);
 
-            //GetAllSystemSettings();
         }
 
         public Dictionary<string, string> GetAllSystemSettings()
         {
-
-
 
             Dictionary<string, string> measureUnitsData = _measureUnitsBlock.GetResult();
             Dictionary<string, string> textData = _textDataBlock.GetResult();
@@ -64,23 +62,20 @@ namespace Setup_database_for_device.View.SystemForm
             Dictionary<string, string> participatedPipelinesData = _participatedPipelinesBlock.GetResult();
             Dictionary<string, string> pipelinesData = _pipelineBlock.GetResult();
 
-            //Dictionary<string, string> result = new Dictionary<string, string>();
+            foreach(KeyValuePair<string, string> a in measureUnitsData)
+            {
+                string e = a.Key;
+                string b = a.Value;
+            }
 
-            //result = result.Concat(measureUnitsData)
-            //    .Concat(textData)
-            //    .ToDictionary(x => x.Key, x => x.Value);
+            Dictionary<string, string> result = measureUnitsData
+                .Union(textData)
+                .Union(specData)
+                .Union(participatedPipelinesData)
+                .Union(pipelinesData)
+                .ToDictionary(x => x.Key, x => x.Value);
 
-            //            .Concat(specData)
-            //.Concat(participatedPipelinesData)
-            //.Concat(pipelinesData)
-
-            return textData;
+            return result;
         }
-
-        //private MeasureUnitsControl _measureUnitsBlock;
-        //private TextDataBlock _textDataBlock;
-        //private SpecificationBlock _specificationBlock;
-        //private ParticipatedPipelinesBlock _participatedPipelinesBlock;
-        //private PipelineBlock _pipelineBlock;
     }
 }
