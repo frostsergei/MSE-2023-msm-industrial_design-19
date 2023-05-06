@@ -115,6 +115,9 @@
     <Compile Include="View\CoolantSelectionForm.Designer.cs">
       <DependentUpon>CoolantSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CoolantSelectionWPF.xaml.cs">
+      <DependentUpon>CoolantSelectionWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DeviceFirstSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +182,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\ContentMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CoolantSelectionWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
