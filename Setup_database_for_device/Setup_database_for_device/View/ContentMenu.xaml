@@ -4,64 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Setup_database_for_device.View"
-             mc:Ignorable="d" FocusVisualStyle="{x:Null}">
-    <UserControl.Resources>
-        <Style x:Key="SimpleButton" TargetType="RadioButton">
+             mc:Ignorable="d" FocusVisualStyle="{x:Null}" Height="400">
+    
+    <Grid>
 
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
-                        <Border Name="ContentButtonBorder" Padding="25,10" BorderBrush="Transparent" Width="{TemplateBinding Width}" MinHeight="50" Background="Transparent" BorderThickness="1">
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Center"  Name="ContentButtonText" HorizontalAlignment="Center" Foreground="#767676" VerticalAlignment="Center" Text="{TemplateBinding Content }" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="True">
-                                <Setter TargetName="ContentButtonText" Property="Foreground" Value="#000" />
-                                <Setter TargetName="ContentButtonBorder" Property="Background" Value="#E9E9E9" />
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="ContentButtonText" Property="Foreground" Value="#000" />
-                                <Setter TargetName="ContentButtonBorder" Property="BorderBrush" Value="#000" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Focusable" Value="false" />
-                            </Trigger>
-                            
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
 
-        </Style>
-
-    </UserControl.Resources>
-    <Grid VerticalAlignment="Center">
-        <TreeView Name="ContentMenuEl" VerticalAlignment="Center">
-            <TreeViewItem Name="ApparatusName" Margin="0,0,0,20">
-                <TreeViewItem.Header>
-                    <RadioButton Name="ApparatusNameButton" IsEnabled="true" Content="Какой-то прибор" GroupName="ContentButtons" Style="{StaticResource SimpleButton}"/>
-                </TreeViewItem.Header>
-            </TreeViewItem>
-            <TreeViewItem Name="SystemSettings" Margin="0,0,0,20">
-                <TreeViewItem.Header>
-                    <RadioButton Width="150" Name="SystemSettingsButton" IsEnabled="true" Content="Общесистемные параметры" GroupName="ContentButtons" Style="{StaticResource SimpleButton}"/>
-                </TreeViewItem.Header>
-            </TreeViewItem>
-            <TreeViewItem Name="PipelinesSettings" Margin="0,0,0,20" IsExpanded="{Binding ElementName=PipelinesSettingsButton,Path=IsChecked}">
-                <TreeViewItem.Header>
-                    <RadioButton Width="150" Name="PipelinesSettingsButton" IsEnabled="true" Content="Настройка трубопроводов" GroupName="ContentButtons" Style="{StaticResource SimpleButton}"/>
-                </TreeViewItem.Header>
-            </TreeViewItem>
-            <TreeViewItem Name="SensorSettings" Margin="0,0,0,20">
-                <TreeViewItem.Header>
-                    <RadioButton Width="150" Name="SensorSettingsButton" IsEnabled="false" Content="Настройка датчиков" GroupName="ContentButtons" Style="{StaticResource SimpleButton}"/>
-                </TreeViewItem.Header>
-            </TreeViewItem>
-            <TreeViewItem Name="ConsumersSettings" Margin="0,0,0,20">
-                <TreeViewItem.Header>
-                    <RadioButton Width="150" Name="ConsumersSettingsButton" IsEnabled="false" Content="Настройка потребителей" GroupName="ContentButtons" Style="{StaticResource SimpleButton}"/>
-                </TreeViewItem.Header>
-            </TreeViewItem>
+        <Grid.Resources>
+            <Style TargetType="TreeViewItem">
+                <Setter Property="Focusable" Value="False"></Setter>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <TreeView Name="ContentMenuEl">
+            
         </TreeView>
     </Grid>
 </UserControl>

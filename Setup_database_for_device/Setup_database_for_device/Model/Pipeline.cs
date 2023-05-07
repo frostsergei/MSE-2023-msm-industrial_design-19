@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Setup_database_for_device.Model
 {
-    class Pipeline
+    public class Pipeline
     {
         private bool _active;
 
@@ -64,6 +64,11 @@ namespace Setup_database_for_device.Model
             _parameters.Add("125н05", new Parameter("125н05", "", ""));
             _parameters.Add("125н06", new Parameter("125н06", "", ""));
             _parameters.Add("125н07", new Parameter("125н07", "", ""));
+        }
+
+        public void ChangeParameterValue(string parameterName, string value)
+        {
+            _parameters[parameterName].Value = value;
         }
     }
 }
