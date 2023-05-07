@@ -92,7 +92,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Единицы" Binding="{Binding ParUnit}">
+                <DataGridTextColumn IsReadOnly="True" Header="Единицы" Binding="{Binding ParUnit}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Margin" Value="5" />
