@@ -12,50 +12,17 @@ namespace Setup_database_for_device.View
 {
     public partial class CoolantSelectionForm : Form
     {
+        /*Данные из WPF могут быть получены следующим образом:
+         * (elementHost1.Child as CoolantSelectionWPF).coolantTypeValue - тип теплоносителя
+         * (elementHost1.Child as CoolantSelectionWPF).flowMeterValue - тип расходомера
+         * (elementHost1.Child as CoolantSelectionWPF).sensorTypeValue - тип датчика (возвращает индекс)
+         * (elementHost1.Child as CoolantSelectionWPF).saturationWidthValue - ширина зоны насыщения
+         * (elementHost1.Child as CoolantSelectionWPF).drynessValue - степень сухости
+        */
         public CoolantSelectionForm()
         {
             InitializeComponent();
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 3;
-            label3.Visible = false;
-            label4.Visible = false;
-            label5.Visible = false;
-            label6.Visible = false;
-            textBox1.Visible = false;
-            textBox2.Visible = false;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedItem.ToString() == "Перегретый пар" || comboBox1.SelectedItem.ToString() == "Насыщенный пар")
-            {
-                label3.Visible = true;
-                label4.Visible = true;
-                textBox1.Visible = true;
-
-                label5.Visible = false;
-                label6.Visible = false;
-                textBox2.Visible = false;
-            }
-            else if(comboBox1.SelectedItem.ToString() == "Жидкость")
-            {
-                label5.Visible = true;
-                label6.Visible = true;
-                textBox2.Visible = true;
-
-                label3.Visible = false;
-                label4.Visible = false;
-                textBox1.Visible = false;
-            }
-            else
-            {
-                label3.Visible = false;
-                label4.Visible = false;
-                label5.Visible = false;
-                label6.Visible = false;
-                textBox1.Visible = false;
-                textBox2.Visible = false;
-            }
+            elementHost1.Dock = DockStyle.Fill;
         }
     }
 }
