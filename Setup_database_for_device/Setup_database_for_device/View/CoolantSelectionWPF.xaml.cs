@@ -17,13 +17,6 @@ namespace Setup_database_for_device.View
 {
     public partial class CoolantSelectionWPF : UserControl
     {
-        public class Parameter
-        {
-            public string ParName { get; set; }
-            public string ParValue { get; set; }
-            public string ParUnit { get; set; }
-            public string ParDescription { get; set; }
-        }
         public string coolantTypeValue
         {
             get { return (string)GetValue(coolantType); }
@@ -71,7 +64,13 @@ namespace Setup_database_for_device.View
         public static DependencyProperty dryness =
             DependencyProperty.Register("drynessValue", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata("1"));
 
-
+        public class Parameter
+        {
+            public string ParName { get; set; }
+            public string ParValue { get; set; }
+            public string ParUnit { get; set; }
+            public string ParDescription { get; set; }
+        }
 
         public CoolantSelectionWPF()
         {
@@ -81,14 +80,14 @@ namespace Setup_database_for_device.View
 
             List<Parameter> parameters = new List<Parameter>
             {
-                new Parameter() { ParName = "125н00", ParDescription = "Нижняя точка при температуре" },
-                new Parameter() { ParName = "125н01", ParDescription = "Верхняя точка при температуре" },
-                new Parameter() { ParName = "125н02", ParDescription = "Плотность, соответствующая Т1" },
-                new Parameter() { ParName = "125н03", ParDescription = "Плотность, соответствующая Т2" },
-                new Parameter() { ParName = "125н04", ParDescription = "Энтальпия, соответствующая Т1" },
-                new Parameter() { ParName = "125н05", ParDescription = "Энтальпия, соответствующая Т2" },
-                new Parameter() { ParName = "125н06", ParDescription = "Динамическая вязкость,\nсоответствующая Т1" },
-                new Parameter() { ParName = "125н07", ParDescription = "Динамическая вязкость,\nсоответствующая Т2" }
+                new Parameter() { ParName = "125н00", ParUnit = "\u00B0C", ParDescription = "Нижняя точка при температуре" },
+                new Parameter() { ParName = "125н01", ParUnit = "\u00B0C", ParDescription = "Верхняя точка при температуре" },
+                new Parameter() { ParName = "125н02", ParUnit = "кг/м³", ParDescription = "Плотность, соответствующая Т1" },
+                new Parameter() { ParName = "125н03", ParUnit = "кг/м³", ParDescription = "Плотность, соответствующая Т2" },
+                new Parameter() { ParName = "125н04", ParUnit = "кДж/кг",ParDescription = "Энтальпия, соответствующая Т1" },
+                new Parameter() { ParName = "125н05", ParUnit = "кДж/кг", ParDescription = "Энтальпия, соответствующая Т2" },
+                new Parameter() { ParName = "125н06", ParUnit = "мкПа*с",ParDescription = "Динамическая вязкость, соответствующая Т1" },
+                new Parameter() { ParName = "125н07", ParUnit = "мкПа*с", ParDescription = "Динамическая вязкость, соответствующая Т2" }
             };
 
             ParamsGrid.ItemsSource = parameters;

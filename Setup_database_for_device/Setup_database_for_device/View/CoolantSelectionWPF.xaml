@@ -8,8 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="400"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+
         </Grid.ColumnDefinitions>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Выберите тип теплоносителя" VerticalAlignment="Top" Height="15" Width="183"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="177"><Run Text="Выберите тип "/><Run Text="расходомера"/></TextBlock>
@@ -20,11 +21,11 @@
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Насыщенный пар"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Жидкость"/>
         </ComboBox>
-        <ComboBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="25,139,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="25,139,103,0" VerticalAlignment="Top">
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Нет"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Объемный с импульсным выходом"/>
         </ComboBox>
-        <ComboBox SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="25,221,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo3" SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="25,221,103,0" VerticalAlignment="Top">
             <ComboBoxItem>
                 <StackPanel>
                     <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="Датчик объема с числоимпульсным"/></TextBlock>
@@ -109,8 +110,14 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content ="ОК" Margin="0,353,30,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Right" Width="114"/>
-        <Button FontSize="9 pt" Content="Назад" Margin="30,353,0,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" Grid.Column="1" HorizontalAlignment="Left" Width="114"/>
+        <Grid HorizontalAlignment="Center" Height="73" Margin="0,343,0,0" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button FontSize="9 pt" Content="Назад" Margin="30,19,-0.8,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Left" Width="114" Grid.Column="1"/>
+            <Button Content ="ОК" Margin="0,19,30,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Right" Width="114"/>
+        </Grid>
 
     </Grid>
 </UserControl>
