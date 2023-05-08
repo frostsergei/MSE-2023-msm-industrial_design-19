@@ -53,6 +53,13 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
 
+        public void SetOkBackButtons(Components.BackOkComponent backOkButtons)
+        {
+            backOkButtons.SetValue(Grid.RowProperty, 11);
+            backOkButtons.SetValue(Grid.RowSpanProperty, 2);
+            SystemWindowBlock.Children.Add(backOkButtons);
+        }
+
         public Dictionary<string, string> GetAllSystemSettings()
         {
 

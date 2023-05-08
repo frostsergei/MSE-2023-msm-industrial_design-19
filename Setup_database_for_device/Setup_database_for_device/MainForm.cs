@@ -34,49 +34,41 @@ namespace Setup_database_for_device
             switch (_device)
             {
                 case Model.Device.SPT961:
-                    title = title + "СПТ 961";
+                    title += "СПТ 961";
                     break;
                 case Model.Device.SPT962:
-                    title = title + "СПТ 962";
+                    title += "СПТ 962";
                     break;
                 case Model.Device.SPT963:
-                    title = title + "СПТ 963";
+                    title += "СПТ 963";
                     break;
                 default:
                     break;
             }
-            this.Text = title;
-            //DB.Test test = new DB.Test();
-            View.SystemForm.SystemForm subForm = new View.SystemForm.SystemForm()
-            {
-                TopLevel = false,
-                AutoScroll = true,
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None
-            };
-            panelContent.Controls.Add(subForm);
-            subForm.BringToFront();
-            subForm.Show();
+
+            Text = title;
+
+            View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm();
+            TestForm subForm2 = new TestForm("Настройка датчиков");
+            View.ConsumerForm subform3 = new View.ConsumerForm(new int[] { 1, 2 }, 1);
+            View.ConsumerForm subform4 = new View.ConsumerForm(new int[] { 1, 2 }, 2);
+            View.ConsumerForm subform5 = new View.ConsumerForm(new int[] { 1, 2 }, 3);
 
             ElementHost host = new ElementHost();
 
 
             View.ContentMenu contentMenu = new View.ContentMenu("прибор СПТ963", 10, 4);
-            contentMenu.FormChanged += new EventHandler(ChangeForm);
-
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
             panelLeft.Controls.Add(host);
 
-            _sysController = new Controller.SystemController(subForm, _model);
+            FormSwitcher formSwitcher = new FormSwitcher(contentMenu, new View.WindowForm[] { subForm1, subForm2, subform3, subform4, subform5 }, panelContent);
+
+            //_sysController = new Controller.SystemController(subForm, _model);
 
         }
 
-        private void ChangeForm(object sender, EventArgs e)
-        {
-            //panelContent.Controls.Clear();
-        }
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,7 +78,7 @@ namespace Setup_database_for_device
             {
                 _deviceSelectionForm.Show();
                 _exitFlag = false;
-                this.Close();
+                Close();
             }
         }
 
