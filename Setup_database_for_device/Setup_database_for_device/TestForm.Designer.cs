@@ -31,6 +31,7 @@ namespace Setup_database_for_device
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.Buttons = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,6 +41,7 @@ namespace Setup_database_for_device
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.Buttons);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(35, 26);
             this.panel1.Name = "panel1";
@@ -55,6 +57,13 @@ namespace Setup_database_for_device
             this.label1.Size = new System.Drawing.Size(251, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Тестовое окно";
+            // 
+            // Buttons
+            // 
+            this.Buttons.Location = new System.Drawing.Point(195, 318);
+            this.Buttons.Name = "Buttons";
+            this.Buttons.Size = new System.Drawing.Size(302, 100);
+            this.Buttons.TabIndex = 1;
             // 
             // TestForm
             // 
@@ -74,5 +83,6 @@ namespace Setup_database_for_device
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel Buttons;
     }
 }

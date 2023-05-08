@@ -29,6 +29,16 @@ namespace Setup_database_for_device.View
             RadioButtonControl.IsEnabled = true;
         }
 
+        public void CheckButton()
+        {
+            RadioButtonControl.IsChecked = true;
+        }
+
+        public void UncheckButton()
+        {
+            RadioButtonControl.IsChecked = false;
+        }
+
         private void RadioButtonControl_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
@@ -38,9 +48,18 @@ namespace Setup_database_for_device.View
             if(TreeViewIt.Items.Count != 0)
             {
                 TreeViewIt.IsExpanded = true;
-            }
+            } else
+            {
+                if(radioButton.GroupName != "ContentButtons")
+                {
+                    TreeViewItem ParentTreeViewItem = (TreeViewItem)TreeViewIt.Parent;
+                    ContentMenuButton ParentContentMenuButton = (ContentMenuButton)ParentTreeViewItem.Header;
+                    ParentContentMenuButton.CheckButton();
 
-            RadioButtonChecked?.Invoke(this, EventArgs.Empty);
+
+                }
+                RadioButtonChecked?.Invoke(this, EventArgs.Empty);
+            }
         }
 
     }

@@ -18,22 +18,22 @@ namespace Setup_database_for_device.View.Components
     public partial class BackOkComponent : UserControl
     {
 
-        public event EventHandler LeftButtonClickedEvent;
-        public event EventHandler RightButtonClickedEvent;
+        public event EventHandler BackButtonClickedEvent;
+        public event EventHandler OkButtonClickedEvent;
 
         public BackOkComponent()
         {
             InitializeComponent();
         }
 
-        private void LeftButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            LeftButtonClickedEvent?.Invoke(this, EventArgs.Empty);
+            BackButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        private void RightButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
-            RightButtonClickedEvent?.Invoke(this, EventArgs.Empty);
+            OkButtonClickedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

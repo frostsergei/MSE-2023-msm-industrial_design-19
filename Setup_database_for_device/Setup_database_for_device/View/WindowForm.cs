@@ -7,28 +7,40 @@ using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
 {
-    public abstract partial class WindowForm : Form
+    public class WindowForm : Form
     {
+
 
         public event EventHandler NextFormEvent;
         public event EventHandler PreviousFormEvent;
 
-        public WindowForm()
+        protected string _formName;
+        protected Components.BackOkComponent _backOkComponent;
+
+
+        public WindowForm(string formName)
         {
-            Components.BackOkComponent backOkComponent = new Components.BackOkComponent();
-            backOkComponent.BackButtonClickedEvent += new EventHandler(GoToPreviousForm);
-            backOkComponent.OkButtonClickedEvent += new EventHandler(GoToNextForm);
+            _backOkComponent = new Components.BackOkComponent();
+            _backOkComponent.BackButtonClickedEvent += new EventHandler(GoToPreviousForm);
+            _backOkComponent.OkButtonClickedEvent += new EventHandler(GoToNextForm);
+
+            _formName = formName;
+
+            TopLevel = false;
+            AutoScroll = true;
+            Dock = DockStyle.Fill;
+            FormBorderStyle = FormBorderStyle.None;
         }
 
-        private string _formName;
+        
 
         public string FormName => _formName;
 
-        public void GoToNextForm(object sender, EventArgs e) {
+        private void GoToNextForm(object sender, EventArgs e) {
             NextFormEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public void GoToPreviousForm(object sender, EventArgs e) {
+        private void GoToPreviousForm(object sender, EventArgs e) {
             PreviousFormEvent?.Invoke(this, EventArgs.Empty);
         }
 

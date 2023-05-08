@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Setup_database_for_device.View
 {
@@ -36,6 +28,8 @@ namespace Setup_database_for_device.View
         private ContentMenuButton[] _consumersButtons;
         private ContentMenuButton[] _allButtons;
 
+        private ContentMenuButton _currentCheckedButton;
+
 
         private int _pipelineSettingsButtonIndex = 2;
         private int _consumersSettingsButtonIndex = 4;
@@ -43,7 +37,7 @@ namespace Setup_database_for_device.View
         private int _pipelinesCount;
         private int _consumersCount;
 
-        public ContentMenu(string apparatusName, int pipelinesCount, int consumersCount)
+        public ContentMenu(string deviceName, int pipelinesCount, int consumersCount)
         {
 
             InitializeComponent();
@@ -51,11 +45,14 @@ namespace Setup_database_for_device.View
             _pipelinesCount = pipelinesCount;
             _consumersCount = consumersCount;
 
-            _topButtons[0] = new ContentMenuButton(apparatusName, s_topTreeGroupName);
+            _topButtons[0] = new ContentMenuButton(deviceName, s_topTreeGroupName);
             _topButtons[1] = new ContentMenuButton("Общесистемные параметры", s_topTreeGroupName);
             _topButtons[2] = new ContentMenuButton("Настройка трубопроводов", s_topTreeGroupName);
             _topButtons[3] = new ContentMenuButton("Настройка датчиков", s_topTreeGroupName);
             _topButtons[4] = new ContentMenuButton("Настройка потребителей", s_topTreeGroupName);
+
+
+            //_currentCheckedButton = _topButtons[1];
 
             TreeViewItem[] topButtonsTreeViewItems = WrapButtonsInTreeViewItem(_topButtons);
 
@@ -91,6 +88,11 @@ namespace Setup_database_for_device.View
 
             EnableButtonByName("Настройка датчиков");
             EnableButtonByName("Общесистемные параметры");
+            EnableButtonByName("Настройка потребителей");
+            EnableButtonByName("Потребитель 1");
+            EnableButtonByName("Потребитель 2");
+            EnableButtonByName("Потребитель 3");
+
 
         }
 
@@ -106,6 +108,28 @@ namespace Setup_database_for_device.View
             }
         }
 
+        public void SelectButtonByName(string name)
+        {
+
+            //UnselectButtons();
+
+            foreach (ContentMenuButton button in _allButtons)
+            {
+                if (button.ButtonName == name)
+                {
+                    button.CheckButton();
+                    break;
+                }
+            }
+        }
+
+        //public void UnselectButtons()
+        //{
+        //    foreach (ContentMenuButton button in _allButtons)
+        //    {
+        //        button.UncheckButton();
+        //    }
+        //}
 
         private void ButtonClicked(object sender, EventArgs e)
         {
