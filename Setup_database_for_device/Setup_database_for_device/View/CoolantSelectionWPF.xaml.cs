@@ -110,7 +110,6 @@ namespace Setup_database_for_device.View
                 { "034н00", $"{0}{Combo3.SelectedIndex + 1}{0}" }, //тип датчика
                 { "104", $"{textbox1.Text}" }, //ширина зоны насыщения
                 { "105", $"{textbox2.Text}" }, //степень сухости
-
                 { "125н00", $"{parameters[0].ParValue}" },
                 { "125н01", $"{parameters[1].ParValue}" },
                 { "125н02", $"{parameters[2].ParValue}" },
