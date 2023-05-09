@@ -72,13 +72,15 @@ namespace Setup_database_for_device.View
             public string ParDescription { get; set; }
         }
 
+        public List<Parameter> parameters;
+
         public CoolantSelectionWPF()
         {
             InitializeComponent();
             Group1.Visibility = Visibility.Hidden;
             ParamsGrid.Visibility = Visibility.Hidden;
 
-            List<Parameter> parameters = new List<Parameter>
+            parameters = new List<Parameter>
             {
                 new Parameter() { ParName = "125н00", ParUnit = "\u00B0C", ParDescription = "Нижняя точка при температуре" },
                 new Parameter() { ParName = "125н01", ParUnit = "\u00B0C", ParDescription = "Верхняя точка при температуре" },
@@ -92,6 +94,35 @@ namespace Setup_database_for_device.View
 
             ParamsGrid.ItemsSource = parameters;
         }
+
+        public Dictionary<string, string> GetAllCoolantSettings()
+        {
+            string flowMeter = "-1";
+            if (Combo2.SelectedIndex == 0)
+                flowMeter = "0";
+            else if (Combo2.SelectedIndex == 1)
+                flowMeter = "12";
+
+            Dictionary<string, string> res = new Dictionary<string, string>()
+            {
+                { "101", $"{Combo1.SelectedIndex}" }, //тип теплоносителя
+                { "102н00", flowMeter }, //тип расходомера
+                { "034н00", $"{0}{Combo3.SelectedIndex + 1}{0}" }, //тип датчика
+                { "104", $"{textbox1.Text}" }, //ширина зоны насыщения
+                { "105", $"{textbox2.Text}" }, //степень сухости
+
+                { "125н00", $"{parameters[0].ParValue}" },
+                { "125н01", $"{parameters[1].ParValue}" },
+                { "125н02", $"{parameters[2].ParValue}" },
+                { "125н03", $"{parameters[3].ParValue}" },
+                { "125н04", $"{parameters[4].ParValue}" },
+                { "125н05", $"{parameters[5].ParValue}" },
+                { "125н06", $"{parameters[6].ParValue}" },
+                { "125н07", $"{parameters[7].ParValue}" },
+            };
+            return res;
+        }
+
         private void comboChanged(object sender, RoutedEventArgs e)
         {
             if (Combo1.SelectedIndex == 1 || Combo1.SelectedIndex == 2)

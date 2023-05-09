@@ -24,5 +24,9 @@ namespace Setup_database_for_device.View
             InitializeComponent();
             elementHost1.Dock = DockStyle.Fill;
         }
+        public Dictionary<string, string> GetCoolantWindowData()
+        {
+            return (elementHost1.Child as CoolantSelectionWPF).GetAllCoolantSettings();
+        }
     }
 }
