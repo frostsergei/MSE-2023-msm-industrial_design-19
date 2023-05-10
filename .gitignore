@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Setup_database_for_device/Setup_database_for_device/View/UserControl1.xaml
