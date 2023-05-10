@@ -81,8 +81,6 @@ namespace Setup_database_for_device
             {
                 _currentFormIndex--;
                 SetFormByIndex(_currentFormIndex);
-
-
                 
             }
         }

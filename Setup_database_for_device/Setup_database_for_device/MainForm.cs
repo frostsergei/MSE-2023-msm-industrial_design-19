@@ -57,7 +57,7 @@ namespace Setup_database_for_device
             ElementHost host = new ElementHost();
 
 
-            View.ContentMenu contentMenu = new View.ContentMenu("прибор СПТ963", 10, 4);
+            View.ContentMenu contentMenu = new View.ContentMenu("прибор СПТ963", 2, 4);
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
