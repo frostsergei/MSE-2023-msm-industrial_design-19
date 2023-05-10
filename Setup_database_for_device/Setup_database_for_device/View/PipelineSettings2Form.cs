@@ -15,7 +15,7 @@ namespace Setup_database_for_device.View
         //в конструктор передается нижний предел частоты входного сигнала
         public PipelineSettings2Form(float lowerlimit)
         {
-            float lowerlimit = 1.1f;
+            //float lowerlimit = 1.1f;
             InitializeComponent();
             elementHost1.Dock = DockStyle.Fill;
 
