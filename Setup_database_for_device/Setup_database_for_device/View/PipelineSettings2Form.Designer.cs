@@ -1,7 +1,7 @@
 ﻿
 namespace Setup_database_for_device.View
 {
-    partial class CoolantSelectionForm
+    partial class PipelineSettings2Form
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Setup_database_for_device.View
         private void InitializeComponent()
         {
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.coolantSelectionWPF1 = new Setup_database_for_device.View.CoolantSelectionWPF();
+            this.pipelineSettings2WPF1 = new Setup_database_for_device.View.PipelineSettings2WPF();
             this.SuspendLayout();
             // 
             // elementHost1
@@ -40,16 +40,16 @@ namespace Setup_database_for_device.View
             this.elementHost1.Size = new System.Drawing.Size(775, 425);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.coolantSelectionWPF1;
+            this.elementHost1.Child = this.pipelineSettings2WPF1;
             // 
-            // CoolantSelectionForm
+            // PipelineSettings2Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.elementHost1);
-            this.Name = "CoolantSelectionForm";
-            this.Text = "Настройка трубопроводов. Тип теплоносителя.";
+            this.Name = "PipelineSettings2Form";
+            this.Text = "PipelineSettings2Form";
             this.ResumeLayout(false);
 
         }
@@ -57,6 +57,6 @@ namespace Setup_database_for_device.View
         #endregion
 
         private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private CoolantSelectionWPF coolantSelectionWPF1;
+        private PipelineSettings2WPF pipelineSettings2WPF1;
     }
 }

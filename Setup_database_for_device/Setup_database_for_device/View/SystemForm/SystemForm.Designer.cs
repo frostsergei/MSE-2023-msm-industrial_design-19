@@ -1,7 +1,7 @@
 ﻿
-namespace Setup_database_for_device.View
+namespace Setup_database_for_device.View.SystemForm
 {
-    partial class CoolantSelectionForm
+    partial class SystemForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,34 +29,20 @@ namespace Setup_database_for_device.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.coolantSelectionWPF1 = new Setup_database_for_device.View.CoolantSelectionWPF();
             this.SuspendLayout();
             // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(13, 13);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(775, 425);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.coolantSelectionWPF1;
-            // 
-            // CoolantSelectionForm
+            // SystemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.elementHost1);
-            this.Name = "CoolantSelectionForm";
-            this.Text = "Настройка трубопроводов. Тип теплоносителя.";
+            this.Name = "SystemForm";
+            this.Text = "SystemForm";
+            this.Load += new System.EventHandler(this.SystemForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private CoolantSelectionWPF coolantSelectionWPF1;
     }
 }

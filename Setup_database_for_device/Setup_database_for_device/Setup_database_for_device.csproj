@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -51,8 +54,18 @@
     <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfMath, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfMath.1.0.0\lib\net462\WpfMath.dll</HintPath>
+    </Reference>
+    <Reference Include="XamlMath.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlMath.Shared.1.0.0\lib\net462\XamlMath.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ConsumerController.cs" />
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\PipelineController2.cs" />
+    <Compile Include="Controller\SystemController.cs" />
     <Compile Include="DB\AbstractTag.cs" />
     <Compile Include="DB\Channel.cs" />
     <Compile Include="DB\GroupTag.cs" />
@@ -76,11 +89,42 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PipelineSettingLimits.cs">
+    <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
+      <DependentUpon>CheckboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\CheckboxesBlock.xaml.cs">
+      <DependentUpon>CheckboxesBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\ComboboxControl.xaml.cs">
+      <DependentUpon>ComboboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\MeasureUnitsControl.xaml.cs">
+      <DependentUpon>MeasureUnitsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\ParticipatedPipelinesBlock.xaml.cs">
+      <DependentUpon>ParticipatedPipelinesBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\PipelineBlock.xaml.cs">
+      <DependentUpon>PipelineBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\PipelineControl.xaml.cs">
+      <DependentUpon>PipelineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SpecificationBlock.xaml.cs">
+      <DependentUpon>SpecificationBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SpecificationControl.xaml.cs">
+      <DependentUpon>SpecificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SystemControl.xaml.cs">
+      <DependentUpon>SystemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemForm\SystemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\PipelineSettingLimits.Designer.cs">
-      <DependentUpon>PipelineSettingLimits.cs</DependentUpon>
+    <Compile Include="View\SystemForm\SystemForm.Designer.cs">
+      <DependentUpon>SystemForm.cs</DependentUpon>
+
     </Compile>
     <Compile Include="View\CheckBoxesControl.cs">
       <SubType>Component</SubType>
@@ -106,11 +150,17 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ContentMenuButton.xaml.cs">
+      <DependentUpon>ContentMenuButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CoolantSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\CoolantSelectionForm.Designer.cs">
       <DependentUpon>CoolantSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CoolantSelectionWPF.xaml.cs">
+      <DependentUpon>CoolantSelectionWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DeviceFirstSelectionForm.cs">
       <SubType>Form</SubType>
@@ -118,8 +168,7 @@
     <Compile Include="View\DeviceFirstSelectionForm.Designer.cs">
       <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -148,9 +197,7 @@
     <EmbeddedResource Include="View\DeviceFirstSelectionForm.resx">
       <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\PipelineSettingLimits.resx">
-      <DependentUpon>PipelineSettingLimits.cs</DependentUpon>
-    </EmbeddedResource>
+
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -169,10 +216,71 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl1.xaml">
+    <Page Include="View\CoolantSelectionWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\CheckboxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\CheckboxesBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\ComboboxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\MeasureUnitsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\ParticipatedPipelinesBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\PipelineBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\PipelineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SpecificationBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SpecificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\SystemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\TextBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemForm\TextDataBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContentMenuButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PipelineSettings2WPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SchemeNumberControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
