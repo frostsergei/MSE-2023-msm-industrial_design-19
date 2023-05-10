@@ -16,6 +16,7 @@ namespace Setup_database_for_device.View
             RadioButtonControl.IsEnabled = false;
 
             ButtonName = name;
+            GroupName = groupName;
             RadioButtonControl.Content = name;
             RadioButtonControl.GroupName = groupName;
             RadioButtonControl.Width = width;
@@ -23,6 +24,9 @@ namespace Setup_database_for_device.View
         }
 
         public string ButtonName { get; }
+        public string GroupName { get; }
+        public bool IsChecked => (bool)RadioButtonControl.IsChecked;
+        
 
         public void EnableButton()
         {
@@ -32,35 +36,65 @@ namespace Setup_database_for_device.View
         public void CheckButton()
         {
             RadioButtonControl.IsChecked = true;
+            SelectParentButton();
         }
 
         public void UncheckButton()
         {
             RadioButtonControl.IsChecked = false;
+            UnselectChildrenButton();
+        }
+
+        private void UnselectChildrenButton()
+        {
+            ContentMenuButton ContentButton = (ContentMenuButton)RadioButtonControl.Parent;
+            TreeViewItem TreeViewIt = (TreeViewItem)ContentButton.Parent;
+
+            if(TreeViewIt.Items.Count != 0)
+            {
+                foreach (TreeViewItem item in TreeViewIt.Items)
+                {
+                    ContentMenuButton currentButton = (ContentMenuButton)item.Header;
+                    if(currentButton.IsChecked)
+                    {
+                        currentButton.UncheckButton();
+                    }
+                }
+            }
+            
+        }
+
+        private void SelectParentButton()
+        {
+            ContentMenuButton ContentButton = (ContentMenuButton)RadioButtonControl.Parent;
+            TreeViewItem TreeViewIt = (TreeViewItem)ContentButton.Parent;
+            if (TreeViewIt.Parent.GetType() != typeof(TreeView))
+            {
+                TreeViewItem ParentTreeViewItem = (TreeViewItem)TreeViewIt.Parent;
+                ContentMenuButton ParentContentButton = (ContentMenuButton)ParentTreeViewItem.Header;
+                ParentContentButton.CheckButton();
+            }
         }
 
         private void RadioButtonControl_Checked(object sender, RoutedEventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            ContentMenuButton ContentButton = (ContentMenuButton)radioButton.Parent;
+            ContentMenuButton ContentButton = (ContentMenuButton)RadioButtonControl.Parent;
             TreeViewItem TreeViewIt = (TreeViewItem)ContentButton.Parent;
-            
-            if(TreeViewIt.Items.Count != 0)
+
+            SelectParentButton();
+
+            if (TreeViewIt.Items.Count != 0)
             {
                 TreeViewIt.IsExpanded = true;
             } else
-            {
-                if(radioButton.GroupName != "ContentButtons")
-                {
-                    TreeViewItem ParentTreeViewItem = (TreeViewItem)TreeViewIt.Parent;
-                    ContentMenuButton ParentContentMenuButton = (ContentMenuButton)ParentTreeViewItem.Header;
-                    ParentContentMenuButton.CheckButton();
-
-
-                }
+            {          
                 RadioButtonChecked?.Invoke(this, EventArgs.Empty);
             }
         }
 
+        private void RadioButtonControl_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UnselectChildrenButton();
+        }
     }
 }
