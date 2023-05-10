@@ -48,6 +48,18 @@ namespace Setup_database_for_device.View
         {
             InitializeComponent();
         }
+
+        public Dictionary<string, string> GetPipelineSettings()
+        {
+            string low_val = LowerValueTextBox.Text.Replace(',', '.');
+            Dictionary<string, string> res = new Dictionary<string, string>()
+            {
+                { "115н00", $"{Par115.Content}" },
+                { "115н01", $"{low_val}" },
+                { "120", $"{textbox2.Text}" },
+            };
+            return res;
+        }
         private void CheckBoxChecked(object sender, RoutedEventArgs e)
         {
             LowerValueTextBox.IsEnabled = false;

@@ -47,7 +47,7 @@
                 </StackPanel>
             </ComboBoxItem>
         </ComboBox>
-        <TextBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=constConsumptionValue}"  FontSize="9 pt" Height="23" Margin="25,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="87"/>
+        <TextBox x:Name="textbox2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=constConsumptionValue}"  FontSize="9 pt" Height="23" Margin="25,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="87"/>
         <Button Margin="0,455,30,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Right" Width="114">
             <StackPanel>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="К следующему"/></TextBlock>
