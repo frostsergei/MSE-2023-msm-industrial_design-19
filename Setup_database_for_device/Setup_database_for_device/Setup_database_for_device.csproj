@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controller\ConsumerController.cs" />
     <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\PipelineController2.cs" />
     <Compile Include="Controller\SystemController.cs" />
     <Compile Include="DB\AbstractTag.cs" />
     <Compile Include="DB\Channel.cs" />
