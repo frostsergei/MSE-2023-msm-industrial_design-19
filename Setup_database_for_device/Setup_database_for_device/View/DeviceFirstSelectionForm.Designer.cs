@@ -29,6 +29,7 @@ namespace Setup_database_for_device.View
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceFirstSelectionForm));
             this.labelTitle = new System.Windows.Forms.Label();
             this.comboBoxDevice = new System.Windows.Forms.ComboBox();
             this.buttonContinue = new System.Windows.Forms.Button();
@@ -80,6 +81,7 @@ namespace Setup_database_for_device.View
             this.Controls.Add(this.labelTitle);
             this.Font = new System.Drawing.Font("Verdana", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DeviceFirstSelectionForm";
             this.Text = "Тип вычислителя";
