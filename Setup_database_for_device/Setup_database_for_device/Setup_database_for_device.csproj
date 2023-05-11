@@ -89,6 +89,12 @@
     <Compile Include="View\ContentMenu.xaml.cs">
       <DependentUpon>ContentMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PipelineSettingsLimits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PipelineSettingsLimits.Designer.cs">
+      <DependentUpon>PipelineSettingsLimits.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
       <DependentUpon>CheckboxControl.xaml</DependentUpon>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DeviceFirstSelectionForm.resx">
       <DependentUpon>DeviceFirstSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PipelineSettingsLimits.resx">
+      <DependentUpon>PipelineSettingsLimits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SystemForm\SystemForm.resx">
       <DependentUpon>SystemForm.cs</DependentUpon>
