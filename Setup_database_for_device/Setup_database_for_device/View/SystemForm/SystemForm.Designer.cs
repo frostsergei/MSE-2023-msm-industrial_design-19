@@ -38,7 +38,6 @@ namespace Setup_database_for_device.View.SystemForm
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "SystemForm";
             this.Text = "SystemForm";
-            this.Load += new System.EventHandler(this.SystemForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
 {
-    public partial class ConsumerForm : Form
+    public partial class ConsumerForm : WindowForm
     {
         public ImageList newImageList;
         public List<ComboBox> ComboBoxesList;
         //Конструктор принимает массив номеров активных трубопроводов
-        public ConsumerForm(int[] pipelinesNumbers, int consumerNumber)
+        public ConsumerForm(int[] pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
         {
             InitializeComponent();
             schemeNumberControl.ComboBoxMain.SelectedIndex = 0;
@@ -27,12 +27,17 @@ namespace Setup_database_for_device.View
             int curY = elementHost1.Location.Y + elementHost1.Height + topMargin * 2;
             for (int i = 0; i < pipelinesNumbers.Length; i++)
             {
-                Label label = new Label();
-                label.Text = "Трубопровод №" + pipelinesNumbers[i].ToString();
-                label.AutoSize = true;
-                ComboBox comboBox = new ComboBox();
-                comboBox.Name = "combobox" + pipelinesNumbers[i].ToString();
-                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                Label label = new Label
+                {
+                    Text = "Трубопровод №" + pipelinesNumbers[i].ToString(),
+                    AutoSize = true
+                };
+
+                ComboBox comboBox = new ComboBox
+                {
+                    Name = "combobox" + pipelinesNumbers[i].ToString(),
+                    DropDownStyle = ComboBoxStyle.DropDownList
+                };
                 comboBox.Items.Add("Не задействован в данной схеме");
                 comboBox.Items.Add("Задействован как подающий");
                 comboBox.Items.Add("Задействован как обратный");
@@ -41,8 +46,8 @@ namespace Setup_database_for_device.View
                 comboBox.Width = comboBoxWidth;
                 label.Location = new Point(leftMargin, curY);
                 comboBox.Location = new Point(3 * leftMargin + label.Size.Width, curY);
-                this.Controls.Add(label);
-                this.Controls.Add(comboBox);
+                Controls.Add(label);
+                Controls.Add(comboBox);
                 ComboBoxesList.Add(comboBox);
                 curY += comboBox.Size.Height + topMargin;
             }

@@ -58,5 +58,6 @@
     <RadioButton 
         Name="RadioButtonControl" 
         Checked="RadioButtonControl_Checked"
+        Unchecked="RadioButtonControl_Unchecked"
         />
 </UserControl>

@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Setup_database_for_device.View
 {
@@ -22,20 +14,22 @@ namespace Setup_database_for_device.View
         public event EventHandler FormChanged;
 
         private static readonly string s_topTreeGroupName = "ContentButtons";
-        private static readonly string s_pipelineGroupName = "PipelinesButton";
-        private static readonly string s_consumersGroupName = "ConsumersButton";
+        private static readonly string s_pipelineGroupName = "PipelinesButtons";
+        private static readonly string s_consumersGroupName = "ConsumersButtons";
+        private static readonly string s_pipelineSettingsGroupName = "PipelinesSettingsButtons";
 
         private static readonly Dictionary<string, string> s_russianNames = new Dictionary<string, string>
         {
-            { "PipelinesButton", "Трубопровод" },
-            { "ConsumersButton", "Потребитель" }
+            { "PipelinesButtons", "Трубопровод" },
+            { "ConsumersButtons", "Потребитель" }
         };
+
+        private static readonly string[] s_pipelinesSettingsButtonsNames = new string[] { "Настройка 1", "Настройка 2" };
 
         private ContentMenuButton[] _topButtons = new ContentMenuButton[5];
         private ContentMenuButton[] _pipelinesButtons;
         private ContentMenuButton[] _consumersButtons;
         private ContentMenuButton[] _allButtons;
-
 
         private int _pipelineSettingsButtonIndex = 2;
         private int _consumersSettingsButtonIndex = 4;
@@ -43,7 +37,7 @@ namespace Setup_database_for_device.View
         private int _pipelinesCount;
         private int _consumersCount;
 
-        public ContentMenu(string apparatusName, int pipelinesCount, int consumersCount)
+        public ContentMenu(string deviceName, int pipelinesCount, int consumersCount)
         {
 
             InitializeComponent();
@@ -51,7 +45,7 @@ namespace Setup_database_for_device.View
             _pipelinesCount = pipelinesCount;
             _consumersCount = consumersCount;
 
-            _topButtons[0] = new ContentMenuButton(apparatusName, s_topTreeGroupName);
+            _topButtons[0] = new ContentMenuButton(deviceName, s_topTreeGroupName);
             _topButtons[1] = new ContentMenuButton("Общесистемные параметры", s_topTreeGroupName);
             _topButtons[2] = new ContentMenuButton("Настройка трубопроводов", s_topTreeGroupName);
             _topButtons[3] = new ContentMenuButton("Настройка датчиков", s_topTreeGroupName);
@@ -62,7 +56,7 @@ namespace Setup_database_for_device.View
             topButtonsTreeViewItems[_pipelineSettingsButtonIndex].Name = "PipelinesSettings";
             topButtonsTreeViewItems[_consumersSettingsButtonIndex].Name = "ConsumersSettings";
 
-            foreach(ContentMenuButton a in _topButtons)
+            foreach (ContentMenuButton a in _topButtons)
             {
                 a.RadioButtonChecked += new EventHandler(ButtonClicked);
             }
@@ -75,13 +69,16 @@ namespace Setup_database_for_device.View
 
             _pipelinesButtons = CreateDeepButtons(s_pipelineGroupName, _pipelinesCount);
 
-            foreach(TreeViewItem el in WrapButtonsInTreeViewItem(_pipelinesButtons))
+            int i = 0;
+            foreach (TreeViewItem el in WrapButtonsInTreeViewItem(_pipelinesButtons))
             {
                 topButtonsTreeViewItems[_pipelineSettingsButtonIndex].Items.Add(el);
+                AddPipelinesSettingsButtons(el, i++);
             }
 
             _consumersButtons = CreateDeepButtons(s_consumersGroupName, _consumersCount);
 
+            
             foreach (TreeViewItem el in WrapButtonsInTreeViewItem(_consumersButtons))
             {
                 topButtonsTreeViewItems[_consumersSettingsButtonIndex].Items.Add(el);
@@ -91,6 +88,14 @@ namespace Setup_database_for_device.View
 
             EnableButtonByName("Настройка датчиков");
             EnableButtonByName("Общесистемные параметры");
+            EnableButtonByName("Настройка потребителей");
+            EnableButtonByName("Потребитель 1");
+            EnableButtonByName("Потребитель 2");
+            EnableButtonByName("Потребитель 3");
+            EnableButtonByName("Настройка трубопроводов");
+            EnableButtonByName("Трубопровод 1");
+            EnableButtonByName("Трубопровод 2");
+
 
         }
 
@@ -106,6 +111,33 @@ namespace Setup_database_for_device.View
             }
         }
 
+        private void AddPipelinesSettingsButtons(TreeViewItem treeViewItem, int pipelineNumber)
+        {
+            ContentMenuButton[] treeViewItems = s_pipelinesSettingsButtonsNames.Select((string buttonName) =>
+            {
+                ContentMenuButton currentButton = new ContentMenuButton(buttonName, $"pipelinesSettings-{pipelineNumber}", 100);
+                currentButton.EnableButton();
+
+                return currentButton;
+            }).ToArray();
+
+            foreach (TreeViewItem item in WrapButtonsInTreeViewItem(treeViewItems))
+            {
+                treeViewItem.Items.Add(item);
+            }
+        }
+
+        public void SelectButtonByName(string name)
+        {
+            foreach (ContentMenuButton button in _allButtons)
+            {
+                if (button.ButtonName == name)
+                {
+                    button.CheckButton();
+                    break;
+                }
+            }
+        }
 
         private void ButtonClicked(object sender, EventArgs e)
         {
