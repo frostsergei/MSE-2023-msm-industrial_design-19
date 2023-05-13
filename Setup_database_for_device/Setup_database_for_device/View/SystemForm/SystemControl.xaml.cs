@@ -21,27 +21,27 @@ namespace Setup_database_for_device.View.SystemForm
             _measureUnitsBlock = new MeasureUnitsControl();
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
-// Change back pipelineblock and participatedpipelines
+            // Change back pipelineblock and participatedpipelines
             _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6, isBacked);
             _pipelineBlock = new PipelineBlock(isBacked);
 
             _participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
             _participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 5);
             _participatedPipelinesBlock.SetValue(Grid.ColumnProperty, 0);
-            
+
             _pipelineBlock.SetValue(Grid.RowProperty, 5);
             _pipelineBlock.SetValue(Grid.RowSpanProperty, 7);
             _pipelineBlock.SetValue(Grid.ColumnProperty, 0);
-            
+
             _measureUnitsBlock.SetValue(Grid.RowProperty, 0);
-            _measureUnitsBlock.SetValue(Grid.RowSpanProperty, 3);
+            _measureUnitsBlock.SetValue(Grid.RowSpanProperty, 2);
             _measureUnitsBlock.SetValue(Grid.ColumnProperty, 2);
 
-            _textDataBlock.SetValue(Grid.RowProperty, 3);
+            _textDataBlock.SetValue(Grid.RowProperty, 2);
             _textDataBlock.SetValue(Grid.RowSpanProperty, 5);
             _textDataBlock.SetValue(Grid.ColumnProperty, 2);
-            
-            _specificationBlock.SetValue(Grid.RowProperty, 8);
+
+            _specificationBlock.SetValue(Grid.RowProperty, 7);
             _specificationBlock.SetValue(Grid.RowSpanProperty, 3);
             _specificationBlock.SetValue(Grid.ColumnProperty, 2);
 
@@ -69,7 +69,7 @@ namespace Setup_database_for_device.View.SystemForm
             Dictionary<string, string> participatedPipelinesData = _participatedPipelinesBlock.GetResult();
             Dictionary<string, string> pipelinesData = _pipelineBlock.GetResult();
 
-            foreach(KeyValuePair<string, string> a in measureUnitsData)
+            foreach (KeyValuePair<string, string> a in measureUnitsData)
             {
                 string e = a.Key;
                 string b = a.Value;

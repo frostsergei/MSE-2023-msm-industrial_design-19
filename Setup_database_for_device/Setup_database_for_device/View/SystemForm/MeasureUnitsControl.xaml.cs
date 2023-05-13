@@ -15,13 +15,16 @@ namespace Setup_database_for_device.View.SystemForm
             InitializeComponent();
 
 
-            _pressureCombobox = new ComboboxControl("Давление/перепады давления:", new string[] { "СИ(МПа, кПа)", "Практическая система(кгс/ см ^ 2, кгс / м ^ 2)" }); 
+            _pressureCombobox = new ComboboxControl("Давление/перепады давления:", new string[] { "СИ(МПа, кПа)", "Практическая система(кгс/ см ^ 2, кгс / м ^ 2)" });
             _powerCombobox = new ComboboxControl("Тепловая энергия/мощность:", new string[] { "энергия - ГДж, мощность - Гдж / ч", "энергия - Гкал, мощность - Гкал / ч", "энергия - МВт * ч, мощность - МВт" });
 
             _pressureCombobox.SetValue(Grid.RowProperty, 1);
             _pressureCombobox.SetValue(Grid.ColumnProperty, 0);
             _powerCombobox.SetValue(Grid.RowProperty, 2);
             _powerCombobox.SetValue(Grid.ColumnProperty, 0);
+
+            _pressureCombobox.Margin = new System.Windows.Thickness(5, 0, 0, 0);
+            _powerCombobox.Margin = new System.Windows.Thickness(5, 0, 0, 0);
 
             MeasureUnitsControlBlock.Children.Add(_pressureCombobox);
             MeasureUnitsControlBlock.Children.Add(_powerCombobox);
