@@ -48,7 +48,7 @@ namespace Setup_database_for_device
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(904, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1282, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,7 +82,7 @@ namespace Setup_database_for_device
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 26);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(235, 614);
+            this.panelLeft.Size = new System.Drawing.Size(235, 827);
             this.panelLeft.TabIndex = 4;
             // 
             // panelContent
@@ -91,7 +91,7 @@ namespace Setup_database_for_device
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(235, 26);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(669, 614);
+            this.panelContent.Size = new System.Drawing.Size(1047, 827);
             this.panelContent.TabIndex = 5;
             // 
             // MainForm
@@ -99,13 +99,14 @@ namespace Setup_database_for_device
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(904, 640);
+            this.ClientSize = new System.Drawing.Size(1282, 853);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(1300, 900);
             this.Name = "MainForm";
             this.Text = "Настройщик базы данных";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
