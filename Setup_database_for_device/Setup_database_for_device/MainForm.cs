@@ -30,23 +30,23 @@ namespace Setup_database_for_device
             _deviceSelectionForm = deviceSelectionForm;
             _exitFlag = true;
             _model = new Model.Model(device);
-            string title = "Настройщик базы данных ";
+            string deviceName = "";
             switch (_device)
             {
                 case Model.Device.SPT961:
-                    title += "СПТ 961";
+                    deviceName = "СПТ 961.1";
                     break;
                 case Model.Device.SPT962:
-                    title += "СПТ 962";
+                    deviceName = "СПТ 962";
                     break;
                 case Model.Device.SPT963:
-                    title += "СПТ 963";
+                    deviceName = "СПТ 963";
                     break;
                 default:
                     break;
             }
 
-            Text = title;
+            Text = "Настройщик базы данных " + deviceName;
 
             View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm();
             TestForm subForm2 = new TestForm("Настройка датчиков");
@@ -57,7 +57,7 @@ namespace Setup_database_for_device
             ElementHost host = new ElementHost();
 
 
-            View.ContentMenu contentMenu = new View.ContentMenu("прибор СПТ963", 2, 4);
+            View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName, 2, 4);
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
@@ -99,6 +99,11 @@ namespace Setup_database_for_device
                 _sysController.SaveDataToModel();
                 _model.SaveDataToFile(saveFileDialog.FileName.Substring(0, saveFileDialog.FileName.Length-4), "");
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
