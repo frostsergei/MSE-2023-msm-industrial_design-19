@@ -10,13 +10,13 @@ namespace Setup_database_for_device.View.SystemForm
 
         private SystemControl _systemWindow;
 
-        public SystemForm() : base("Общесистемные параметры")
+        public SystemForm(Model.Device device) : base("Общесистемные параметры")
         {
             InitializeComponent();
 
             ElementHost host = new ElementHost();
 
-            _systemWindow = new SystemControl(true);
+            _systemWindow = new SystemControl(true, device);
             _systemWindow.SetOkBackButtons(_backOkComponent);
             host.Child = _systemWindow;
             host.Dock = DockStyle.Fill;
