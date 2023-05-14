@@ -48,7 +48,8 @@ namespace Setup_database_for_device
 
             Text = "Настройщик базы данных " + deviceName;
 
-            View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm();
+            View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm(device);
+            _sysController = new Controller.SystemController(subForm1, _model);
             TestForm subForm2 = new TestForm("Настройка датчиков");
             View.ConsumerForm subform3 = new View.ConsumerForm(new int[] { 1, 2 }, 1);
             View.ConsumerForm subform4 = new View.ConsumerForm(new int[] { 1, 2 }, 2);

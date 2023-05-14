@@ -14,7 +14,7 @@ namespace Setup_database_for_device.View.SystemForm
         private ParticipatedPipelinesBlock _participatedPipelinesBlock;
         private PipelineBlock _pipelineBlock;
 
-        public SystemControl(bool isBacked)
+        public SystemControl(bool isBacked, Model.Device device)
         {
             InitializeComponent();
 
@@ -22,7 +22,10 @@ namespace Setup_database_for_device.View.SystemForm
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
             // Change back pipelineblock and participatedpipelines
-            _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6, isBacked);
+            if (device == Model.Device.SPT963)
+                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 8, isBacked);
+            else
+                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6, isBacked);
             _pipelineBlock = new PipelineBlock(isBacked);
 
             _participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
