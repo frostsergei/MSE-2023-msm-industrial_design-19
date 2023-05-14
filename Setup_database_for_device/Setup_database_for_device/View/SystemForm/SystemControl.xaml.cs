@@ -41,7 +41,7 @@ namespace Setup_database_for_device.View.SystemForm
             _textDataBlock.SetValue(Grid.RowSpanProperty, 5);
             _textDataBlock.SetValue(Grid.ColumnProperty, 2);
 
-            _specificationBlock.SetValue(Grid.RowProperty, 7);
+            _specificationBlock.SetValue(Grid.RowProperty, 6);
             _specificationBlock.SetValue(Grid.RowSpanProperty, 3);
             _specificationBlock.SetValue(Grid.ColumnProperty, 2);
 
