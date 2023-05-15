@@ -63,7 +63,7 @@
 
         <Rectangle Height="1" Margin="25,257,25,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Rectangle Height="1" Margin="25,365,25,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Текущее значение 115т01н00:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="391"/>
+        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Текущее значение 115н00:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="391"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,69,0,0" TextWrapping="Wrap" Text="Признак выбора ограничения." VerticalAlignment="Top" Grid.ColumnSpan="2" Width="383"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Margin="25,384,22,0" TextWrapping="Wrap" Text="Укажите константное значение массового расхода теплоносителя:" VerticalAlignment="Top"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="36,280,25,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Если введённое значение неверно, то"/><LineBreak/><Run Text="уберите галочку и измените данные"/><LineBreak/><Run Text=""/></TextBlock>
