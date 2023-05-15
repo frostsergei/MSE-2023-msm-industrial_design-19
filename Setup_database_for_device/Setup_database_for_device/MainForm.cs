@@ -22,6 +22,7 @@ namespace Setup_database_for_device
 
         private Model.Model _model;
         private Controller.SystemController _sysController;
+        private List<View.WindowForm> _allForms = new List<View.WindowForm>();
 
         public MainForm(Model.Device device, Form deviceSelectionForm)
         {
@@ -50,25 +51,48 @@ namespace Setup_database_for_device
 
             View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm(device);
             _sysController = new Controller.SystemController(subForm1, _model);
-            TestForm subForm2 = new TestForm("Настройка датчиков");
-            View.ConsumerForm subform3 = new View.ConsumerForm(new int[] { 1, 2 }, 1);
-            View.ConsumerForm subform4 = new View.ConsumerForm(new int[] { 1, 2 }, 2);
-            View.ConsumerForm subform5 = new View.ConsumerForm(new int[] { 1, 2 }, 3);
+            //TestForm subForm2 = new TestForm("Настройка датчиков");
+            //View.ConsumerForm subform3 = new View.ConsumerForm(new int[] { 1, 2 }, 1);
+            //View.ConsumerForm subform4 = new View.ConsumerForm(new int[] { 1, 2 }, 2);
+            //View.ConsumerForm subform5 = new View.ConsumerForm(new int[] { 1, 2 }, 3);
+
+            _allForms.Add(subForm1);
 
             ElementHost host = new ElementHost();
 
 
-            View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName, 2, 4);
+            View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName);
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
             panelLeft.Controls.Add(host);
 
-            FormSwitcher formSwitcher = new FormSwitcher(contentMenu, new View.WindowForm[] { subForm1, subForm2, subform3, subform4, subform5 }, panelContent);
+
+            FormSwitcher formSwitcher = new FormSwitcher(contentMenu, _allForms, panelContent);
 
             //_sysController = new Controller.SystemController(subForm, _model);
 
         }
+
+        //private void CreatePipelines()
+        //{
+        //    CreateWindow<>();
+        //}
+
+        private View.WindowForm GetFormByName(string name)
+        {
+            foreach (View.WindowForm form in _allForms)
+            {
+                if (form.Name == name)
+                {
+                    return form;
+                }
+            }
+
+            return null;
+        }
+
+       
 
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)

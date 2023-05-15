@@ -36,11 +36,16 @@ namespace Setup_database_for_device.View
 
         public string FormName => _formName;
 
+        protected virtual void OnNextFormAction() { }
+        protected virtual void OnPreviousFormAction() { }
+
         private void GoToNextForm(object sender, EventArgs e) {
+            OnNextFormAction();
             NextFormEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void GoToPreviousForm(object sender, EventArgs e) {
+            OnPreviousFormAction();
             PreviousFormEvent?.Invoke(this, EventArgs.Empty);
         }
 
