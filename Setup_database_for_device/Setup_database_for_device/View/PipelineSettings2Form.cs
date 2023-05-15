@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
 {
-    public partial class PipelineSettings2Form : Form
+    public partial class PipelineSettings2Form : WindowForm
     {
         //в конструктор передается нижний предел частоты входного сигнала
-        public PipelineSettings2Form(float lowerlimit)
+        public PipelineSettings2Form(float lowerlimit, int index) : base($"Вторая настройка трубопровода {index}")
         {
             //float lowerlimit = 1.1f;
             InitializeComponent();

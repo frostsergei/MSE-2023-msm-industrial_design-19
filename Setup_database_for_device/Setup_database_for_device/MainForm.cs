@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
@@ -21,6 +22,9 @@ namespace Setup_database_for_device
         private bool _exitFlag;
 
         private Model.Model _model;
+
+        private List<View.WindowForm> _allForms;
+
         private Controller.SystemController _sysController;
 
         public MainForm(Model.Device device, Form deviceSelectionForm)
@@ -56,8 +60,8 @@ namespace Setup_database_for_device
             View.ConsumerForm subform5 = new View.ConsumerForm(new int[] { 1, 2 }, 3);
 
             ElementHost host = new ElementHost();
-
-
+            _allForms = new List<View.WindowForm>();
+            _allForms.Add(subForm1);
             View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName, 2, 4);
 
             host.Child = contentMenu;
@@ -97,8 +101,38 @@ namespace Setup_database_for_device
             saveFileDialog.ShowDialog();
             if (saveFileDialog.FileName != "")
             {
-                _sysController.SaveDataToModel();
+                saveDataFromAllForms();
                 _model.SaveDataToFile(saveFileDialog.FileName.Substring(0, saveFileDialog.FileName.Length-4), "");
+            }
+        }
+
+        private void saveDataFromAllForms()
+        {
+            foreach (var form in _allForms)
+            {
+                Controller.Controller controller = null;
+                if (form.FormName.StartsWith("Общесистемные"))
+                {
+                    controller = new Controller.SystemController((View.SystemForm.SystemForm)form, _model);
+                }
+                else if (form.FormName.StartsWith("Потребитель"))
+                {
+                    controller = new Controller.ConsumerController((View.ConsumerForm)form, _model, int.Parse(Regex.Match(form.FormName, @"\d+$").Value) - 1);
+                }
+                else if (form.FormName.StartsWith("Теплоноситель"))
+                {
+                    controller = new Controller.CoolantController((View.CoolantSelectionForm)form, _model, int.Parse(Regex.Match(form.FormName, @"\d+$").Value) - 1);
+                }
+                else if (form.FormName.StartsWith("Первая настройка трубопровода"))
+                {
+                    controller = new Controller.PipelineController1((View.PipelineSettingsLimits)form, _model, int.Parse(Regex.Match(form.FormName, @"\d+$").Value) - 1);
+                }
+                else if (form.FormName.StartsWith("Вторая настройка трубопровода"))
+                {
+                    controller = new Controller.PipelineController2((View.PipelineSettings2Form)form, _model, int.Parse(Regex.Match(form.FormName, @"\d+$").Value) - 1);
+                }
+                if (controller != null)
+                    controller.SaveDataToModel();
             }
         }
 
