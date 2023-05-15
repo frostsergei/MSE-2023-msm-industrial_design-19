@@ -19,7 +19,7 @@ namespace Setup_database_for_device.View
             GroupName = groupName;
             RadioButtonControl.Content = name;
             RadioButtonControl.GroupName = groupName;
-            RadioButtonControl.Width = 140;
+            RadioButtonControl.Width = 160;
 
         }
 

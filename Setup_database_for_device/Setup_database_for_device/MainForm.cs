@@ -23,8 +23,6 @@ namespace Setup_database_for_device
 
         private Model.Model _model;
 
-        private List<View.WindowForm> _allForms;
-
         private Controller.SystemController _sysController;
         private List<View.WindowForm> _allForms = new List<View.WindowForm>();
 
@@ -55,17 +53,13 @@ namespace Setup_database_for_device
 
             View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm(device);
             _sysController = new Controller.SystemController(subForm1, _model);
-            //TestForm subForm2 = new TestForm("Настройка датчиков");
-            //View.ConsumerForm subform3 = new View.ConsumerForm(new int[] { 1, 2 }, 1);
-            //View.ConsumerForm subform4 = new View.ConsumerForm(new int[] { 1, 2 }, 2);
-            //View.ConsumerForm subform5 = new View.ConsumerForm(new int[] { 1, 2 }, 3);
 
-            _allForms.Add(subForm1);
+
 
             ElementHost host = new ElementHost();
-            _allForms = new List<View.WindowForm>();
+
             _allForms.Add(subForm1);
-            View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName, 2, 4);
+            View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName);
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
@@ -74,14 +68,7 @@ namespace Setup_database_for_device
 
             FormSwitcher formSwitcher = new FormSwitcher(contentMenu, _allForms, panelContent);
 
-            //_sysController = new Controller.SystemController(subForm, _model);
-
         }
-
-        //private void CreatePipelines()
-        //{
-        //    CreateWindow<>();
-        //}
 
         private View.WindowForm GetFormByName(string name)
         {

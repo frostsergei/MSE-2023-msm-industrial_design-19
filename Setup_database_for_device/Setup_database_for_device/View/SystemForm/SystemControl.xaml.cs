@@ -14,7 +14,7 @@ namespace Setup_database_for_device.View.SystemForm
         private ParticipatedPipelinesBlock _participatedPipelinesBlock;
         private PipelineBlock _pipelineBlock;
 
-        public SystemControl(bool isBacked, Model.Device device)
+        public SystemControl(Model.Device device)
         {
             InitializeComponent();
 
@@ -23,10 +23,10 @@ namespace Setup_database_for_device.View.SystemForm
             _specificationBlock = new SpecificationBlock();
             // Change back pipelineblock and participatedpipelines
             if (device == Model.Device.SPT963)
-                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 8, isBacked);
+                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 8);
             else
-                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6, isBacked);
-            _pipelineBlock = new PipelineBlock(isBacked);
+                _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6);
+            _pipelineBlock = new PipelineBlock(false);
 
             _participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
             _participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 5);
@@ -61,6 +61,11 @@ namespace Setup_database_for_device.View.SystemForm
             backOkButtons.SetValue(Grid.RowProperty, 11);
             backOkButtons.SetValue(Grid.RowSpanProperty, 2);
             SystemWindowBlock.Children.Add(backOkButtons);
+        }
+
+        public void DisableParticipatedPipelinesAndConsumersBlock()
+        {
+            _participatedPipelinesBlock.Disable();
         }
 
         public Dictionary<string, string> GetAllSystemSettings()

@@ -76,12 +76,11 @@ namespace Setup_database_for_device
         private void SetConsumers()
         {
             View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
-            string ZeroOneStringConsumers = systemWindow.GetParamFromWindow(consumersParam);
+            string zeroOneStringConsumers = systemWindow.GetParamFromWindow(consumersParam);
+            string zeroOneStringPipelines = systemWindow.GetParamFromWindow(pipelinesParam);
 
-            if(!(consumersParam is null))
-            {
-                CreateMenuItems(View.ContentMenu.DeepButtonsNames.CONSUMERS, ZeroOneStringConsumers);
-            }
+            CreateMenuItems(View.ContentMenu.DeepButtonsNames.CONSUMERS, zeroOneStringConsumers);
+            CreateConsumerWindows(zeroOneStringConsumers, zeroOneStringPipelines);
         }
 
         private void SetPipelines()
@@ -89,41 +88,61 @@ namespace Setup_database_for_device
             View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
             string ZeroOneStringConsumers = systemWindow.GetParamFromWindow(pipelinesParam);
 
-            if (!(consumersParam is null))
-            {
-                CreateMenuItems(View.ContentMenu.DeepButtonsNames.PIPELINES, ZeroOneStringConsumers);
-            }
+
+            CreateMenuItems(View.ContentMenu.DeepButtonsNames.PIPELINES, ZeroOneStringConsumers);
+            CreatePipelinesWindows(ZeroOneStringConsumers);
+
         }
 
-        private void CreateConsumerWindows(string zeroOneString)
+        private List<int> GetNumbersOfOneFromZeroOneString(string zeroOneString)
         {
-            int i = 0;
-            foreach (char currentConsumerState in zeroOneString)
+
+            List<int> numbers = new List<int>();
+
+            for(int i = 0; i < zeroOneString.Length; i++)
             {
-                if(currentConsumerState == '1')
+                if(zeroOneString[i] == '1')
                 {
-                    View.ConsumerForm newPipelineWindow = new View.ConsumerForm(new int[] { 1, 2 }, i);
-                    _forms.Add(newPipelineWindow);
+                    numbers.Add(i + 1);
                 }
-                i++;
+            }
+
+            return numbers;
+        }
+
+        private void CreateConsumerWindows(string consumersZeroOneString, string pipelinesZeroOneString)
+        {
+
+            List<int> consumersNumbers = GetNumbersOfOneFromZeroOneString(consumersZeroOneString);
+            List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(pipelinesZeroOneString);
+
+            foreach(int consumerNumber in consumersNumbers)
+            {
+                View.ConsumerForm newPipelineWindow = new View.ConsumerForm(pipelinesNumbers, consumerNumber);
+                _forms.Add(newPipelineWindow);
             }
         }
 
-        //private void CreatePipelinesWindows(string zeroOneString)
-        //{
-        //    foreach(char currentPipelineState)
-        //}
+        private void CreatePipelinesWindows(string pipelinesZeroOneString)
+        {
+            List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(pipelinesZeroOneString);
 
+            foreach(int pipelineNumber in pipelinesNumbers)
+            {
+                View.CoolantSelectionForm coolantSelectionForm = new View.CoolantSelectionForm(pipelineNumber);
+                View.PipelineSettingsLimits pipelineSettingsLimits = new View.PipelineSettingsLimits(pipelineNumber);
+                //View.PipelineSettings2Form pipelineSettings2Form = new View.PipelineSettings2Form();
+
+                _forms.Add(coolantSelectionForm);
+                _forms.Add(pipelineSettingsLimits);
+            }
+        }
 
         private void CreateMenuItems(View.ContentMenu.DeepButtonsNames buttonName, string zeroOneString)
         {
             _menu.AddDeepButtonsByZeroOneString(buttonName, zeroOneString);
         }
 
-        //private void CreateForms<T>()
-        //{
-
-        //}
 
         public void ChangeFormByClickOnMenu(object sender, EventArgs e)
         {
@@ -148,7 +167,10 @@ namespace Setup_database_for_device
             {
                 SetPipelines();
                 SetConsumers();
-            }
+
+                _consumersSet = true;
+                _pipelinesSet = true;
+            } 
 
             if(_currentFormIndex + 1 < _forms.Count)
             {

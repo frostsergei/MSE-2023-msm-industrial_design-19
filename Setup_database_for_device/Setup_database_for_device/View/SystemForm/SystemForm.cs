@@ -22,7 +22,7 @@ namespace Setup_database_for_device.View.SystemForm
 
             ElementHost host = new ElementHost();
 
-            _systemWindow = new SystemControl(true, device);
+            _systemWindow = new SystemControl(device);
             _systemWindow.SetOkBackButtons(_backOkComponent);
             host.Child = _systemWindow;
             host.Dock = DockStyle.Fill;
@@ -32,7 +32,7 @@ namespace Setup_database_for_device.View.SystemForm
 
         protected override void OnNextFormAction()
         {
-
+            _systemWindow.DisableParticipatedPipelinesAndConsumersBlock();
             PipelinesSelectedEvent?.Invoke(this, EventArgs.Empty);
               
         }
