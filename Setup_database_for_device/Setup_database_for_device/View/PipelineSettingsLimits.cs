@@ -12,10 +12,10 @@ using System.Windows.Documents;
 
 namespace Setup_database_for_device.View
 {
-    public partial class PipelineSettingsLimits : Form
+    public partial class PipelineSettingsLimits : WindowForm
     { 
         string curIndicator = "04";// убрать после подсодинения к моделе
-        public PipelineSettingsLimits()
+        public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}")
         {
             InitializeComponent();
                        

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
 {
-    public partial class CoolantSelectionForm : Form
+    public partial class CoolantSelectionForm : WindowForm
     {
         /*Данные из WPF могут быть получены следующим образом:
          * (elementHost1.Child as CoolantSelectionWPF).coolantTypeValue - тип теплоносителя
@@ -19,7 +19,7 @@ namespace Setup_database_for_device.View
          * (elementHost1.Child as CoolantSelectionWPF).saturationWidthValue - ширина зоны насыщения
          * (elementHost1.Child as CoolantSelectionWPF).drynessValue - степень сухости
         */
-        public CoolantSelectionForm()
+        public CoolantSelectionForm(int index) : base($"Теплоноситель {index}")
         {
             InitializeComponent();
             elementHost1.Dock = DockStyle.Fill;
