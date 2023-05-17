@@ -10,15 +10,9 @@ namespace Setup_database_for_device.View
 
     {
         private PipelineSettings2Form _pipelineSettings2WPF;
-<<<<<<< Updated upstream
         private string _curIndicator;// убрать после подсодинения к моделе                                   
 
         public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}")
-=======
-        private string _curIndicator;
-
-        public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}", true)
->>>>>>> Stashed changes
         {
             InitializeComponent();
                        
