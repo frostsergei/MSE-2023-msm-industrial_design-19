@@ -18,7 +18,7 @@ namespace Setup_database_for_device.View.SystemForm
             _checkbox = new CheckboxControl("Датчик");
             _textbox = new TextBoxControl("Константное значение", defaultValue);
 
-            if(!isEnabled)
+            if (!isEnabled)
             {
                 BorderBrush = new SolidColorBrush(Color.FromRgb(118, 118, 118));
                 PipelineSettingLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
@@ -34,6 +34,7 @@ namespace Setup_database_for_device.View.SystemForm
             _checkbox.SetValue(Grid.ColumnProperty, 2);
             _textbox.SetValue(Grid.RowProperty, 1);
             _textbox.SetValue(Grid.ColumnProperty, 0);
+            _textbox.Margin = new System.Windows.Thickness(5, 5, 0, 0);
 
             PipelineControlBlock.Children.Add(_checkbox);
             PipelineControlBlock.Children.Add(_textbox);

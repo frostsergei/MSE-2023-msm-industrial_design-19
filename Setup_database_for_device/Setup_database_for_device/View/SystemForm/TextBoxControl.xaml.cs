@@ -14,6 +14,7 @@ namespace Setup_database_for_device.View.SystemForm
             InputText.Text = label;
 
             TextFieldEl = TextField;
+            TextField.Padding = new System.Windows.Thickness(2);
         }
 
         public TextBox TextFieldEl { get; }

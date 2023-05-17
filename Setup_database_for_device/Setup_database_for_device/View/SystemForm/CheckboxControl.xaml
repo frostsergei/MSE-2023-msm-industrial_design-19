@@ -14,7 +14,7 @@
             <ColumnDefinition Width="0.7*"></ColumnDefinition>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock TextWrapping="Wrap" Name="CheckboxText" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontFamily="Verdana" FontSize="9pt"  />
+        <TextBlock TextWrapping="Wrap" Name="CheckboxText" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontFamily="Verdana" FontSize="9pt" TextAlignment="Right" Padding="0,0,15,0"  />
         <CheckBox Name="CheckboxInput" VerticalAlignment="Center" FontFamily="Verdana" FontSize="9pt" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Checked="CheckboxInput_Checked" Unchecked="CheckboxInput_Checked" />
     </Grid>
 </UserControl>
