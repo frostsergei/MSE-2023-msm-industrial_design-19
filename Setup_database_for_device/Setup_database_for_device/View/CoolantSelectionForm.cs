@@ -21,6 +21,7 @@ namespace Setup_database_for_device.View
         private PipelineSettingsLimits _pipelineSettingsLimitsForm;
         private WindowForm _previousPipelinesSettings;
 
+
         public CoolantSelectionForm(int index) : base($"Теплоноситель {index}")
         {
             InitializeComponent();

@@ -10,6 +10,7 @@ namespace Setup_database_for_device.View
         private PipelineSettings2WPF _secondPipelineSettingsWindow;
 
         public PipelineSettings2Form(int index) : base($"Вторая настройка трубопровода {index}")
+
         {
             InitializeComponent();
 

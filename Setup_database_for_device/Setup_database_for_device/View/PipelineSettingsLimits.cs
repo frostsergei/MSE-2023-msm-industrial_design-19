@@ -6,10 +6,11 @@ using System.Windows.Forms.Integration;
 namespace Setup_database_for_device.View
 {
     public partial class PipelineSettingsLimits : WindowForm
+
     {
         private PipelineSettings2Form _pipelineSettings2WPF;
-        private string _curIndicator;// убрать после подсодинения к моделе 
-                                   // 
+        private string _curIndicator;// убрать после подсодинения к моделе                                   
+
         public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}")
         {
             InitializeComponent();

@@ -23,6 +23,8 @@ namespace Setup_database_for_device
 
         private Model.Model _model;
 
+        private List<View.WindowForm> _allForms;
+
         private Controller.SystemController _sysController;
         private List<View.WindowForm> _allForms = new List<View.WindowForm>();
 
@@ -55,11 +57,11 @@ namespace Setup_database_for_device
             _sysController = new Controller.SystemController(subForm1, _model);
 
 
-
             ElementHost host = new ElementHost();
 
             _allForms.Add(subForm1);
             View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName);
+
 
             host.Child = contentMenu;
             host.Dock = DockStyle.Fill;
