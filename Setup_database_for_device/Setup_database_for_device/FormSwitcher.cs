@@ -17,8 +17,8 @@ namespace Setup_database_for_device
         private int _currentFormIndex = 0;
         private bool _pipelinesSet = false;
         private bool _consumersSet = false;
-        private static string pipelinesParam = "031н00";
-        private static string consumersParam = "031н01";
+        private static readonly string pipelinesParam = "031н00";
+        private static readonly string consumersParam = "031н01";
 
         public FormSwitcher(View.ContentMenu menu, List<View.WindowForm> forms, Panel contentPanel)
         {
@@ -30,11 +30,16 @@ namespace Setup_database_for_device
 
             foreach(View.WindowForm form in _forms)
             {
-                form.NextFormEvent += new EventHandler(GoAhead);
-                form.PreviousFormEvent += new EventHandler(GoBack);
+                SetEventListenersForForm(form);
             }
 
             SetFormByName("Общесистемные параметры");
+        }
+
+        private void SetEventListenersForForm(View.WindowForm form)
+        {
+            form.NextFormEvent += new EventHandler(GoAhead);
+            form.PreviousFormEvent += new EventHandler(GoBack);
         }
 
 
@@ -118,8 +123,9 @@ namespace Setup_database_for_device
 
             foreach(int consumerNumber in consumersNumbers)
             {
-                View.ConsumerForm newPipelineWindow = new View.ConsumerForm(pipelinesNumbers, consumerNumber);
-                _forms.Add(newPipelineWindow);
+                View.ConsumerForm newConsumerWindow = new View.ConsumerForm(pipelinesNumbers, consumerNumber);
+                SetEventListenersForForm(newConsumerWindow);
+                _forms.Add(newConsumerWindow);
             }
         }
 
@@ -127,14 +133,28 @@ namespace Setup_database_for_device
         {
             List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(pipelinesZeroOneString);
 
-            foreach(int pipelineNumber in pipelinesNumbers)
+            //View.WindowForm prevPipelineSettings = null;
+
+
+            foreach (int pipelineNumber in pipelinesNumbers)
             {
                 View.CoolantSelectionForm coolantSelectionForm = new View.CoolantSelectionForm(pipelineNumber);
                 View.PipelineSettingsLimits pipelineSettingsLimits = new View.PipelineSettingsLimits(pipelineNumber);
-                //View.PipelineSettings2Form pipelineSettings2Form = new View.PipelineSettings2Form();
+                View.PipelineSettings2Form pipelineSettings2Form = new View.PipelineSettings2Form(pipelineNumber);
+
+                coolantSelectionForm.SetNextPipelineSettings(pipelineSettingsLimits);
+                //coolantSelectionForm.SetPreviousPipelineSettings(prevPipelineSettings);
+                pipelineSettingsLimits.SetNextPipelineSettings(pipelineSettings2Form);
+
+                //prevPipelineSettings = coolantSelectionForm;
+
+                SetEventListenersForForm(coolantSelectionForm);
+                SetEventListenersForForm(pipelineSettingsLimits);
+                SetEventListenersForForm(pipelineSettings2Form);
 
                 _forms.Add(coolantSelectionForm);
                 _forms.Add(pipelineSettingsLimits);
+                _forms.Add(pipelineSettings2Form);
             }
         }
 
@@ -150,10 +170,26 @@ namespace Setup_database_for_device
             SetFormByName(button.ButtonName);
         }
 
+        private void SetFormIndexOnEnabledMenuButton()
+        {
+            while(_currentFormIndex >= 0 & _menu.IsButtonDisabledByIndex(_currentFormIndex))
+            {
+                _currentFormIndex--;
+            }
+        }
+
         public void GoBack(object sender, EventArgs e) 
         {
-            if(_currentFormIndex - 1 >= 0)
-            {
+
+            //while (_currentFormIndex >= 0 & _menu.IsButtonDisabledByIndex(_currentFormIndex))
+            //{
+            //    _currentFormIndex--;
+            //}
+
+            
+
+            if (_currentFormIndex - 1 >= 0)
+            {     
                 _currentFormIndex--;
                 SetFormByIndex(_currentFormIndex);
                 
@@ -170,7 +206,7 @@ namespace Setup_database_for_device
 
                 _consumersSet = true;
                 _pipelinesSet = true;
-            } 
+            }
 
             if(_currentFormIndex + 1 < _forms.Count)
             {

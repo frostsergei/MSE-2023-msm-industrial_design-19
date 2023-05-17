@@ -29,8 +29,7 @@ namespace Setup_database_for_device.View
             CONSUMERS
         }
 
-        //private static readonly string[] s_pipelinesSettingsButtonsNames = new string[] { "Теплоноситель", "Первая настройка трубопровода", "Вторая настройка трубопровода" };
-        private static readonly string[] s_pipelinesSettingsButtonsNames = new string[] { "Теплоноситель", "Первая настройка трубопровода" };
+        private static readonly string[] s_pipelinesSettingsButtonsNames = new string[] { "Теплоноситель", "Первая настройка трубопровода", "Вторая настройка трубопровода" };
 
         private List<ContentMenuButton> _topButtons = new List<ContentMenuButton>(5);
         private ContentMenuButton[] _pipelinesButtons;
@@ -82,13 +81,25 @@ namespace Setup_database_for_device.View
             return -1;
         }
 
-        private void EnableButtonByName(string name)
+        public void EnableButtonByName(string name)
+        {
+            foreach (ContentMenuButton button in _allButtons)
+            {
+                if (button.ButtonName == name)
+                {
+                    button.EnableButton();
+                    break;
+                }
+            }
+        }
+
+        private void DisableButtonByName(string name)
         {
             foreach(ContentMenuButton button in _allButtons)
             {
                 if(button.ButtonName == name)
                 {
-                    button.EnableButton();
+                    button.DisableButton();
                     break;
                 }
             }
@@ -102,6 +113,7 @@ namespace Setup_database_for_device.View
                 currentButton.SetWidth(120);
                 currentButton.EnableButton();
                 currentButton.RadioButtonChecked += new EventHandler(ButtonClicked);
+                _allButtons.Add(currentButton);
 
                 return currentButton;
             }).ToList();
@@ -112,6 +124,11 @@ namespace Setup_database_for_device.View
             }
         }
 
+        public bool IsButtonDisabledByIndex(int index)
+        {
+            return _allButtons[index].IsEnabled;
+        }
+
         public void SelectButtonByName(string name)
         {
             foreach (ContentMenuButton button in _allButtons)
@@ -119,6 +136,7 @@ namespace Setup_database_for_device.View
                 if (button.ButtonName == name)
                 {
                     button.CheckButton();
+                    button.EnableButton();
                     break;
                 }
             }
@@ -154,10 +172,13 @@ namespace Setup_database_for_device.View
             for(int i = 0; i < buttons.Count; i++)
             {
                 container.Items.Add(TreeViewItemsWithButtonInside[i]);
+                _allButtons.Add(buttons[i]);
 
                 if(buttonName == DeepButtonsNames.PIPELINES)
                 {
                     AddPipelinesSettingsButtons(TreeViewItemsWithButtonInside[i], buttonsNumbers[i]);
+                    DisableButtonByName($"Первая настройка трубопровода {buttonsNumbers[i]}");
+                    DisableButtonByName($"Вторая настройка трубопровода {buttonsNumbers[i]}");
                 }
             }
 

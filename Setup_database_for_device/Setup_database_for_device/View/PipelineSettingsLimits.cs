@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
-using System.Windows.Documents;
+using System.Windows.Forms.Integration;
 
 namespace Setup_database_for_device.View
 {
     public partial class PipelineSettingsLimits : WindowForm
-    { 
-        string curIndicator = "04";// убрать после подсодинения к моделе
+    {
+        private PipelineSettings2Form _pipelineSettings2WPF;
+        private string _curIndicator;// убрать после подсодинения к моделе 
+                                   // 
         public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}")
         {
             InitializeComponent();
                        
-            this.Text = "Настройка трубопроводов.Ввод значений расхода, давления и температуры";
+            Text = "Настройка трубопроводов.Ввод значений расхода, давления и температуры";
+
+            ElementHost host = new ElementHost
+            {
+                Child = _backOkComponent,
+                Dock = DockStyle.Fill
+            };
+            OkBackButtonsPanel.Controls.Add(host);
         }
 
         public Dictionary<string, string> GetPipelineWindowData()
@@ -67,14 +69,14 @@ namespace Setup_database_for_device.View
                 { "033н02", $"{textBox11.Text}" }, //нижний предел
                 { "114н00", $"{textBox12.Text}" },
             };
-            if (curIndicator == "03" || curIndicator == "04")
+            if (_curIndicator == "03" || _curIndicator == "04")
             {
                 res.Add("034н01", $"{textBox2.Text}"); //верхний предел по паспорту прибора
                 res.Add("034н02", $"{textBox1.Text}"); //нижний предел по паспорту прибора
                 res.Add("034н06", $"{textBox3.Text}"); //верхний предел частоты входного сигнала
                 res.Add("034н07", $"{textBox4.Text}"); //нижний предел частоты входного сигнала
             }
-            else if (curIndicator == "01" || curIndicator == "02")
+            else if (_curIndicator == "01" || _curIndicator == "02")
             {
                 res.Add("034н01", $"{textBox13.Text}"); //верхний предел по паспорту прибора 
                 res.Add("034н02", $"{textBox14.Text}"); //нижний предел по паспорту прибора
@@ -91,7 +93,20 @@ namespace Setup_database_for_device.View
 
         private void PipelineSettingLimits_Load(object sender, EventArgs e)
         {
-           if(curIndicator == "03" || curIndicator == "04")
+            
+        }
+        
+        public void SetNextPipelineSettings(PipelineSettings2Form form)
+        {
+            _pipelineSettings2WPF = form;
+        }
+    
+        public void SetCurIndicator(string curIndicator)
+        {
+
+            _curIndicator = $"{curIndicator[1]}{curIndicator[2]}";
+
+            if (_curIndicator == "03" || _curIndicator == "04")
             {
                 richTextBox1.Visible = true;
                 richTextBox2.Visible = true;
@@ -118,7 +133,7 @@ namespace Setup_database_for_device.View
                 textBox15.Visible = false;
                 richTextBox14.Visible = false;
             }
-            if (curIndicator == "01" || curIndicator == "02")
+            if (_curIndicator == "01" || _curIndicator == "02")
             {
                 richTextBox13.Visible = true;
                 textBox13.Visible = true;
@@ -129,7 +144,7 @@ namespace Setup_database_for_device.View
                 textBox15.Visible = true;
                 richTextBox14.Visible = true;
 
-            //turning off
+                //turning off
                 richTextBox1.Visible = false;
                 richTextBox2.Visible = false;
 
@@ -144,7 +159,12 @@ namespace Setup_database_for_device.View
                 label3.Visible = false;
                 label4.Visible = false;
             }
-        }        
+        }
+
+        protected override bool IsAbleToGoToNext()
+        {
+            return true;
+        }
     }
 
 }

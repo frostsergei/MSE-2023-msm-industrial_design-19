@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
@@ -38,15 +34,30 @@ namespace Setup_database_for_device.View
 
         protected virtual void OnNextFormAction() { }
         protected virtual void OnPreviousFormAction() { }
+        protected virtual bool IsAbleToGoToNext()
+        {
+            return true;
+        }
+        protected virtual bool IsAbleToGoToPrevious()
+        {
+            return true;
+        }
 
         private void GoToNextForm(object sender, EventArgs e) {
             OnNextFormAction();
-            NextFormEvent?.Invoke(this, EventArgs.Empty);
+            if (IsAbleToGoToNext())
+            {
+                NextFormEvent?.Invoke(this, EventArgs.Empty);
+            }         
         }
 
         private void GoToPreviousForm(object sender, EventArgs e) {
             OnPreviousFormAction();
-            PreviousFormEvent?.Invoke(this, EventArgs.Empty);
+
+            if(IsAbleToGoToPrevious())
+            {
+                PreviousFormEvent?.Invoke(this, EventArgs.Empty);
+            }       
         }
 
     }

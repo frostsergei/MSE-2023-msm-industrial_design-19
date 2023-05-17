@@ -7,11 +7,15 @@
              mc:Ignorable="d" d:DesignWidth="800" Height="514"
              SizeChanged="Resize"
              >
-    <Grid Background="White" Margin="0,0,0,-0.4">
+    <Grid Background="White" Margin="0,0,0,-0.4" Name="SecondPipelineSettings">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
         <ComboBox x:Name="Combo1" SelectionChanged="comboChanged" Margin="25,143,18,0" VerticalAlignment="Top">
             <ComboBoxItem>
                 <StackPanel>
@@ -48,16 +52,9 @@
             </ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="textbox2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=constConsumptionValue}"  FontSize="9 pt" Height="23" Margin="25,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="87"/>
-        <Button Margin="0,455,30,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Right" Width="114">
-            <StackPanel>
-                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="К следующему"/></TextBlock>
-                <TextBlock FontSize="9 pt" FontFamily="Verdana"><Run Text="трубопроводу"/></TextBlock>
-            </StackPanel>
-        </Button>
-        <Button FontSize="9 pt" Content="Назад" Margin="30,455,0,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" Grid.Column="1" HorizontalAlignment="Left" Width="114"/>
         <Label FontSize="9 pt" x:Name="Par115" Content="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=par115t01n00Value}" FontFamily="Verdana" HorizontalAlignment="Left" Margin="215,26,0,0" VerticalAlignment="Top" Height="25" RenderTransformOrigin="0.497,0.528" Width="212" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <Label x:Name="notDefinedLabel" FontSize="9 pt" Content="не определено" Margin="215,26,0,0" VerticalAlignment="Top"  FontFamily="Verdana" FontWeight="Bold" HorizontalAlignment="Left" Width="201" Grid.ColumnSpan="2" />
-        <TextBlock  FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="18,106,25,0" TextWrapping="Wrap" Text="Вторая цифра - алгоритм усреднения температуры и давления" VerticalAlignment="Top"/>
+        <TextBlock FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="18,106,25,0" TextWrapping="Wrap" Text="Вторая цифра - алгоритм усреднения температуры и давления" VerticalAlignment="Top"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Margin="25,106,18,0" TextWrapping="Wrap" Text="Первая цифра - тип ограничения диапазона измерений:" VerticalAlignment="Top"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Margin="25,199,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"><Run Text="Средние значения параметров, измеренных дополнительными датчиками, вычисляются независимо от величины расхода."/><LineBreak/><Run/></TextBlock>
 

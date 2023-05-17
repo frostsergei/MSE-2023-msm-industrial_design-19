@@ -1,26 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 
 namespace Setup_database_for_device.View
 {
     public partial class PipelineSettings2Form : WindowForm
     {
-        //в конструктор передается нижний предел частоты входного сигнала
-        public PipelineSettings2Form(float lowerlimit, int index) : base($"Вторая настройка трубопровода {index}")
-        {
-            //float lowerlimit = 1.1f;
-            InitializeComponent();
-            elementHost1.Dock = DockStyle.Fill;
 
+        private PipelineSettings2WPF _secondPipelineSettingsWindow;
+
+        public PipelineSettings2Form(int index) : base($"Вторая настройка трубопровода {index}")
+        {
+            InitializeComponent();
+
+            ElementHost host = new ElementHost();
+
+            _secondPipelineSettingsWindow = new PipelineSettings2WPF();
+            _secondPipelineSettingsWindow.SetOkBackButtons(_backOkComponent);
+            host.Child = _secondPipelineSettingsWindow;
+            host.Dock = DockStyle.Fill;
+            Controls.Add(host);
+
+            elementHost1.Dock = DockStyle.Fill;
+            SetLowerLimit(0);
+            
+        }
+
+
+        public void SetLowerLimit(float lowerlimit)
+        {
             (elementHost1.Child as PipelineSettings2WPF).lowerlimitValue = lowerlimit.ToString();
         }
+
         public Dictionary<string, string> GetPipelineWindowData()
         {
             return (elementHost1.Child as PipelineSettings2WPF).GetPipelineSettings();

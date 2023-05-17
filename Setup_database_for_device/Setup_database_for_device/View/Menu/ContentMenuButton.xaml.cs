@@ -37,6 +37,11 @@ namespace Setup_database_for_device.View
             RadioButtonControl.IsEnabled = true;
         }
 
+        public void DisableButton()
+        {
+           RadioButtonControl.IsEnabled = false;
+        }
+
         public void CheckButton()
         {
             RadioButtonControl.IsChecked = true;

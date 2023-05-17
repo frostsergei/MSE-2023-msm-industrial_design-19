@@ -6,12 +6,15 @@
              xmlns:local="clr-namespace:Setup_database_for_device.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Background="White" Name="CoolantSelectionGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="400"/>
+            <ColumnDefinition />
             <ColumnDefinition/>
-
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="300"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Выберите тип теплоносителя" VerticalAlignment="Top" Height="15" Width="183"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="177"><Run Text="Выберите тип "/><Run Text="расходомера"/></TextBlock>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="162"><Run Text="Выберите тип "/><Run Text="датчика"/></TextBlock>
@@ -54,7 +57,7 @@
 
 
         <GroupBox x:Name="Group1" Margin="0,30,31,0" VerticalAlignment="Top" BorderBrush="White"
-                  Grid.Column="1">
+                  Grid.Column="1" Grid.Row="0">
             <StackPanel Background="Gainsboro" Margin="0,0,-0.2,0.4">
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10" Text="Задайте Ширину зоны насыщения по давлению для диагностики смены фазового состояни (пар или вода)"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ширина зоны насыщения:" VerticalAlignment="Top" Margin="20,0,10,10"/>
@@ -110,14 +113,5 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid HorizontalAlignment="Center" Height="73" Margin="0,343,0,0" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button FontSize="9 pt" Content="Назад" Margin="30,19,-0.8,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Left" Width="114" Grid.Column="1"/>
-            <Button Content ="ОК" Margin="0,19,30,0" VerticalAlignment="Top" Height="42" FontFamily="Verdana" HorizontalAlignment="Right" Width="114"/>
-        </Grid>
-
     </Grid>
 </UserControl>

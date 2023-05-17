@@ -30,11 +30,13 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
 
+
         protected override void OnNextFormAction()
         {
             _systemWindow.DisableParticipatedPipelinesAndConsumersBlock();
+
             PipelinesSelectedEvent?.Invoke(this, EventArgs.Empty);
-              
+
         }
 
         public Dictionary<string, string> GetSystemWindowData()
