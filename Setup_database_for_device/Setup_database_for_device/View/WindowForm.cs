@@ -13,9 +13,11 @@ namespace Setup_database_for_device.View
         protected string _formName;
         protected Components.BackOkComponent _backOkComponent;
 
-
-        public WindowForm(string formName)
+        public WindowForm(string formName, bool isDisabled = false)
         {
+
+            IsDisabled = isDisabled;
+
             _backOkComponent = new Components.BackOkComponent();
             _backOkComponent.BackButtonClickedEvent += new EventHandler(GoToPreviousForm);
             _backOkComponent.OkButtonClickedEvent += new EventHandler(GoToNextForm);
@@ -28,7 +30,12 @@ namespace Setup_database_for_device.View
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        
+        public void EnableForm()
+        {
+            IsDisabled = false;
+        }
+
+        public bool IsDisabled { get; private set; }
 
         public string FormName => _formName;
 

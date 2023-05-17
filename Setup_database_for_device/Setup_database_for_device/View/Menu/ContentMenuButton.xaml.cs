@@ -23,6 +23,7 @@ namespace Setup_database_for_device.View
 
         }
 
+        //public bool IsEnabled => (bool)RadioButtonControl.IsEnabled;
         public string ButtonName { get; }
         public string GroupName { get; }
         public bool IsChecked => (bool)RadioButtonControl.IsChecked;

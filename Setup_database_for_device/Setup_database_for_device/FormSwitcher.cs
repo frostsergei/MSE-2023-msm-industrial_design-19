@@ -181,19 +181,15 @@ namespace Setup_database_for_device
         public void GoBack(object sender, EventArgs e) 
         {
 
-            //while (_currentFormIndex >= 0 & _menu.IsButtonDisabledByIndex(_currentFormIndex))
-            //{
-            //    _currentFormIndex--;
-            //}
+            _currentFormIndex--;
 
-            
-
-            if (_currentFormIndex - 1 >= 0)
-            {     
+            while (_currentFormIndex > 0 & _forms[_currentFormIndex].IsDisabled)
+            {
                 _currentFormIndex--;
-                SetFormByIndex(_currentFormIndex);
-                
             }
+
+            SetFormByIndex(_currentFormIndex);
+
         }
 
         public void GoAhead(object sender, EventArgs e)
@@ -212,6 +208,12 @@ namespace Setup_database_for_device
             {
                 _currentFormIndex++;
                 SetFormByIndex(_currentFormIndex);
+
+                if(_forms[_currentFormIndex].IsDisabled)
+                {
+                    _forms[_currentFormIndex].EnableForm();
+                }
+                
                 _menu.SelectButtonByName(_forms[_currentFormIndex].FormName);
             }
         }
