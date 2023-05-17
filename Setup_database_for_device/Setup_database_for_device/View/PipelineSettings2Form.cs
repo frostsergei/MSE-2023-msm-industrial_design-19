@@ -9,12 +9,8 @@ namespace Setup_database_for_device.View
 
         private PipelineSettings2WPF _secondPipelineSettingsWindow;
 
-<<<<<<< Updated upstream
-        public PipelineSettings2Form(int index) : base($"Вторая настройка трубопровода {index}")
 
-=======
         public PipelineSettings2Form(int index) : base($"Вторая настройка трубопровода {index}", true)
->>>>>>> Stashed changes
         {
             InitializeComponent();
 
