@@ -15,7 +15,7 @@ namespace Setup_database_for_device.View
         public ImageList newImageList;
         public List<ComboBox> ComboBoxesList;
         //Конструктор принимает массив номеров активных трубопроводов
-        public ConsumerForm(int[] pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
+        public ConsumerForm(List<int> pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
         {
             InitializeComponent();
             schemeNumberControl.ComboBoxMain.SelectedIndex = 0;
@@ -25,7 +25,7 @@ namespace Setup_database_for_device.View
             int comboBoxWidth = 360;
             ComboBoxesList = new List<ComboBox>();
             int curY = elementHost1.Location.Y + elementHost1.Height + topMargin * 2;
-            for (int i = 0; i < pipelinesNumbers.Length; i++)
+            for (int i = 0; i < pipelinesNumbers.Count; i++)
             {
                 Label label = new Label
                 {

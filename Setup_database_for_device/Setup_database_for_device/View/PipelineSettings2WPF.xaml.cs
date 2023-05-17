@@ -116,5 +116,12 @@ namespace Setup_database_for_device.View
             }
             
         }
+
+        public void SetOkBackButtons(Components.BackOkComponent okBackButton)
+        {
+            okBackButton.SetValue(Grid.RowProperty, 1);
+            okBackButton.SetValue(Grid.RowSpanProperty, 2);
+            SecondPipelineSettings.Children.Add(okBackButton);
+        }
     }
 }

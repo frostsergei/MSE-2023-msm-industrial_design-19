@@ -143,5 +143,12 @@ namespace Setup_database_for_device.View
                 ParamsGrid.Visibility = Visibility.Hidden;
             }
         }
+    
+        public void AddOkBackButtons(Components.BackOkComponent okBackButton)
+        {
+            okBackButton.SetValue(Grid.RowProperty, 1);
+            okBackButton.SetValue(Grid.RowSpanProperty, 2);
+            CoolantSelectionGrid.Children.Add(okBackButton);
+        }
     }
 }

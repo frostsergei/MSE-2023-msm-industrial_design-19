@@ -9,28 +9,38 @@ namespace Setup_database_for_device.View
 
         public event EventHandler RadioButtonChecked;
 
-        public ContentMenuButton(string name, string groupName, int width = 140)
+        public ContentMenuButton(string name, string groupName)
         {
             InitializeComponent();
 
-            RadioButtonControl.IsEnabled = false;
+            RadioButtonControl.IsEnabled = true;
 
             ButtonName = name;
             GroupName = groupName;
             RadioButtonControl.Content = name;
             RadioButtonControl.GroupName = groupName;
-            RadioButtonControl.Width = width;
+            RadioButtonControl.Width = 160;
 
         }
 
+        //public bool IsEnabled => (bool)RadioButtonControl.IsEnabled;
         public string ButtonName { get; }
         public string GroupName { get; }
         public bool IsChecked => (bool)RadioButtonControl.IsChecked;
         
+        public void SetWidth(int width)
+        {
+            RadioButtonControl.Width = width;
+        }
 
         public void EnableButton()
         {
             RadioButtonControl.IsEnabled = true;
+        }
+
+        public void DisableButton()
+        {
+           RadioButtonControl.IsEnabled = false;
         }
 
         public void CheckButton()

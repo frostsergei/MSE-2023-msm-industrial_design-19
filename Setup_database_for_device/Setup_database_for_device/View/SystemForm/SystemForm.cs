@@ -8,7 +8,13 @@ namespace Setup_database_for_device.View.SystemForm
     public partial class SystemForm : WindowForm
     {
 
+        public event EventHandler PipelinesSelectedEvent;
+        public event EventHandler ConsumersSelectedEvent;
+
         private SystemControl _systemWindow;
+
+        private string selectedPipelines;
+        private string selectedConsumers;
 
         public SystemForm(Model.Device device) : base("Общесистемные параметры")
         {
@@ -16,7 +22,7 @@ namespace Setup_database_for_device.View.SystemForm
 
             ElementHost host = new ElementHost();
 
-            _systemWindow = new SystemControl(true, device);
+            _systemWindow = new SystemControl(device);
             _systemWindow.SetOkBackButtons(_backOkComponent);
             host.Child = _systemWindow;
             host.Dock = DockStyle.Fill;
@@ -24,9 +30,24 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
 
+
+        protected override void OnNextFormAction()
+        {
+            _systemWindow.DisableParticipatedPipelinesAndConsumersBlock();
+
+            PipelinesSelectedEvent?.Invoke(this, EventArgs.Empty);
+
+        }
+
         public Dictionary<string, string> GetSystemWindowData()
         {
             return _systemWindow.GetAllSystemSettings();
+        }
+
+        public string GetParamFromWindow(string param)
+        {
+            Dictionary<string, string> result = GetSystemWindowData();
+            return result.ContainsKey(param) ? result[param] : null;
         }
     }
 }

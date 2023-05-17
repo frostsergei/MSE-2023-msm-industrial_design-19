@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 
 namespace Setup_database_for_device.View
 {
@@ -19,14 +14,56 @@ namespace Setup_database_for_device.View
          * (elementHost1.Child as CoolantSelectionWPF).saturationWidthValue - ширина зоны насыщения
          * (elementHost1.Child as CoolantSelectionWPF).drynessValue - степень сухости
         */
+        //
+        private static readonly string SensorParamName = "034н00";
+
+        private CoolantSelectionWPF _coolantSelectionWindow;
+
+        private PipelineSettingsLimits _pipelineSettingsLimitsForm;
+        private WindowForm _previousPipelinesSettings;
+
+
         public CoolantSelectionForm(int index) : base($"Теплоноситель {index}")
         {
             InitializeComponent();
-            elementHost1.Dock = DockStyle.Fill;
+
+            ElementHost host = new ElementHost();
+
+            _coolantSelectionWindow = new CoolantSelectionWPF();
+            _coolantSelectionWindow.AddOkBackButtons(_backOkComponent);
+            host.Child = _coolantSelectionWindow;
+            host.Dock = DockStyle.Fill;
+            Controls.Add(host);
+
         }
         public Dictionary<string, string> GetCoolantWindowData()
         {
-            return (elementHost1.Child as CoolantSelectionWPF).GetAllCoolantSettings();
+            return (CoolantSelectionBlock.Child as CoolantSelectionWPF).GetAllCoolantSettings();
+        }
+
+        public void SetPreviousPipelineSettings(WindowForm form)
+        {
+            _previousPipelinesSettings = form;
+        }
+
+        public void SetNextPipelineSettings(PipelineSettingsLimits form)
+        {
+            _pipelineSettingsLimitsForm = form;
+        }
+
+
+        protected override bool IsAbleToGoToNext()
+        {
+
+            string result = _coolantSelectionWindow.GetAllCoolantSettings()[SensorParamName];
+            if (result != "")
+            {
+                _pipelineSettingsLimitsForm.SetCurIndicator(result);
+                Console.WriteLine(result);
+                return true;
+            }
+            
+            return false;
         }
     }
 }
