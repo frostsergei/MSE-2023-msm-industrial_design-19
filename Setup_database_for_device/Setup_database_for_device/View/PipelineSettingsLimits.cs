@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Setup_database_for_device.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
@@ -105,7 +106,7 @@ namespace Setup_database_for_device.View
         public void SetCurIndicator(string curIndicator)
         {
 
-            _curIndicator = $"{curIndicator[1]}{curIndicator[2]}";
+            _curIndicator = $"{curIndicator[0]}{curIndicator[1]}";
 
             if (_curIndicator == "03" || _curIndicator == "04")
             {

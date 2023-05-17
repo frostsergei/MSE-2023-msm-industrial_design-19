@@ -23,7 +23,7 @@ namespace Setup_database_for_device
 
         private Model.Model _model;
 
-        private List<View.WindowForm> _allForms;
+        //private List<View.WindowForm> _allForms;
 
         private Controller.SystemController _sysController;
         private List<View.WindowForm> _allForms = new List<View.WindowForm>();

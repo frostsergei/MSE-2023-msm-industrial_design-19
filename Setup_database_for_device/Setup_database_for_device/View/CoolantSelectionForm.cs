@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
@@ -58,6 +59,7 @@ namespace Setup_database_for_device.View
             if (result != "")
             {
                 _pipelineSettingsLimitsForm.SetCurIndicator(result);
+                Console.WriteLine(result);
                 return true;
             }
             
