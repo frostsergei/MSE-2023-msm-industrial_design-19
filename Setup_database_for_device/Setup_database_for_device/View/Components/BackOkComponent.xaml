@@ -8,7 +8,7 @@
              d:DesignHeight="40
              " d:DesignWidth="200">
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button Name="BackButton" Click="BackButton_Click">Назад</Button>
-        <Button Name="OkButton" Click="OkButton_Click">Ок</Button>
+        <Button x:Name="BackButton" Click="BackButton_Click" Content="Назад" Height="25" Width="50"/>
+        <Button x:Name="OkButton" Click="OkButton_Click" Content="Ок" Margin="19,0,0,0" Height="25" Width="50"/>
     </StackPanel>
 </UserControl>
