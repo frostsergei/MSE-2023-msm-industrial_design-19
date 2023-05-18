@@ -34,9 +34,9 @@ namespace Setup_database_for_device
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,8 +77,16 @@ namespace Setup_database_for_device
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
 
             this.createToolStripMenuItem.Size = new System.Drawing.Size(276, 44);
+
             this.createToolStripMenuItem.Text = "Создать";
             this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.exitToolStripMenuItem.Text = "Выйти";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // panelLeft
             // 
@@ -96,14 +104,8 @@ namespace Setup_database_for_device
             this.panelContent.Location = new System.Drawing.Point(340, 37);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(1649, 1347);
+
             this.panelContent.TabIndex = 5;
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Выйти";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -23,6 +23,7 @@ namespace Setup_database_for_device.View.SystemForm
         private static int s_countCheckboxesInLine = 8;
 
         private CheckBox[] _checkboxes;
+        private Label[] _labels;
         private string _result = "";
 
         public string Result
@@ -30,35 +31,22 @@ namespace Setup_database_for_device.View.SystemForm
             get { return _result; }
         }
 
-        public CheckboxesBlock(int countCheckboxes, string prefix, bool isEnabled)
+        public CheckboxesBlock(int countCheckboxes, string prefix)
         {
             InitializeComponent();
 
             _checkboxes = new CheckBox[countCheckboxes];
+            _labels = new Label[countCheckboxes];
 
-            
             Style labelStyle = new Style();
 
-            if(!isEnabled)
+            labelStyle.Setters.Add(
+            new Setter
             {
-                labelStyle.Setters.Add(
-                new Setter
-                {
-                    Property = ForegroundProperty,
-                    Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
-                });
+                Property = ForegroundProperty,
+                Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+            });
 
-            } else
-            {
-                labelStyle.Setters.Add(
-                new Setter
-                {
-                    Property = ForegroundProperty,
-                    Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
-                });
-            }
-            
-        
             for (int i = 0; i < countCheckboxes; i++)
             {
 
@@ -87,13 +75,14 @@ namespace Setup_database_for_device.View.SystemForm
                 {
                     Width = 20,
                     VerticalAlignment = VerticalAlignment.Center,
-                    IsEnabled = isEnabled
+                    IsEnabled = true
                 };
 
                 currentCheckbox.Click += new RoutedEventHandler(Checkbox_Checked);
 
 
                 _checkboxes[i] = currentCheckbox;
+                _labels[i] = currentLabel;
 
                 panel.Children.Add(currentCheckbox);
                 panel.Children.Add(currentLabel);
@@ -108,12 +97,29 @@ namespace Setup_database_for_device.View.SystemForm
              
         }
 
+
         public void DisableBlock()
         {
-            for(int i = 0; i < _checkboxes.Length; i++)
-            {
+            Style disabledLabelStyle = new Style();
 
+
+            disabledLabelStyle.Setters.Add(
+            new Setter
+            {
+                Property = ForegroundProperty,
+                Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
+            });
+
+            foreach(Label label in _labels)
+            {
+                label.Style = disabledLabelStyle;
             }
+
+            foreach(CheckBox checkbox in _checkboxes)
+            {
+                checkbox.IsEnabled = false;
+            }
+
         }
 
         private void Checkbox_Checked(object sender, RoutedEventArgs e)

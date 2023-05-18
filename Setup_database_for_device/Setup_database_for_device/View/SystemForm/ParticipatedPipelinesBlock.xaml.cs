@@ -20,44 +20,28 @@ namespace Setup_database_for_device.View.SystemForm
         private CheckboxesBlock _participatedConsumersCheckboxes;
 
 
-        public ParticipatedPipelinesBlock(int participatedPipelinesCount, int participatedConsumerCount, bool isEnabled)
+        public ParticipatedPipelinesBlock(int participatedPipelinesCount, int participatedConsumerCount)
         {
             InitializeComponent();
 
             Style labelStyle = new Style();
             Style borderStyle = new Style();
 
-            if(!isEnabled)
-            {
-                labelStyle.Setters.Add(
-                   new Setter
-                   {
-                       Property = ForegroundProperty,
-                       Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
-                   });
+            labelStyle.Setters.Add(
+               new Setter
+               {
+                   Property = ForegroundProperty,
+                   Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+               });
 
-                borderStyle.Setters.Add(
-                   new Setter
-                   {
-                       Property = BorderBrushProperty,
-                       Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
-                   });
-            } else
-            {
-                labelStyle.Setters.Add(
-                   new Setter
-                   {
-                       Property = ForegroundProperty,
-                       Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
-                   });
+            borderStyle.Setters.Add(
+               new Setter
+               {
+                   Property = BorderBrushProperty,
+                   Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+               });
 
-                borderStyle.Setters.Add(
-                   new Setter
-                   {
-                       Property = BorderBrushProperty,
-                       Value = new SolidColorBrush(Color.FromRgb(0, 0, 0))
-                   });
-            }
+
 
             PipelinesTitle.Style = labelStyle;
             ConsumersTitle.Style = labelStyle;
@@ -67,11 +51,14 @@ namespace Setup_database_for_device.View.SystemForm
             ParticipatedConsumersResultBorder.Style = borderStyle;
             ParticipatedPipelinesResultBorder.Style = borderStyle;
 
-            _participatedPipelinesCheckboxes = new CheckboxesBlock(participatedPipelinesCount, s_pipelinePrefix, isEnabled);
-            _participatedConsumersCheckboxes = new CheckboxesBlock(participatedConsumerCount, s_consumerPrefix, isEnabled);
+            _participatedPipelinesCheckboxes = new CheckboxesBlock(participatedPipelinesCount, s_pipelinePrefix);
+            _participatedConsumersCheckboxes = new CheckboxesBlock(participatedConsumerCount, s_consumerPrefix);
 
-            ParticipatedPipelinesResult.Text = getNZerosString(participatedPipelinesCount);
-            ParticipatedConsumersResult.Text = getNZerosString(participatedConsumerCount);
+            ParticipatedPipelinesResult.Text = new string('0', participatedPipelinesCount);
+            ParticipatedConsumersResult.Text = new string('0', participatedConsumerCount);
+
+            _pipelinesResult = new string('0', participatedPipelinesCount);
+            _consumersResult = new string('0', participatedConsumerCount);
 
             ParticipatedPipelines.Children.Add(_participatedPipelinesCheckboxes);
             ParticipatedConsumers.Children.Add(_participatedConsumersCheckboxes);
@@ -79,18 +66,6 @@ namespace Setup_database_for_device.View.SystemForm
             _participatedPipelinesCheckboxes.CheckBoxesChecked += new EventHandler(ChangeParticipatedPipelinesResult);
             _participatedConsumersCheckboxes.CheckBoxesChecked += new EventHandler(ChangeParticipatedConsumersResult);
 
-        }
-
-        private string getNZerosString(int countZeros)
-        {
-
-            string result = "";
-            for(int i = 0; i < countZeros; i++)
-            {
-                result += "0";
-            }
-
-            return result;
         }
 
         public Dictionary<string, string> GetResult()
@@ -101,6 +76,39 @@ namespace Setup_database_for_device.View.SystemForm
                 { "031н01", _consumersResult }
             };
         }
+
+        public void Disable()
+        {
+
+            _participatedPipelinesCheckboxes.DisableBlock();
+            _participatedConsumersCheckboxes.DisableBlock();
+
+            Style labelStyle = new Style();
+            Style borderStyle = new Style();
+
+
+            labelStyle.Setters.Add(
+                new Setter
+                {
+                    Property = ForegroundProperty,
+                    Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
+                });
+
+            borderStyle.Setters.Add(
+                new Setter
+                {
+                    Property = BorderBrushProperty,
+                    Value = new SolidColorBrush(Color.FromRgb(118, 118, 118))
+                });
+
+            PipelinesTitle.Style = labelStyle;
+            ConsumersTitle.Style = labelStyle;
+            ParticipatedPipelinesResult.Style = labelStyle;
+            ParticipatedConsumersResult.Style = labelStyle;
+
+            ParticipatedConsumersResultBorder.Style = borderStyle;
+            ParticipatedPipelinesResultBorder.Style = borderStyle;
+        } 
         
         private void ChangeParticipatedPipelinesResult(object sender, EventArgs e)
         {
