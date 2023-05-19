@@ -68,8 +68,8 @@ namespace Setup_database_for_device
             panelLeft.Controls.Add(host);
 
 
+            FormsBuilder formsBuilder = new FormsBuilder(_allForms, contentMenu);
             FormSwitcher formSwitcher = new FormSwitcher(contentMenu, _allForms, panelContent);
-
         }
 
         private View.WindowForm GetFormByName(string name)
