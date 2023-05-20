@@ -53,6 +53,11 @@ namespace Setup_database_for_device.Model
                     for (int i = 0; i < newPipelinesCount - _pipelines.Count; i++)
                     {
                         _pipelines.Add(new Pipeline());
+                        string number = (i+1).ToString();
+                        if (number.Length == 1) number = "0" + number;
+                        _pipelines[i].ChangeParameterValue("109н01", "034" + number);
+                        _pipelines[i].ChangeParameterValue("113н01", "032" + number);
+                        _pipelines[i].ChangeParameterValue("114н01", "033" + number);
                     }
                 }
                 if (_consumers.Count < newConsumersCount)
@@ -79,6 +84,11 @@ namespace Setup_database_for_device.Model
             for (int i = 0; i < pipelinesCount; i++)
             {
                 _pipelines.Add(new Pipeline());
+                string number = (i + 1).ToString();
+                if (number.Length == 1) number = "0" + number;
+                _pipelines[i].ChangeParameterValue("109н01", "034" + number);
+                _pipelines[i].ChangeParameterValue("113н01", "032" + number);
+                _pipelines[i].ChangeParameterValue("114н01", "033" + number);
             }
             _consumers = new List<Consumer>();
             for (int i = 0; i < consumersCount; i++)
