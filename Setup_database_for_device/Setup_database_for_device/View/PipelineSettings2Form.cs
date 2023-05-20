@@ -22,7 +22,6 @@ namespace Setup_database_for_device.View
             host.Dock = DockStyle.Fill;
             Controls.Add(host);
 
-            elementHost1.Dock = DockStyle.Fill;
             SetLowerLimit(0);
             
         }
@@ -30,12 +29,12 @@ namespace Setup_database_for_device.View
 
         public void SetLowerLimit(float lowerlimit)
         {
-            (elementHost1.Child as PipelineSettings2WPF).lowerlimitValue = lowerlimit.ToString();
+            _secondPipelineSettingsWindow.lowerlimitValue = lowerlimit.ToString();
         }
 
         public Dictionary<string, string> GetPipelineWindowData()
         {
-            return (elementHost1.Child as PipelineSettings2WPF).GetPipelineSettings();
+            return _secondPipelineSettingsWindow.GetPipelineSettings();
         }
 
     }
