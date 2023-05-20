@@ -123,5 +123,13 @@ namespace Setup_database_for_device.View
             okBackButton.SetValue(Grid.RowSpanProperty, 2);
             SecondPipelineSettings.Children.Add(okBackButton);
         }
+
+        private void comboChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender == Combo2 && Combo2.SelectedIndex == 0)
+            {
+                MessageBoxResult confirmResult = System.Windows.MessageBox.Show("Вы выбрали вторую цифру '0', при отсутствии расхода в архивах будет нд", "Предупреждение", MessageBoxButton.OK);
+            }
+        }
     }
 }
