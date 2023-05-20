@@ -79,28 +79,6 @@ namespace Setup_database_for_device
             }
         }
 
-        //private void SetConsumers()
-        //{
-        //    View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
-        //    string zeroOneStringConsumers = systemWindow.GetParamFromWindow(consumersParam);
-        //    string zeroOneStringPipelines = systemWindow.GetParamFromWindow(pipelinesParam);
-
-        //    CreateMenuItems(View.ContentMenu.DeepButtonsNames.CONSUMERS, zeroOneStringConsumers);
-        //    CreateConsumerWindows(zeroOneStringConsumers, zeroOneStringPipelines);
-        //}
-
-        //private void SetPipelines()
-        //{
-        //    View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
-        //    string ZeroOneStringConsumers = systemWindow.GetParamFromWindow(pipelinesParam);
-
-
-        //    CreateMenuItems(View.ContentMenu.DeepButtonsNames.PIPELINES, ZeroOneStringConsumers);
-        //    CreatePipelinesWindows(ZeroOneStringConsumers);
-
-        //}
-
-
         public void ChangeFormByClickOnMenu(object sender, EventArgs e)
         {
             View.ContentMenuButton button = (View.ContentMenuButton)sender;
@@ -123,15 +101,6 @@ namespace Setup_database_for_device
 
         public void GoAhead(object sender, EventArgs e)
         {
-
-            //if(!( _consumersSet & _pipelinesSet))
-            //{
-            //    SetPipelines();
-            //    SetConsumers();
-
-            //    _consumersSet = true;
-            //    _pipelinesSet = true;
-            //}
 
             if(_currentFormIndex + 1 < _forms.Count)
             {

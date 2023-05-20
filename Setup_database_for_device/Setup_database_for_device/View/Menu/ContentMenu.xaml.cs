@@ -147,7 +147,7 @@ namespace Setup_database_for_device.View
             FormChanged?.Invoke(sender, e);
         }
 
-        public void AddDeepButtonsByZeroOneString(DeepButtonsNames buttonName, string zeroOneString)
+        public void AddDeepButtonsByButtonsNumbers(DeepButtonsNames buttonName, List<int> buttonsNumbers)
         {
 
             TreeViewItem container;
@@ -165,7 +165,6 @@ namespace Setup_database_for_device.View
                     break;
             }
 
-            List<int> buttonsNumbers = GetButtonsNumbersFromZeroOneString(zeroOneString);
             List<ContentMenuButton> buttons = CreateDeepButtons(buttonName, buttonsNumbers);
             TreeViewItem[] TreeViewItemsWithButtonInside = WrapButtonsInTreeViewItem(buttons);
 
@@ -183,22 +182,7 @@ namespace Setup_database_for_device.View
             }
 
         }
-
-        private List<int> GetButtonsNumbersFromZeroOneString(string zeroOneString)
-        {
-
-            List<int> buttonsNumbers = new List<int>();
-
-            for (int i = 0; i < zeroOneString.Length; i++)
-            {
-                if (zeroOneString[i] == '1')
-                {
-                    buttonsNumbers.Add(i + 1);
-                }
-            }
-
-            return buttonsNumbers;
-        }
+  
 
         private TreeViewItem[] WrapButtonsInTreeViewItem(List<ContentMenuButton> buttons)
         {

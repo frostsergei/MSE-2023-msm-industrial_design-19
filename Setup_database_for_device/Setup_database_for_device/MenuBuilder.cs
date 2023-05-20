@@ -15,14 +15,10 @@ namespace Setup_database_for_device
             _menu = menu;
         }
 
-        public void AddNewItemInMenu(object sender, EventArgs args)
+        public void AddNewItemInMenu(object sender, EventsArgs.MenuEventArgs args)
         {
-
+            _menu.AddDeepButtonsByButtonsNumbers(args.ButtonName, args.ButtonsNumbers);
         }
 
-        //private void CreateMenuItems(View.ContentMenu.DeepButtonsNames buttonName, string zeroOneString)
-        //{
-        //    _menu.AddDeepButtonsByZeroOneString(buttonName, zeroOneString);
-        //}
     }
 }
