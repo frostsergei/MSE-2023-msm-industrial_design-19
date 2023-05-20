@@ -29,25 +29,13 @@ namespace Setup_database_for_device.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.pipelineSettings2WPF1 = new Setup_database_for_device.View.PipelineSettings2WPF();
             this.SuspendLayout();
-            // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(13, 13);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(775, 425);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.pipelineSettings2WPF1;
             // 
             // PipelineSettings2Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.elementHost1);
             this.Name = "PipelineSettings2Form";
             this.Text = "PipelineSettings2Form";
             this.ResumeLayout(false);
@@ -55,8 +43,5 @@ namespace Setup_database_for_device.View
         }
 
         #endregion
-
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private PipelineSettings2WPF pipelineSettings2WPF1;
     }
 }
