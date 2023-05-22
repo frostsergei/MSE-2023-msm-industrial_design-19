@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
@@ -18,6 +12,7 @@ namespace Setup_database_for_device.View
         public ConsumerForm(List<int> pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
         {
             InitializeComponent();
+            _formIndex = consumerNumber;
             schemeNumberControl.ComboBoxMain.SelectedIndex = 0;
             labelConsumerTitle.Text = "Потребитель №" + consumerNumber.ToString();
             int leftMargin = 10;

@@ -12,14 +12,10 @@ namespace Setup_database_for_device
     {
 
         private View.ContentMenu _menu;
-        private List<View.WindowForm> _forms;
-        private Panel _contentPanel;
-        private int _currentFormIndex = 0;
-        private bool _pipelinesSet = false;
-        private bool _consumersSet = false;
-        
+        private LinkedList<View.WindowForm> _forms;
+        private Panel _contentPanel;   
 
-        public FormSwitcher(View.ContentMenu menu, List<View.WindowForm> forms, Panel contentPanel)
+        public FormSwitcher(View.ContentMenu menu, LinkedList<View.WindowForm> forms, Panel contentPanel)
         {
             _menu = menu;
             _forms = forms;
@@ -36,7 +32,7 @@ namespace Setup_database_for_device
             SetFormByName("Общесистемные параметры");
         }
 
-        private void SetEventListenersForForm(object form, EventArgs args)
+        public void SetEventListenersForForm(object form, EventArgs args)
         {
             View.WindowForm _form = (View.WindowForm)form;
             _form.NextFormEvent += new EventHandler(GoAhead);
@@ -44,25 +40,28 @@ namespace Setup_database_for_device
         }
 
 
-        private int GetFormIndexByName(string name)
+        private View.WindowForm GetFormByName(string name)
         {
-            for (int i = 0; i < _forms.Count; i++)
+            LinkedListNode<View.WindowForm> currentNode = _forms.First;
+
+            while (currentNode != null)
             {
-                if (_forms[i].FormName == name)
+                View.WindowForm currentForm = currentNode.Value;
+
+                if (currentForm.FormName == name)
                 {
-                    return i;
+                    return currentForm;
                 }
+
+                currentNode = currentNode.Next;
             }
 
-            return -1;
+            return null;
         }
 
-        private void SetFormByIndex(int index)
+        private void SetForm(View.WindowForm subForm)
         {
-
-            View.WindowForm subForm = _forms[index];
             _menu.SelectButtonByName(subForm.FormName);
-
             _contentPanel.Controls.Clear();
             _contentPanel.Controls.Add(subForm);
             subForm.BringToFront();
@@ -71,11 +70,11 @@ namespace Setup_database_for_device
 
         private void SetFormByName(string name)
         {
-            _currentFormIndex = GetFormIndexByName(name);
+            View.WindowForm form = GetFormByName(name);
 
-            if(_currentFormIndex != -1)
+            if(form != null)
             {
-                SetFormByIndex(_currentFormIndex);
+                SetForm(form);
             }
         }
 
@@ -88,32 +87,32 @@ namespace Setup_database_for_device
         public void GoBack(object sender, EventArgs e) 
         {
 
-            _currentFormIndex--;
+            //_currentFormIndex--;
 
-            while (_currentFormIndex > 0 & _forms[_currentFormIndex].IsDisabled)
-            {
-                _currentFormIndex--;
-            }
+            //while (_currentFormIndex > 0 & _forms[_currentFormIndex].IsDisabled)
+            //{
+            //    _currentFormIndex--;
+            //}
 
-            SetFormByIndex(_currentFormIndex);
+            //SetFormByIndex(_currentFormIndex);
 
         }
 
         public void GoAhead(object sender, EventArgs e)
         {
 
-            if(_currentFormIndex + 1 < _forms.Count)
-            {
-                _currentFormIndex++;
-                SetFormByIndex(_currentFormIndex);
+            //if(_currentFormIndex + 1 < _forms.Count)
+            //{
+            //    _currentFormIndex++;
+            //    SetFormByIndex(_currentFormIndex);
 
-                if(_forms[_currentFormIndex].IsDisabled)
-                {
-                    _forms[_currentFormIndex].EnableForm();
-                }
+            //    if(_forms[_currentFormIndex].IsDisabled)
+            //    {
+            //        _forms[_currentFormIndex].EnableForm();
+            //    }
                 
-                _menu.SelectButtonByName(_forms[_currentFormIndex].FormName);
-            }
+            //    _menu.SelectButtonByName(_forms[_currentFormIndex].FormName);
+            //}
         }
     }
 }

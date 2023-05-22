@@ -81,6 +81,20 @@ namespace Setup_database_for_device.View
             return -1;
         }
 
+        public void GetButtonByName(string name)
+        {
+            foreach(ContentMenuButton button in _topButtons)
+            {
+
+                TreeViewItem buttonWrap = button.Parent as TreeViewItem;
+
+                if (buttonWrap.Items.Count != 0)
+                {
+
+                }
+            }
+        }
+
         public void EnableButtonByName(string name)
         {
             foreach (ContentMenuButton button in _allButtons)
@@ -113,7 +127,6 @@ namespace Setup_database_for_device.View
                 currentButton.SetWidth(120);
                 currentButton.EnableButton();
                 currentButton.RadioButtonChecked += new EventHandler(ButtonClicked);
-                _allButtons.Add(currentButton);
 
                 return currentButton;
             }).ToList();
@@ -124,10 +137,8 @@ namespace Setup_database_for_device.View
             }
         }
 
-        public bool IsButtonDisabledByIndex(int index)
-        {
-            return _allButtons[index].IsEnabled;
-        }
+
+        //public void SelectButtonByName(DataObjectPastingEventArgs nam)
 
         public void SelectButtonByName(string name)
         {
@@ -147,15 +158,14 @@ namespace Setup_database_for_device.View
             FormChanged?.Invoke(sender, e);
         }
 
-        public void AddDeepButtonsByButtonsNumbers(DeepButtonsNames buttonName, List<int> buttonsNumbers)
+        private TreeViewItem GetContainer(DeepButtonsNames buttonName)
         {
-
             TreeViewItem container;
             switch (buttonName)
             {
                 case DeepButtonsNames.PIPELINES:
                     container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName("Настройка трубопроводов")];
-                    
+
                     break;
                 case DeepButtonsNames.CONSUMERS:
                     container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName("Настройка потребителей")];
@@ -165,13 +175,22 @@ namespace Setup_database_for_device.View
                     break;
             }
 
+            return container;
+        }
+
+        public void AddDeepButtonsByButtonsNumbers(DeepButtonsNames buttonName, List<int> buttonsNumbers)
+        {
+
+            TreeViewItem container = GetContainer(buttonName);
+
             List<ContentMenuButton> buttons = CreateDeepButtons(buttonName, buttonsNumbers);
             TreeViewItem[] TreeViewItemsWithButtonInside = WrapButtonsInTreeViewItem(buttons);
 
-            for(int i = 0; i < buttons.Count; i++)
+            container.Items.Clear();
+
+            for (int i = 0; i < buttons.Count; i++)
             {
                 container.Items.Add(TreeViewItemsWithButtonInside[i]);
-                _allButtons.Add(buttons[i]);
 
                 if(buttonName == DeepButtonsNames.PIPELINES)
                 {

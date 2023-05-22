@@ -18,19 +18,18 @@ namespace Setup_database_for_device
             PIPELINES
         }
 
-        private List<View.WindowForm> _forms;
+        private LinkedList<View.WindowForm> _forms;
         private View.SystemForm.SystemForm _systemForm;
 
-        private List<int> _previousPipelinesNumbers = new List<int>();
-        private List<int> _previousConsumersNumbers = new List<int>();
+        private List<int> _currentPipelinesNumbers = new List<int>();
+        private List<int> _currentConsumersNumbers = new List<int>();
 
         private static readonly string pipelinesParam = "031н00";
         private static readonly string consumersParam = "031н01";
 
-        public FormsBuilder(List<View.WindowForm> forms)
+        public FormsBuilder(LinkedList<View.WindowForm> forms)
         {
             _forms = forms;
-
 
             View.WindowForm systemWindow = GetFormByName("Общесистемные параметры");
             
@@ -43,33 +42,114 @@ namespace Setup_database_for_device
 
         private View.WindowForm GetFormByName(string name)
         {
-            foreach(View.WindowForm form in _forms)
+
+            LinkedListNode<View.WindowForm> currentNode = _forms.First;
+
+            while (currentNode != null)
             {
-                if (form.FormName == name)
+                View.WindowForm currentForm = currentNode.Value;
+
+                if (currentForm.FormName == name)
                 {
-                    return form;
+                    return currentForm;
                 }
+
+                currentNode = currentNode.Next;
             }
 
             return null;
         }
 
-        private int GetFormIndexByName(string name)
+
+        private void SystemWindowParamsSet(object sender, EventArgs e)
         {
-            for(int i = 0; i < _forms.Count; i++)
+            string zeroOneStringConsumers = _systemForm.GetParamFromWindow(consumersParam);
+            string zeroOneStringPipelines = _systemForm.GetParamFromWindow(pipelinesParam);
+
+            List<int> nextConsumersNumbers = GetNumbersOfOneFromZeroOneString(zeroOneStringConsumers);
+            List<int> nextPipelinesNumbers = GetNumbersOfOneFromZeroOneString(zeroOneStringPipelines);
+
+            List<int> consumersNumbersToAdd = GetFormsNumbersToAdd(_currentConsumersNumbers, nextConsumersNumbers);
+            List<int> pipelinesNumbersToAdd = GetFormsNumbersToAdd(_currentPipelinesNumbers, nextPipelinesNumbers);
+
+
+
+            List<int> consumersNumbersToDelete = GetFormsNumbersToDelete(_currentConsumersNumbers, nextConsumersNumbers);
+            List<int> pipelinesNumbersToDelete = GetFormsNumbersToDelete(_currentPipelinesNumbers, nextPipelinesNumbers);
+
+
+
+
+            if (pipelinesNumbersToAdd.Count == 0 & pipelinesNumbersToDelete.Count == 0)
             {
-                if (_forms[i].FormName == name)
+
+                if(consumersNumbersToAdd.Count != 0 | consumersNumbersToDelete.Count != 0)
                 {
-                    return i;
+                    DeleteFormsByFormsNumbers<View.ConsumerForm>(consumersNumbersToDelete);
+                    CreateConsumerWindows(consumersNumbersToAdd, _currentPipelinesNumbers);
                 }
+                
+            } else
+            {
+                DeleteFormsByFormsNumbers<View.ConsumerForm>(_currentConsumersNumbers);
+                CreateConsumerWindows(nextConsumersNumbers, nextPipelinesNumbers);
+                CreateP
+                
+                
             }
 
-            return -1;
+            EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, nextConsumersNumbers);
+            MenuShouldBeUpdatedEvent?.Invoke(this, args);
+
+            _currentConsumersNumbers = nextConsumersNumbers;
+            _currentPipelinesNumbers = nextPipelinesNumbers;
+
         }
 
-        private List<int> GetFormsNumbersToAdd(List<int> previousNumbers, List<int> currentNumbers)
+        private void InsertNewCustomer(View.ConsumerForm form)
         {
-            return currentNumbers.Where((int number) => !previousNumbers.Contains(number)).ToList();
+            LinkedListNode<View.WindowForm> beforeNode = GetBeforeNodeForNumber<View.ConsumerForm>(form.FormIndex);
+
+            if(beforeNode != null)
+            {
+                _forms.AddAfter(beforeNode, form);
+            } else
+            {
+                _forms.AddAfter(_forms.Last, form);
+            }
+        }
+
+        private void InsertNewPipelinesSettings(List<View.WindowForm> forms)
+        {
+            LinkedList<View.WindowForm> linkedForms = new LinkedList<View.WindowForm>(forms);
+            //_forms.AddAfter(_forms.Last, form);
+        }
+
+        //private vo
+
+        private LinkedListNode<View.WindowForm> GetBeforeNodeForNumber<T>(int number)
+        {
+            LinkedListNode<View.WindowForm> currentNode = _forms.Last;
+
+            while (currentNode != null)
+            {
+                View.WindowForm currentForm = currentNode.Value;
+
+                if (currentForm.FormIndex < number & currentForm is T)
+                {
+                    return currentNode;
+                }
+
+                currentNode = currentNode.Previous;
+            }
+
+            return null;
+        }
+
+
+        private List<int> GetFormsNumbersToAdd(List<int> currentNumbers, List<int> nextNumbers)
+        {
+            return nextNumbers.Where((int number) => !currentNumbers.Contains(number)).ToList();
         }
 
         private List<int> GetFormsNumbersToDelete(List<int> previousNumbers, List<int> currentNumbers)
@@ -77,59 +157,30 @@ namespace Setup_database_for_device
             return GetFormsNumbersToAdd(currentNumbers, previousNumbers);
         }
 
-        private void SystemWindowParamsSet(object sender, EventArgs e)
+        
+        private void DeleteFormsByFormsNumbers<FormType>(List<int> formsNumbers)
         {
-            string zeroOneStringConsumers = _systemForm.GetParamFromWindow(consumersParam);
-            string zeroOneStringPipelines = _systemForm.GetParamFromWindow(pipelinesParam);
+            LinkedListNode<View.WindowForm> currentNode = _forms.Last;
+            List<LinkedListNode<View.WindowForm>> nodesToDelete = new List<LinkedListNode<View.WindowForm>>();
 
-            List<int> consumersNumbers = GetNumbersOfOneFromZeroOneString(zeroOneStringConsumers);
-            List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(zeroOneStringPipelines);
-
-            List<int> consumersNumbersToAdd = GetFormsNumbersToAdd(_previousConsumersNumbers, consumersNumbers);
-            List<int> pipelinesNumbersToAdd = GetFormsNumbersToAdd(_previousPipelinesNumbers, pipelinesNumbers);
-
-            List<int> consumersNumbersToDelete = GetFormsNumbersToDelete(_previousConsumersNumbers, consumersNumbers);
-            List<int> pipelinesNumbersToDelete = GetFormsNumbersToDelete(_previousPipelinesNumbers, pipelinesNumbers);
-
-            if ((pipelinesNumbersToAdd.Count != 0) & (consumersNumbersToAdd.Count == 0 | consumersNumbersToAdd.Count != 0))
+            while (currentNode != null)
             {
-                DeleteFormsByFormsNumbers(FormsName.CONSUMERS, _previousConsumersNumbers);
-                DeleteFormsByFormsNumbers(FormsName.PIPELINES, pipelinesNumbersToDelete);
-                CreateConsumerWindows(consumersNumbers, pipelinesNumbers);
-                CreatePipelinesWindows(pipelinesNumbersToAdd);
-            } else
-            {
-                DeleteFormsByFormsNumbers(FormsName.CONSUMERS, consumersNumbersToDelete);
-                CreateConsumerWindows(consumersNumbersToAdd, pipelinesNumbers);
-            }
-            
-            
-        }
+                View.WindowForm currentForm = currentNode.Value;
 
-        private void DeleteFormsByFormsNumbers(FormsName name, List<int> numbers)
-        {
-            string formName = "";
-
-            switch(name)
-            {
-                case FormsName.CONSUMERS:
-                    formName = "Потребитель";
-                    break;
-                case FormsName.PIPELINES:
-                    formName = "Трубопровод";
-                    break;
-            }
-
-            foreach (int number in numbers)
-            {
-                int formIndex = GetFormIndexByName($"{formName} {number}");
-                if(formIndex != -1)
+                if (formsNumbers.Contains(currentForm.FormIndex) & currentForm is FormType)
                 {
-                    _forms.RemoveAt(formIndex);
+                    nodesToDelete.Add(currentNode);
                 }
+
+                currentNode = currentNode.Previous;
             }
 
+            foreach(LinkedListNode<View.WindowForm> nodeToDelete in nodesToDelete)
+            {
+                _forms.Remove(nodeToDelete);
+            }
         }
+
 
         private List<int> GetNumbersOfOneFromZeroOneString(string zeroOneString)
         {
@@ -147,18 +198,44 @@ namespace Setup_database_for_device
             return numbers;
         }
 
+
+        //private void InsertNewConsumerForm(View.WindowForm form, int number)
+        //{
+        //    int ind = GetIndexToInsert(_previousConsumersNumbers, number);
+        //    if(ind != -1)
+        //    {
+        //        _previousConsumersNumbers.Insert(ind, number);
+        //        _forms.Insert(ind, form);
+        //    } else
+        //    {
+        //        _previousConsumersNumbers.Add(number);
+        //        _forms.Add(form);
+        //    }
+        //}
+
+        //private void InsertNewPipelineForms(View.WindowForm[] forms, int number)
+        //{
+        //    int ind = GetIndexToInsert(_previousPipelinesNumbers, number);
+        //    if (ind != -1)
+        //    {
+        //        _previousConsumersNumbers.Insert(ind, number);
+        //        _forms.InsertRange(ind, forms);
+        //    }
+        //    else
+        //    {
+        //        _previousConsumersNumbers.Add(number);
+        //        _forms.AddRange(forms);
+        //    }
+        //}
+
         private void CreateConsumerWindows(List<int> consumersNumbers, List<int> pipelinesNumbers)
         {
             foreach (int consumerNumber in consumersNumbers)
             {
                 View.ConsumerForm newConsumerWindow = new View.ConsumerForm(pipelinesNumbers, consumerNumber);
-                _forms.Add(newConsumerWindow);
-                NewFormCreatedEvent?.Invoke(newConsumerWindow, EventArgs.Empty);                        
+                InsertNewCustomer(newConsumerWindow);
+                NewFormCreatedEvent?.Invoke(newConsumerWindow, EventArgs.Empty);
             }
-
-            EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, consumersNumbers);
-
-            MenuShouldBeUpdatedEvent?.Invoke(this, args);
         }
 
         private void CreatePipelinesWindows(List<int> pipelinesNumbers)
@@ -177,12 +254,13 @@ namespace Setup_database_for_device
                 NewFormCreatedEvent?.Invoke(pipelineSettingsLimits, EventArgs.Empty);
                 NewFormCreatedEvent?.Invoke(pipelineSettings2Form, EventArgs.Empty);
 
-                _forms.Add(coolantSelectionForm);
+                InsertNewCustomer
+                _forms.(coolantSelectionForm);
                 _forms.Add(pipelineSettingsLimits);
                 _forms.Add(pipelineSettings2Form);
             }
 
-            EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, pipelinesNumbers);
+            EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, pipelinesNumbers);
             MenuShouldBeUpdatedEvent?.Invoke(this, args);
         }
     }

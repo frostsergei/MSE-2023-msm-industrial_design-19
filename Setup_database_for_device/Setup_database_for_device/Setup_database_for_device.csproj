@@ -75,6 +75,7 @@
     <Compile Include="DB\Tag.cs" />
     <Compile Include="DB\TagGroup.cs" />
     <Compile Include="DB\Test.cs" />
+    <Compile Include="EventsArgs\MenuEventArgs.cs" />
     <Compile Include="FormsBuilder.cs" />
     <Compile Include="FormSwitcher.cs" />
     <Compile Include="MainForm.cs">
