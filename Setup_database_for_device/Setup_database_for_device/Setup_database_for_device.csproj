@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BD0A2BF8-F0FD-4B14-82DB-5910E3770B35}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Setup_database_for_device</RootNamespace>
     <AssemblyName>Setup_database_for_device</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -100,6 +100,9 @@
     </Compile>
     <Compile Include="View\PipelineSettingsLimits.Designer.cs">
       <DependentUpon>PipelineSettingsLimits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PipelineSettingsLimitsWPF.xaml.cs">
+      <DependentUpon>PipelineSettingsLimitsWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SystemForm\CheckboxControl.xaml.cs">
       <DependentUpon>CheckboxControl.xaml</DependentUpon>
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CoolantSelectionWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PipelineSettingsLimitsWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
