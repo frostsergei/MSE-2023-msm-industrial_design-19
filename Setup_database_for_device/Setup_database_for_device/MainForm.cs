@@ -48,12 +48,15 @@ namespace Setup_database_for_device
             Text = "Настройщик базы данных " + deviceName;
 
             View.SystemForm.SystemForm subForm1 = new View.SystemForm.SystemForm(device);
+            View.SystemForm.SystemForm subForm2 = new View.SystemForm.SystemForm(device);
+
             _sysController = new Controller.SystemController(subForm1, _model);
 
 
             ElementHost host = new ElementHost();
 
             _allForms.AddFirst(subForm1);
+
             View.ContentMenu contentMenu = new View.ContentMenu("Прибор " + deviceName);
 
 

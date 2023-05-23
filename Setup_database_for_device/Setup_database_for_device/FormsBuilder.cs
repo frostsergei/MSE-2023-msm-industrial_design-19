@@ -85,21 +85,26 @@ namespace Setup_database_for_device
 
                 if(consumersNumbersToAdd.Count != 0 | consumersNumbersToDelete.Count != 0)
                 {
+                    
                     DeleteFormsByFormsNumbers<View.ConsumerForm>(consumersNumbersToDelete);
                     CreateConsumerWindows(consumersNumbersToAdd, _currentPipelinesNumbers);
                 }
                 
             } else
             {
+                DeletePipelinesSettings(pipelinesNumbersToDelete);
+                CreatePipelinesWindows(pipelinesNumbersToAdd);
                 DeleteFormsByFormsNumbers<View.ConsumerForm>(_currentConsumersNumbers);
                 CreateConsumerWindows(nextConsumersNumbers, nextPipelinesNumbers);
-                CreateP
                 
                 
             }
 
             EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, nextConsumersNumbers);
             MenuShouldBeUpdatedEvent?.Invoke(this, args);
+
+            EventsArgs.MenuEventArgs pipelinesArgs = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, nextPipelinesNumbers);
+            MenuShouldBeUpdatedEvent?.Invoke(this, pipelinesArgs);
 
             _currentConsumersNumbers = nextConsumersNumbers;
             _currentPipelinesNumbers = nextPipelinesNumbers;
@@ -119,9 +124,31 @@ namespace Setup_database_for_device
             }
         }
 
+        private void InsertFormsListInLinkedList(LinkedListNode<View.WindowForm> beforeNode, List<View.WindowForm> forms)
+        {
+
+            LinkedListNode<View.WindowForm> currentBeforeNode = beforeNode;
+
+            foreach (View.WindowForm form in forms)
+            {
+                _forms.AddAfter(currentBeforeNode, form);
+                currentBeforeNode = currentBeforeNode.Next;
+            }
+        }
+
         private void InsertNewPipelinesSettings(List<View.WindowForm> forms)
         {
-            LinkedList<View.WindowForm> linkedForms = new LinkedList<View.WindowForm>(forms);
+            LinkedListNode<View.WindowForm> beforeNode = GetBeforeNodeForNumber<View.PipelineSettings2Form>(forms[0].FormIndex);
+
+            if (beforeNode != null)
+            {
+                InsertFormsListInLinkedList(beforeNode, forms);
+            }
+            else
+            {
+                InsertFormsListInLinkedList(_forms.First, forms);
+            }
+
             //_forms.AddAfter(_forms.Last, form);
         }
 
@@ -155,6 +182,13 @@ namespace Setup_database_for_device
         private List<int> GetFormsNumbersToDelete(List<int> previousNumbers, List<int> currentNumbers)
         {
             return GetFormsNumbersToAdd(currentNumbers, previousNumbers);
+        }
+
+        private void DeletePipelinesSettings(List<int> formsNumbers)
+        {
+            DeleteFormsByFormsNumbers<View.CoolantSelectionForm>(formsNumbers);
+            DeleteFormsByFormsNumbers<View.PipelineSettingsLimits>(formsNumbers);
+            DeleteFormsByFormsNumbers<View.PipelineSettings2Form>(formsNumbers);
         }
 
         
@@ -247,17 +281,21 @@ namespace Setup_database_for_device
                 View.PipelineSettingsLimits pipelineSettingsLimits = new View.PipelineSettingsLimits(pipelineNumber);
                 View.PipelineSettings2Form pipelineSettings2Form = new View.PipelineSettings2Form(pipelineNumber);
 
-                coolantSelectionForm.SetNextPipelineSettings(pipelineSettingsLimits);
-                pipelineSettingsLimits.SetNextPipelineSettings(pipelineSettings2Form);
+                //coolantSelectionForm.SetNextPipelineSettings(pipelineSettingsLimits);
+                //pipelineSettingsLimits.SetNextPipelineSettings(pipelineSettings2Form);
+
+                List<View.WindowForm> pipelinesSettingsForms = new List<View.WindowForm>() { coolantSelectionForm, pipelineSettingsLimits, pipelineSettings2Form };
+
+                InsertNewPipelinesSettings(pipelinesSettingsForms);
 
                 NewFormCreatedEvent?.Invoke(coolantSelectionForm, EventArgs.Empty);
                 NewFormCreatedEvent?.Invoke(pipelineSettingsLimits, EventArgs.Empty);
                 NewFormCreatedEvent?.Invoke(pipelineSettings2Form, EventArgs.Empty);
 
-                InsertNewCustomer
-                _forms.(coolantSelectionForm);
-                _forms.Add(pipelineSettingsLimits);
-                _forms.Add(pipelineSettings2Form);
+                //InsertNewCustomer
+                //_forms.(coolantSelectionForm);
+                //_forms.Add(pipelineSettingsLimits);
+                //_forms.Add(pipelineSettings2Form);
             }
 
             EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, pipelinesNumbers);

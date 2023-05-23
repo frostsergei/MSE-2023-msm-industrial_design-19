@@ -54,6 +54,11 @@ namespace Setup_database_for_device.View
 
         public bool IsDisabled { get; private set; }
 
+        public void SetFormName(string name)
+        {
+            _formName = name;
+        }
+
         public string FormName => _formName;
         public int FormIndex => _formIndex;
 

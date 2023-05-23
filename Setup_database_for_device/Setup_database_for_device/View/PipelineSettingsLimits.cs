@@ -16,7 +16,8 @@ namespace Setup_database_for_device.View
         public PipelineSettingsLimits(int index) : base($"Первая настройка трубопровода {index}", true)
         {
             InitializeComponent();
-                       
+
+            _formIndex = index;
             Text = "Настройка трубопроводов.Ввод значений расхода, давления и температуры";
 
             ElementHost host = new ElementHost

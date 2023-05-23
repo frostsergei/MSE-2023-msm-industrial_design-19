@@ -27,6 +27,8 @@ namespace Setup_database_for_device.View
         {
             InitializeComponent();
 
+            _formIndex = index;
+
             ElementHost host = new ElementHost();
 
             _coolantSelectionWindow = new CoolantSelectionWPF();
