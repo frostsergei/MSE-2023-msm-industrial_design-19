@@ -18,17 +18,17 @@
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Выберите тип теплоносителя" VerticalAlignment="Top" Height="15" Width="183"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="177"><Run Text="Выберите тип "/><Run Text="расходомера"/></TextBlock>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="162"><Run Text="Выберите тип "/><Run Text="датчика"/></TextBlock>
-        <ComboBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=coolantTypeValue}" x:Name="Combo1" SelectionChanged="comboChanged" Margin="25,59,103,0" VerticalAlignment="Top">
+        <ComboBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=coolantTypeValue}" x:Name="Combo1" SelectionChanged="comboChanged" Margin="25,59,5,0" VerticalAlignment="Top">
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Вода"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Перегретый пар"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Насыщенный пар"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Жидкость"/>
         </ComboBox>
-        <ComboBox x:Name="Combo2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="25,139,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="25,139,5,0" VerticalAlignment="Top">
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Нет"/>
-            <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Объемный с импульсным выходом"/>
+            <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Датчик объемного или массового расхода"/>
         </ComboBox>
-        <ComboBox x:Name="Combo3" SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="25,221,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo3" SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="25,221,5,0" VerticalAlignment="Top">
             <ComboBoxItem>
                 <StackPanel>
                     <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="Датчик объема с числоимпульсным"/></TextBlock>
