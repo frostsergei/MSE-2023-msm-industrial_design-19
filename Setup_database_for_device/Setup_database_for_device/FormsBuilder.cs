@@ -97,7 +97,6 @@ namespace Setup_database_for_device
                 DeleteFormsByFormsNumbers<View.ConsumerForm>(_currentConsumersNumbers);
                 CreateConsumerWindows(nextConsumersNumbers, nextPipelinesNumbers);
                 
-                
             }
 
             EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, nextConsumersNumbers);

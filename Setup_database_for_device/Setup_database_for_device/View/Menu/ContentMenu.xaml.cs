@@ -32,10 +32,10 @@ namespace Setup_database_for_device.View
         private static readonly string[] s_pipelinesSettingsButtonsNames = new string[] { "Теплоноситель", "Первая настройка трубопровода", "Вторая настройка трубопровода" };
 
         private List<ContentMenuButton> _topButtons = new List<ContentMenuButton>(5);
-        private ContentMenuButton[] _pipelinesButtons;
-        private ContentMenuButton[] _consumersButtons;
-        private List<ContentMenuButton> _allButtons;
+        private List<ContentMenuButton> _pipelinesButtons = new List<ContentMenuButton>();
+        private List<ContentMenuButton> _consumersButtons = new List<ContentMenuButton>();
 
+        public List<ContentMenuButton> AllButtons => _topButtons.Concat(_pipelinesButtons).Concat(_consumersButtons).ToList();
 
         private TreeViewItem[] _topButtonsTreeViewItems;
 
@@ -62,10 +62,6 @@ namespace Setup_database_for_device.View
             {
                 ContentMenuEl.Items.Add(el);         
             }
-
-            _allButtons = _topButtons;
-
-
         }
 
         private int GetTopButtonIndexByButtonName(string name)
@@ -97,7 +93,7 @@ namespace Setup_database_for_device.View
 
         public void EnableButtonByName(string name)
         {
-            foreach (ContentMenuButton button in _allButtons)
+            foreach (ContentMenuButton button in AllButtons)
             {
                 if (button.ButtonName == name)
                 {
@@ -109,7 +105,7 @@ namespace Setup_database_for_device.View
 
         private void DisableButtonByName(string name)
         {
-            foreach(ContentMenuButton button in _allButtons)
+            foreach(ContentMenuButton button in AllButtons)
             {
                 if(button.ButtonName == name)
                 {
@@ -119,30 +115,33 @@ namespace Setup_database_for_device.View
             }
         }
 
-        private void AddPipelinesSettingsButtons(TreeViewItem treeViewItem, int pipelineNumber)
+        private void AddPipelinesSettingsButtons(TreeViewItem container, int pipelineNumber)
         {
-            List<ContentMenuButton> treeViewItems = s_pipelinesSettingsButtonsNames.Select((string buttonName) =>
+            List<ContentMenuButton> pipelinesSettingsButtons = s_pipelinesSettingsButtonsNames.Select((string buttonName) =>
             {
                 ContentMenuButton currentButton = new ContentMenuButton($"{buttonName} {pipelineNumber}", $"pipelinesSettings-{pipelineNumber}"); ;
                 currentButton.SetWidth(120);
                 currentButton.EnableButton();
                 currentButton.RadioButtonChecked += new EventHandler(ButtonClicked);
+                currentButton.DisableButton();
+
+                _pipelinesButtons.Add(currentButton);
 
                 return currentButton;
             }).ToList();
 
-            foreach (TreeViewItem item in WrapButtonsInTreeViewItem(treeViewItems))
+            pipelinesSettingsButtons[0].EnableButton();
+
+            foreach (TreeViewItem item in WrapButtonsInTreeViewItem(pipelinesSettingsButtons))
             {
-                treeViewItem.Items.Add(item);
+                container.Items.Add(item);
             }
         }
 
 
-        //public void SelectButtonByName(DataObjectPastingEventArgs nam)
-
         public void SelectButtonByName(string name)
         {
-            foreach (ContentMenuButton button in _allButtons)
+            foreach (ContentMenuButton button in AllButtons)
             {
                 if (button.ButtonName == name)
                 {
@@ -178,25 +177,41 @@ namespace Setup_database_for_device.View
             return container;
         }
 
-        public void AddDeepButtonsByButtonsNumbers(DeepButtonsNames buttonName, List<int> buttonsNumbers)
+        private List<ContentMenuButton> GetButtonListByButtonType(DeepButtonsNames buttonType)
+        {
+            switch (buttonType)
+            {
+                case DeepButtonsNames.PIPELINES:
+                    return _pipelinesButtons;
+                case DeepButtonsNames.CONSUMERS:
+                    return _consumersButtons;
+                default:
+                    return _topButtons;
+            }
+        }
+
+        public void AddDeepButtonsInMenuByButtonsNumbers(DeepButtonsNames buttonName, List<int> buttonsNumbers)
         {
 
             TreeViewItem container = GetContainer(buttonName);
 
-            List<ContentMenuButton> buttons = CreateDeepButtons(buttonName, buttonsNumbers);
+            List<ContentMenuButton> buttons = GetDeepButtonsByNumbers(buttonName, buttonsNumbers);
             TreeViewItem[] TreeViewItemsWithButtonInside = WrapButtonsInTreeViewItem(buttons);
+            List<ContentMenuButton> listToAddButton = GetButtonListByButtonType(buttonName);
 
             container.Items.Clear();
+            listToAddButton.Clear();
 
             for (int i = 0; i < buttons.Count; i++)
             {
                 container.Items.Add(TreeViewItemsWithButtonInside[i]);
+                listToAddButton.Add(buttons[i]);
 
-                if(buttonName == DeepButtonsNames.PIPELINES)
+                if (buttonName == DeepButtonsNames.PIPELINES)
                 {
                     AddPipelinesSettingsButtons(TreeViewItemsWithButtonInside[i], buttonsNumbers[i]);
-                    DisableButtonByName($"Первая настройка трубопровода {buttonsNumbers[i]}");
-                    DisableButtonByName($"Вторая настройка трубопровода {buttonsNumbers[i]}");
+                    //DisableButtonByName($"Первая настройка трубопровода {buttonsNumbers[i]}");
+                    //DisableButtonByName($"Вторая настройка трубопровода {buttonsNumbers[i]}");
                 }
             }
 
@@ -216,7 +231,7 @@ namespace Setup_database_for_device.View
             }).ToArray();
         }
 
-        private List<ContentMenuButton> CreateDeepButtons(DeepButtonsNames deepButtonName, List<int> deepButtonNumbers)
+        private List<ContentMenuButton> GetDeepButtonsByNumbers(DeepButtonsNames deepButtonName, List<int> deepButtonNumbers)
         {
 
             string buttonGroupName = "";
@@ -243,6 +258,7 @@ namespace Setup_database_for_device.View
             {
                 ContentMenuButton currentButton = new ContentMenuButton($"{buttonTitle} {number}", buttonGroupName);
                 currentButton.SetWidth(140);
+                currentButton.SetButtonType(deepButtonName);
                 currentButton.RadioButtonChecked += new EventHandler(ButtonClicked);
                 buttons.Add(currentButton);
             }

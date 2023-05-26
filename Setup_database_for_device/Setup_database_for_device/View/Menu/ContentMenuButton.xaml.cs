@@ -8,6 +8,7 @@ namespace Setup_database_for_device.View
     {
 
         public event EventHandler RadioButtonChecked;
+        private ContentMenu.DeepButtonsNames _buttonType;
 
         public ContentMenuButton(string name, string groupName)
         {
@@ -22,6 +23,15 @@ namespace Setup_database_for_device.View
             RadioButtonControl.Width = 160;
 
         }
+
+        public void SetButtonType(ContentMenu.DeepButtonsNames typeName)
+        {
+            _buttonType = typeName;
+        }
+
+        public ContentMenu.DeepButtonsNames TypeName => _buttonType;
+
+        
 
         //public bool IsEnabled => (bool)RadioButtonControl.IsEnabled;
         public string ButtonName { get; }

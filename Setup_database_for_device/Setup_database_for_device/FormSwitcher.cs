@@ -13,7 +13,8 @@ namespace Setup_database_for_device
 
         private View.ContentMenu _menu;
         private LinkedList<View.WindowForm> _forms;
-        private Panel _contentPanel;   
+        private Panel _contentPanel;
+        private LinkedListNode<View.WindowForm> _head;
 
         public FormSwitcher(View.ContentMenu menu, LinkedList<View.WindowForm> forms, Panel contentPanel)
         {
@@ -40,7 +41,7 @@ namespace Setup_database_for_device
         }
 
 
-        private View.WindowForm GetFormByName(string name)
+        private LinkedListNode<View.WindowForm> GetFormNodeByName(string name)
         {
             LinkedListNode<View.WindowForm> currentNode = _forms.First;
 
@@ -50,7 +51,7 @@ namespace Setup_database_for_device
 
                 if (currentForm.FormName == name)
                 {
-                    return currentForm;
+                    return currentNode;
                 }
 
                 currentNode = currentNode.Next;
@@ -70,11 +71,12 @@ namespace Setup_database_for_device
 
         private void SetFormByName(string name)
         {
-            View.WindowForm form = GetFormByName(name);
+            LinkedListNode<View.WindowForm> formNode = GetFormNodeByName(name);
+            _head = formNode;
 
-            if(form != null)
+            if(formNode != null)
             {
-                SetForm(form);
+                SetForm(formNode.Value);
             }
         }
 
@@ -86,33 +88,29 @@ namespace Setup_database_for_device
 
         public void GoBack(object sender, EventArgs e) 
         {
+            LinkedListNode<View.WindowForm> previousFormNode = _head.Previous;
 
-            //_currentFormIndex--;
+            while (previousFormNode != null & previousFormNode.Value.IsDisabled)
+            {
+                previousFormNode = previousFormNode.Previous;
+            }
 
-            //while (_currentFormIndex > 0 & _forms[_currentFormIndex].IsDisabled)
-            //{
-            //    _currentFormIndex--;
-            //}
-
-            //SetFormByIndex(_currentFormIndex);
+            SetForm(previousFormNode.Value);
+            _menu.SelectButtonByName(previousFormNode.Value.FormName);
 
         }
 
         public void GoAhead(object sender, EventArgs e)
         {
+            LinkedListNode<View.WindowForm> nextFormNode = _head.Next;
 
-            //if(_currentFormIndex + 1 < _forms.Count)
-            //{
-            //    _currentFormIndex++;
-            //    SetFormByIndex(_currentFormIndex);
+            while (nextFormNode != null & nextFormNode.Value.IsDisabled)
+            {
+                nextFormNode = nextFormNode.Next;
+            }
 
-            //    if(_forms[_currentFormIndex].IsDisabled)
-            //    {
-            //        _forms[_currentFormIndex].EnableForm();
-            //    }
-                
-            //    _menu.SelectButtonByName(_forms[_currentFormIndex].FormName);
-            //}
+            SetForm(nextFormNode.Value);
+            _menu.SelectButtonByName(nextFormNode.Value.FormName);
         }
     }
 }

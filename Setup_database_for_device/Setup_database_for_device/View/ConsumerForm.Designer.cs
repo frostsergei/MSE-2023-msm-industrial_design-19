@@ -38,8 +38,7 @@ namespace Setup_database_for_device.View
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.schemeNumberControl = new Setup_database_for_device.View.SchemeNumberControl();
-            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
-            this.backOkComponent1 = new Setup_database_for_device.View.Components.BackOkComponent();
+            this.OkButtonContainer = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownConsumerId)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,21 +98,21 @@ namespace Setup_database_for_device.View
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.schemeNumberControl;
             // 
-            // elementHost2
+            // OkButtonContainer
             // 
-            this.elementHost2.Location = new System.Drawing.Point(233, 455);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(471, 165);
-            this.elementHost2.TabIndex = 6;
-            this.elementHost2.Text = "elementHost2";
-            this.elementHost2.Child = this.backOkComponent1;
+            this.OkButtonContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OkButtonContainer.Location = new System.Drawing.Point(52, 580);
+            this.OkButtonContainer.Name = "OkButtonContainer";
+            this.OkButtonContainer.Size = new System.Drawing.Size(799, 50);
+            this.OkButtonContainer.TabIndex = 6;
             // 
             // ConsumerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 632);
-            this.Controls.Add(this.elementHost2);
+            this.Controls.Add(this.OkButtonContainer);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.labelCountingScheme);
             this.Controls.Add(this.numericUpDownConsumerId);
@@ -137,7 +136,6 @@ namespace Setup_database_for_device.View
         public System.Windows.Forms.NumericUpDown numericUpDownConsumerId;
         public System.Windows.Forms.Integration.ElementHost elementHost1;
         public SchemeNumberControl schemeNumberControl;
-        private System.Windows.Forms.Integration.ElementHost elementHost2;
-        private Components.BackOkComponent backOkComponent1;
+        private System.Windows.Forms.Panel OkButtonContainer;
     }
 }

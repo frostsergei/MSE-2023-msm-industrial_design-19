@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 
 namespace Setup_database_for_device.View
 {
@@ -8,11 +9,19 @@ namespace Setup_database_for_device.View
     {
         public ImageList newImageList;
         public List<ComboBox> ComboBoxesList;
-        //Конструктор принимает массив номеров активных трубопроводов
+        //Конструктор принимает массив номеров активных трубопроводов  
         public ConsumerForm(List<int> pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
         {
             InitializeComponent();
+
             _formIndex = consumerNumber;
+
+            ElementHost host = new ElementHost();
+
+            host.Child = _backOkComponent;
+            host.Dock = DockStyle.Fill;
+            OkButtonContainer.Controls.Add(host);
+
             schemeNumberControl.ComboBoxMain.SelectedIndex = 0;
             labelConsumerTitle.Text = "Потребитель №" + consumerNumber.ToString();
             int leftMargin = 10;

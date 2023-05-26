@@ -17,7 +17,7 @@ namespace Setup_database_for_device
 
         public void AddNewItemInMenu(object sender, EventsArgs.MenuEventArgs args)
         {
-            _menu.AddDeepButtonsByButtonsNumbers(args.ButtonName, args.ButtonsNumbers);
+            _menu.AddDeepButtonsInMenuByButtonsNumbers(args.ButtonName, args.ButtonsNumbers);
         }
 
     }

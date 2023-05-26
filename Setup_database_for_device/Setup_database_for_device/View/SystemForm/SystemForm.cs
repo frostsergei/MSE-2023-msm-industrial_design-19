@@ -13,9 +13,6 @@ namespace Setup_database_for_device.View.SystemForm
 
         private SystemControl _systemWindow;
 
-        private string selectedPipelines;
-        private string selectedConsumers;
-
         public SystemForm(Model.Device device) : base("Общесистемные параметры")
         {
             InitializeComponent();
@@ -27,15 +24,6 @@ namespace Setup_database_for_device.View.SystemForm
             host.Child = _systemWindow;
             host.Dock = DockStyle.Fill;
             Controls.Add(host);
-
-        }
-
-
-        protected override void OnNextFormAction()
-        {
-            //_systemWindow.DisableParticipatedPipelinesAndConsumersBlock();
-
-            PipelinesSelectedEvent?.Invoke(this, EventArgs.Empty);
 
         }
 

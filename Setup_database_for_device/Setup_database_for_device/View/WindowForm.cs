@@ -13,8 +13,6 @@ namespace Setup_database_for_device.View
         protected string _formName;
         protected Components.BackOkComponent _backOkComponent;
 
-        protected WindowForm _previousForm = null;
-        protected WindowForm _nextForm = null;
         protected int _formIndex = 0;
 
         public WindowForm(string formName, bool isDisabled = false)
@@ -34,13 +32,6 @@ namespace Setup_database_for_device.View
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        public void SetNextForm(WindowForm nextForm)
-        {
-            _nextForm = nextForm;
-        }
-
-        public WindowForm NextForm => _nextForm;
-        public WindowForm PreviousForm => _previousForm;
 
         public void SetFormIndex(int index)
         {
