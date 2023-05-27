@@ -12,15 +12,11 @@ namespace Setup_database_for_device
     {
 
         private View.ContentMenu _menu;
-        private List<View.WindowForm> _forms;
+        private LinkedList<View.WindowForm> _forms;
         private Panel _contentPanel;
-        private int _currentFormIndex = 0;
-        private bool _pipelinesSet = false;
-        private bool _consumersSet = false;
-        private static readonly string pipelinesParam = "031н00";
-        private static readonly string consumersParam = "031н01";
+        private LinkedListNode<View.WindowForm> _head;
 
-        public FormSwitcher(View.ContentMenu menu, List<View.WindowForm> forms, Panel contentPanel)
+        public FormSwitcher(View.ContentMenu menu, LinkedList<View.WindowForm> forms, Panel contentPanel)
         {
             _menu = menu;
             _forms = forms;
@@ -30,38 +26,43 @@ namespace Setup_database_for_device
 
             foreach(View.WindowForm form in _forms)
             {
-                SetEventListenersForForm(form);
+                form.NextFormEvent += new EventHandler(GoAhead);
+                form.PreviousFormEvent += new EventHandler(GoBack);
             }
 
             SetFormByName("Общесистемные параметры");
         }
 
-        private void SetEventListenersForForm(View.WindowForm form)
+        public void SetEventListenersForForm(object form, EventArgs args)
         {
-            form.NextFormEvent += new EventHandler(GoAhead);
-            form.PreviousFormEvent += new EventHandler(GoBack);
+            View.WindowForm _form = (View.WindowForm)form;
+            _form.NextFormEvent += new EventHandler(GoAhead);
+            _form.PreviousFormEvent += new EventHandler(GoBack);
         }
 
 
-        private int GetFormIndexByName(string name)
+        private LinkedListNode<View.WindowForm> GetFormNodeByName(string name)
         {
-            for (int i = 0; i < _forms.Count; i++)
+            LinkedListNode<View.WindowForm> currentNode = _forms.First;
+
+            while (currentNode != null)
             {
-                if (_forms[i].FormName == name)
+                View.WindowForm currentForm = currentNode.Value;
+
+                if (currentForm.FormName == name)
                 {
-                    return i;
+                    return currentNode;
                 }
+
+                currentNode = currentNode.Next;
             }
 
-            return -1;
+            return null;
         }
 
-        private void SetFormByIndex(int index)
+        private void SetForm(View.WindowForm subForm)
         {
-
-            View.WindowForm subForm = _forms[index];
             _menu.SelectButtonByName(subForm.FormName);
-
             _contentPanel.Controls.Clear();
             _contentPanel.Controls.Add(subForm);
             subForm.BringToFront();
@@ -70,99 +71,14 @@ namespace Setup_database_for_device
 
         private void SetFormByName(string name)
         {
-            _currentFormIndex = GetFormIndexByName(name);
+            LinkedListNode<View.WindowForm> formNode = GetFormNodeByName(name);
+            _head = formNode;
 
-            if(_currentFormIndex != -1)
+            if(formNode != null)
             {
-                SetFormByIndex(_currentFormIndex);
+                SetForm(formNode.Value);
             }
         }
-
-        private void SetConsumers()
-        {
-            View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
-            string zeroOneStringConsumers = systemWindow.GetParamFromWindow(consumersParam);
-            string zeroOneStringPipelines = systemWindow.GetParamFromWindow(pipelinesParam);
-
-            CreateMenuItems(View.ContentMenu.DeepButtonsNames.CONSUMERS, zeroOneStringConsumers);
-            CreateConsumerWindows(zeroOneStringConsumers, zeroOneStringPipelines);
-        }
-
-        private void SetPipelines()
-        {
-            View.SystemForm.SystemForm systemWindow = _forms[0] as View.SystemForm.SystemForm;
-            string ZeroOneStringConsumers = systemWindow.GetParamFromWindow(pipelinesParam);
-
-
-            CreateMenuItems(View.ContentMenu.DeepButtonsNames.PIPELINES, ZeroOneStringConsumers);
-            CreatePipelinesWindows(ZeroOneStringConsumers);
-
-        }
-
-        private List<int> GetNumbersOfOneFromZeroOneString(string zeroOneString)
-        {
-
-            List<int> numbers = new List<int>();
-
-            for(int i = 0; i < zeroOneString.Length; i++)
-            {
-                if(zeroOneString[i] == '1')
-                {
-                    numbers.Add(i + 1);
-                }
-            }
-
-            return numbers;
-        }
-
-        private void CreateConsumerWindows(string consumersZeroOneString, string pipelinesZeroOneString)
-        {
-
-            List<int> consumersNumbers = GetNumbersOfOneFromZeroOneString(consumersZeroOneString);
-            List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(pipelinesZeroOneString);
-
-            foreach(int consumerNumber in consumersNumbers)
-            {
-                View.ConsumerForm newConsumerWindow = new View.ConsumerForm(pipelinesNumbers, consumerNumber);
-                SetEventListenersForForm(newConsumerWindow);
-                _forms.Add(newConsumerWindow);
-            }
-        }
-
-        private void CreatePipelinesWindows(string pipelinesZeroOneString)
-        {
-            List<int> pipelinesNumbers = GetNumbersOfOneFromZeroOneString(pipelinesZeroOneString);
-
-            //View.WindowForm prevPipelineSettings = null;
-
-
-            foreach (int pipelineNumber in pipelinesNumbers)
-            {
-                View.CoolantSelectionForm coolantSelectionForm = new View.CoolantSelectionForm(pipelineNumber);
-                View.PipelineSettingsLimits pipelineSettingsLimits = new View.PipelineSettingsLimits(pipelineNumber);
-                View.PipelineSettings2Form pipelineSettings2Form = new View.PipelineSettings2Form(pipelineNumber);
-
-                coolantSelectionForm.SetNextPipelineSettings(pipelineSettingsLimits);
-                //coolantSelectionForm.SetPreviousPipelineSettings(prevPipelineSettings);
-                pipelineSettingsLimits.SetNextPipelineSettings(pipelineSettings2Form);
-
-                //prevPipelineSettings = coolantSelectionForm;
-
-                SetEventListenersForForm(coolantSelectionForm);
-                SetEventListenersForForm(pipelineSettingsLimits);
-                SetEventListenersForForm(pipelineSettings2Form);
-
-                _forms.Add(coolantSelectionForm);
-                _forms.Add(pipelineSettingsLimits);
-                _forms.Add(pipelineSettings2Form);
-            }
-        }
-
-        private void CreateMenuItems(View.ContentMenu.DeepButtonsNames buttonName, string zeroOneString)
-        {
-            _menu.AddDeepButtonsByZeroOneString(buttonName, zeroOneString);
-        }
-
 
         public void ChangeFormByClickOnMenu(object sender, EventArgs e)
         {
@@ -170,52 +86,31 @@ namespace Setup_database_for_device
             SetFormByName(button.ButtonName);
         }
 
-        private void SetFormIndexOnEnabledMenuButton()
-        {
-            while(_currentFormIndex >= 0 & _menu.IsButtonDisabledByIndex(_currentFormIndex))
-            {
-                _currentFormIndex--;
-            }
-        }
-
         public void GoBack(object sender, EventArgs e) 
         {
+            LinkedListNode<View.WindowForm> previousFormNode = _head.Previous;
 
-            _currentFormIndex--;
-
-            while (_currentFormIndex > 0 & _forms[_currentFormIndex].IsDisabled)
+            while (previousFormNode != null & previousFormNode.Value.IsDisabled)
             {
-                _currentFormIndex--;
+                previousFormNode = previousFormNode.Previous;
             }
 
-            SetFormByIndex(_currentFormIndex);
+            SetForm(previousFormNode.Value);
+            _menu.SelectButtonByName(previousFormNode.Value.FormName);
 
         }
 
         public void GoAhead(object sender, EventArgs e)
         {
+            LinkedListNode<View.WindowForm> nextFormNode = _head.Next;
 
-            if(!( _consumersSet & _pipelinesSet))
+            while (nextFormNode != null & nextFormNode.Value.IsDisabled)
             {
-                SetPipelines();
-                SetConsumers();
-
-                _consumersSet = true;
-                _pipelinesSet = true;
+                nextFormNode = nextFormNode.Next;
             }
 
-            if(_currentFormIndex + 1 < _forms.Count)
-            {
-                _currentFormIndex++;
-                SetFormByIndex(_currentFormIndex);
-
-                if(_forms[_currentFormIndex].IsDisabled)
-                {
-                    _forms[_currentFormIndex].EnableForm();
-                }
-                
-                _menu.SelectButtonByName(_forms[_currentFormIndex].FormName);
-            }
+            SetForm(nextFormNode.Value);
+            _menu.SelectButtonByName(nextFormNode.Value.FormName);
         }
     }
 }

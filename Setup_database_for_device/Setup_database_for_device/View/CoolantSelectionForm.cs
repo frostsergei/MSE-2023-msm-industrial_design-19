@@ -27,6 +27,8 @@ namespace Setup_database_for_device.View
         {
             InitializeComponent();
 
+            _formIndex = index;
+
             ElementHost host = new ElementHost();
 
             _coolantSelectionWindow = new CoolantSelectionWPF();
@@ -58,8 +60,8 @@ namespace Setup_database_for_device.View
             string result = _coolantSelectionWindow.GetAllCoolantSettings()[SensorParamName];
             if (result != "")
             {
-                _pipelineSettingsLimitsForm.SetCurIndicator(result);
-                Console.WriteLine(result);
+                //_pipelineSettingsLimitsForm.SetCurIndicator(result);
+                //Console.WriteLine(result);
                 return true;
             }
             
