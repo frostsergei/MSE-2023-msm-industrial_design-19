@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -26,8 +23,8 @@ namespace Setup_database_for_device
 
             foreach(View.WindowForm form in _forms)
             {
-                form.NextFormEvent += new EventHandler(GoAhead);
-                form.PreviousFormEvent += new EventHandler(GoBack);
+                form.NextFormEvent += new EventHandler<EventsArgs.NextFormArgs>(GoAhead);
+                form.PreviousFormEvent += new EventHandler<EventsArgs.NextFormArgs>(GoBack);
             }
 
             SetFormByName("Общесистемные параметры");
@@ -36,8 +33,8 @@ namespace Setup_database_for_device
         public void SetEventListenersForForm(object form, EventArgs args)
         {
             View.WindowForm _form = (View.WindowForm)form;
-            _form.NextFormEvent += new EventHandler(GoAhead);
-            _form.PreviousFormEvent += new EventHandler(GoBack);
+            _form.NextFormEvent += new EventHandler<EventsArgs.NextFormArgs>(GoAhead);
+            _form.PreviousFormEvent += new EventHandler<EventsArgs.NextFormArgs>(GoBack);
         }
 
 
@@ -62,7 +59,6 @@ namespace Setup_database_for_device
 
         private void SetForm(View.WindowForm subForm)
         {
-            _menu.SelectButtonByName(subForm.FormName);
             _contentPanel.Controls.Clear();
             _contentPanel.Controls.Add(subForm);
             subForm.BringToFront();
@@ -86,31 +82,32 @@ namespace Setup_database_for_device
             SetFormByName(button.ButtonName);
         }
 
-        public void GoBack(object sender, EventArgs e) 
+        public void GoBack(object sender, EventsArgs.NextFormArgs e) 
         {
             LinkedListNode<View.WindowForm> previousFormNode = _head.Previous;
 
-            while (previousFormNode != null & previousFormNode.Value.IsDisabled)
+            if (previousFormNode != null)
             {
-                previousFormNode = previousFormNode.Previous;
+                View.WindowForm previousForm = previousFormNode.Value;
+
+                SetForm(previousForm);
+                previousForm.OnLoadForm(e);
+                _menu.SelectButtonByName(previousForm.FormName);
             }
-
-            SetForm(previousFormNode.Value);
-            _menu.SelectButtonByName(previousFormNode.Value.FormName);
-
         }
 
-        public void GoAhead(object sender, EventArgs e)
+        public void GoAhead(object sender, EventsArgs.NextFormArgs e)
         {
-            LinkedListNode<View.WindowForm> nextFormNode = _head.Next;
+            LinkedListNode<View.WindowForm> nextFormNode = _head.Next;  
 
-            while (nextFormNode != null & nextFormNode.Value.IsDisabled)
+            if (nextFormNode != null)
             {
-                nextFormNode = nextFormNode.Next;
-            }
+                View.WindowForm nextForm = nextFormNode.Value;
 
-            SetForm(nextFormNode.Value);
-            _menu.SelectButtonByName(nextFormNode.Value.FormName);
+                SetForm(nextForm);
+                nextFormNode.Value.OnLoadForm(e);
+                _menu.SelectButtonByName(nextForm.FormName);
+            }
         }
     }
 }

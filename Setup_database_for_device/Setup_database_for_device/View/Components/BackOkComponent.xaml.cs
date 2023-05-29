@@ -16,12 +16,12 @@ namespace Setup_database_for_device.View.Components
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            BackButtonClickedEvent?.Invoke(this, EventArgs.Empty);
+            BackButtonClickedEvent?.Invoke(this, e);
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            OkButtonClickedEvent?.Invoke(this, EventArgs.Empty);
+            OkButtonClickedEvent?.Invoke(this, e);
         }
     }
 }

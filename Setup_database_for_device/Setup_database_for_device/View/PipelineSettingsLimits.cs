@@ -1,4 +1,5 @@
-﻿using Setup_database_for_device.Model;
+﻿using Setup_database_for_device.EventsArgs;
+using Setup_database_for_device.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,8 +9,7 @@ namespace Setup_database_for_device.View
 {
     public partial class PipelineSettingsLimits : WindowForm
     {
-        private PipelineSettingsLimitsWPF _pipelineSettingsLimitsWPF; //WPF данного окна
-        private PipelineSettings2Form _pipelineSettings2WPF;
+        private PipelineSettingsLimitsWPF _pipelineSettingsLimitsWPF;
 
         private string _curIndicator;
 
@@ -18,7 +18,7 @@ namespace Setup_database_for_device.View
             InitializeComponent();
 
             _formIndex = index;
-            Text = "Настройка трубопроводов.Ввод значений расхода, давления и температуры";
+            Text = "Настройка трубопроводов. Ввод значений расхода, давления и температуры";
 
             ElementHost host = new ElementHost();
 
@@ -27,6 +27,32 @@ namespace Setup_database_for_device.View
             host.Child = _pipelineSettingsLimitsWPF;
             host.Dock = DockStyle.Fill;
             Controls.Add(host);
+        }
+
+        public override void OnLoadForm(NextFormArgs paramsFromPreviousForm)
+        {
+            if(paramsFromPreviousForm.Params.ContainsKey("curIndicator"))
+            {
+                SetCurIndicator(paramsFromPreviousForm.Params["curIndicator"]);
+            } else
+            {
+                SetCurIndicator("00");
+            }
+        }
+
+        protected override bool IsAbleToGoToNext()
+        {
+            Dictionary<string, string> result1 = _pipelineSettingsLimitsWPF.GetPipelineSettings();
+            if ("" != "")
+            {
+                paramsToNextForm = new Dictionary<string, string>()
+                {
+                    { "lowLimit", "" }
+                };
+                return true;
+            }
+
+            return false;
         }
 
         public Dictionary<string, string> GetPipelineWindowData()
@@ -43,22 +69,12 @@ namespace Setup_database_for_device.View
         {
             
         }
-        
-        public void SetNextPipelineSettings(PipelineSettings2Form form)
-        {
-            _pipelineSettings2WPF = form;
-        }
     
         public void SetCurIndicator(string curIndicator)
         {
             _curIndicator = $"{curIndicator[0]}{curIndicator[1]}";
             _pipelineSettingsLimitsWPF.curIndicator = _curIndicator;
             _pipelineSettingsLimitsWPF.SetWindow();
-        }
-
-        protected override bool IsAbleToGoToNext()
-        {
-            return true;
         }
     }
 

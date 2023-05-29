@@ -60,8 +60,10 @@ namespace Setup_database_for_device.View
             string result = _coolantSelectionWindow.GetAllCoolantSettings()[SensorParamName];
             if (result != "")
             {
-                //_pipelineSettingsLimitsForm.SetCurIndicator(result);
-                //Console.WriteLine(result);
+                paramsToNextForm = new Dictionary<string, string>()
+                {
+                    { "curIndicator", result }
+                };
                 return true;
             }
             

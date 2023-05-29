@@ -131,8 +131,6 @@ namespace Setup_database_for_device.View.SystemForm
             {
                 _result += (bool)checkbox.IsChecked ? "1" : "0";
             }
-
-            Console.WriteLine(_result);
             CheckBoxesChecked(this, EventArgs.Empty);
 
         }
