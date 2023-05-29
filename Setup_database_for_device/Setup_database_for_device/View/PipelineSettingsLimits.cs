@@ -43,7 +43,7 @@ namespace Setup_database_for_device.View
         protected override bool IsAbleToGoToNext()
         {
             Dictionary<string, string> result1 = _pipelineSettingsLimitsWPF.GetPipelineSettings();
-            if ("" != "")
+            if ("" == "")
             {
                 paramsToNextForm = new Dictionary<string, string>()
                 {
