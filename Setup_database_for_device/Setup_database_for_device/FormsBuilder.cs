@@ -36,7 +36,7 @@ namespace Setup_database_for_device
             if(!(systemWindow is null))
             {
                 _systemForm = systemWindow as View.SystemForm.SystemForm;
-                _systemForm.NextFormEvent += new EventHandler(SystemWindowParamsSet);
+                _systemForm.NextFormEvent += new EventHandler<EventsArgs.NextFormArgs>(SystemWindowParamsSet);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Setup_database_for_device
         }
 
 
-        private void SystemWindowParamsSet(object sender, EventArgs e)
+        private void SystemWindowParamsSet(object sender, EventsArgs.NextFormArgs e)
         {
             string zeroOneStringConsumers = _systemForm.GetParamFromWindow(consumersParam);
             string zeroOneStringPipelines = _systemForm.GetParamFromWindow(pipelinesParam);
