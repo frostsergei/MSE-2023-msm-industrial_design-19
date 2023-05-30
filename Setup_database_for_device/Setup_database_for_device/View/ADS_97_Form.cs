@@ -40,9 +40,9 @@ namespace Setup_database_for_device.View
         {
             Dictionary<string, string> result = new Dictionary<string, string>()
             {
-                { "38н00", AdaptersCountCombobox.SelectedItem.ToString() },
-                { "38н01", FirstAdapterNumber.Value.ToString()},
-                { "38н02", SecondAdapterNumber.Value.ToString()}
+                { "038н00", AdaptersCountCombobox.SelectedItem.ToString() },
+                { "038н01", FirstAdapterNumber.Value.ToString() },
+                { "038н02", SecondAdapterNumber.Value.ToString() }
             };
 
             return result;
@@ -50,7 +50,7 @@ namespace Setup_database_for_device.View
 
         private void ADS_97_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DataIsSetEvent?.Invoke(this, FormClosedEventArgs.Empty);
+            DataIsSetEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

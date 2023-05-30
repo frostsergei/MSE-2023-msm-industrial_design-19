@@ -24,6 +24,7 @@ namespace Setup_database_for_device.View.SystemForm
             _ADS_97_Form = new ADS_97_Form();
             _ADS_97_Form.DataIsSetEvent += new EventHandler(SaveADS_97_results);
             ElementHost host = new ElementHost();
+            ADS_97_result = new Dictionary<string, string>();
 
             CalculateMinPipelinesCountForm_ADS_97(device);
 
