@@ -31,14 +31,14 @@ namespace Setup_database_for_device.View
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.AdaptersCountCombobox = new System.Windows.Forms.ComboBox();
             this.labelFirstAdapter = new System.Windows.Forms.Label();
             this.labelSecondAdapter = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.FirstAdapterNumber = new System.Windows.Forms.NumericUpDown();
+            this.SecondAdapterNumber = new System.Windows.Forms.NumericUpDown();
             this.buttonOK = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FirstAdapterNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondAdapterNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,19 +61,19 @@ namespace Setup_database_for_device.View
             this.label2.TabIndex = 1;
             this.label2.Text = "Количество адаптеров";
             // 
-            // comboBox1
+            // AdaptersCountCombobox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.AdaptersCountCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AdaptersCountCombobox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AdaptersCountCombobox.FormattingEnabled = true;
+            this.AdaptersCountCombobox.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.comboBox1.Location = new System.Drawing.Point(246, 113);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(109, 26);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.AdaptersCountCombobox.Location = new System.Drawing.Point(246, 113);
+            this.AdaptersCountCombobox.Name = "AdaptersCountCombobox";
+            this.AdaptersCountCombobox.Size = new System.Drawing.Size(109, 26);
+            this.AdaptersCountCombobox.TabIndex = 2;
+            this.AdaptersCountCombobox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // labelFirstAdapter
             // 
@@ -95,29 +95,29 @@ namespace Setup_database_for_device.View
             this.labelSecondAdapter.TabIndex = 4;
             this.labelSecondAdapter.Text = "Адрес адаптера 2";
             // 
-            // numericUpDown1
+            // FirstAdapterNumber
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(246, 164);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.FirstAdapterNumber.Location = new System.Drawing.Point(246, 164);
+            this.FirstAdapterNumber.Maximum = new decimal(new int[] {
             29,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(109, 22);
-            this.numericUpDown1.TabIndex = 5;
+            this.FirstAdapterNumber.Name = "FirstAdapterNumber";
+            this.FirstAdapterNumber.Size = new System.Drawing.Size(109, 22);
+            this.FirstAdapterNumber.TabIndex = 5;
             // 
-            // numericUpDown2
+            // SecondAdapterNumber
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(246, 219);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.SecondAdapterNumber.Location = new System.Drawing.Point(246, 219);
+            this.SecondAdapterNumber.Maximum = new decimal(new int[] {
             29,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(109, 22);
-            this.numericUpDown2.TabIndex = 6;
+            this.SecondAdapterNumber.Name = "SecondAdapterNumber";
+            this.SecondAdapterNumber.Size = new System.Drawing.Size(109, 22);
+            this.SecondAdapterNumber.TabIndex = 6;
             // 
             // buttonOK
             // 
@@ -128,6 +128,7 @@ namespace Setup_database_for_device.View
             this.buttonOK.TabIndex = 7;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // ADS_97_Form
             // 
@@ -135,19 +136,20 @@ namespace Setup_database_for_device.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 326);
             this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.SecondAdapterNumber);
+            this.Controls.Add(this.FirstAdapterNumber);
             this.Controls.Add(this.labelSecondAdapter);
             this.Controls.Add(this.labelFirstAdapter);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.AdaptersCountCombobox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ADS_97_Form";
             this.Text = "Применение АДС-97";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ADS_97_Form_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.FirstAdapterNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondAdapterNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,8 +162,8 @@ namespace Setup_database_for_device.View
         private System.Windows.Forms.Label labelFirstAdapter;
         private System.Windows.Forms.Label labelSecondAdapter;
         private System.Windows.Forms.Button buttonOK;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.NumericUpDown numericUpDown1;
-        public System.Windows.Forms.NumericUpDown numericUpDown2;
+        public System.Windows.Forms.ComboBox AdaptersCountCombobox;
+        public System.Windows.Forms.NumericUpDown FirstAdapterNumber;
+        public System.Windows.Forms.NumericUpDown SecondAdapterNumber;
     }
 }

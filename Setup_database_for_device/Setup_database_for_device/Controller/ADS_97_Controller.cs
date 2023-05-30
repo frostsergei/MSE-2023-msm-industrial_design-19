@@ -20,10 +20,10 @@ namespace Setup_database_for_device.Controller
 
         public override void SaveDataToModel()
         {
-            _systemModel.ChangeParameterValue("038н00", _view.comboBox1.Text);
-            _systemModel.ChangeParameterValue("038н01", _view.numericUpDown1.Value.ToString());
-            if (_view.comboBox1.SelectedIndex == 1)
-                _systemModel.ChangeParameterValue("038н02", _view.numericUpDown2.Value.ToString());
+            _systemModel.ChangeParameterValue("038н00", _view.AdaptersCountCombobox.Text);
+            _systemModel.ChangeParameterValue("038н01", _view.FirstAdapterNumber.Value.ToString());
+            if (_view.AdaptersCountCombobox.SelectedIndex == 1)
+                _systemModel.ChangeParameterValue("038н02", _view.SecondAdapterNumber.Value.ToString());
         }
     }
 }
