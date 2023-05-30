@@ -28,6 +28,14 @@ namespace Setup_database_for_device.View
             
         }
 
+        public override void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm)
+        {
+            if (paramsFromPreviousForm.Params.ContainsKey("lowLimit"))
+            {
+                // do something when the window is load
+            }
+            
+        }
 
         public void SetLowerLimit(float lowerlimit)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Setup_database_for_device.View
@@ -7,13 +8,14 @@ namespace Setup_database_for_device.View
     {
 
 
-        public event EventHandler NextFormEvent;
-        public event EventHandler PreviousFormEvent;
+        public event EventHandler<EventsArgs.NextFormArgs> NextFormEvent;
+        public event EventHandler<EventsArgs.NextFormArgs> PreviousFormEvent;
 
         protected string _formName;
         protected Components.BackOkComponent _backOkComponent;
 
         protected int _formIndex = 0;
+        protected Dictionary<string, string> paramsToNextForm = new Dictionary<string, string>();
 
         public WindowForm(string formName, bool isDisabled = false)
         {
@@ -30,6 +32,11 @@ namespace Setup_database_for_device.View
             AutoScroll = true;
             Dock = DockStyle.Fill;
             FormBorderStyle = FormBorderStyle.None;
+        }
+
+        public virtual void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm)
+        {
+
         }
 
 
@@ -68,8 +75,9 @@ namespace Setup_database_for_device.View
             OnNextFormAction();
             if (IsAbleToGoToNext())
             {
-                NextFormEvent?.Invoke(this, EventArgs.Empty);
-            }         
+                EventsArgs.NextFormArgs args = new EventsArgs.NextFormArgs(paramsToNextForm);
+                NextFormEvent?.Invoke(this, args);
+            }
         }
 
         private void GoToPreviousForm(object sender, EventArgs e) {
@@ -77,8 +85,9 @@ namespace Setup_database_for_device.View
 
             if(IsAbleToGoToPrevious())
             {
-                PreviousFormEvent?.Invoke(this, EventArgs.Empty);
-            }       
+                EventsArgs.NextFormArgs args = new EventsArgs.NextFormArgs(paramsToNextForm);
+                PreviousFormEvent?.Invoke(this, args);
+            }
         }
 
     }
