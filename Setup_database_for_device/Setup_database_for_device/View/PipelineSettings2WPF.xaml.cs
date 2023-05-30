@@ -62,11 +62,11 @@ namespace Setup_database_for_device.View
         }
         private void CheckBoxChecked(object sender, RoutedEventArgs e)
         {
-            LowerValueTextBox.IsEnabled = false;
+            LowerValueTextBox.IsEnabled = true;
         }
         private void CheckBoxUnchecked(object sender, RoutedEventArgs e)
         {
-            LowerValueTextBox.IsEnabled = true;
+            LowerValueTextBox.IsEnabled = false;
         }
         private void comboChanged(object sender, RoutedEventArgs e)
         {

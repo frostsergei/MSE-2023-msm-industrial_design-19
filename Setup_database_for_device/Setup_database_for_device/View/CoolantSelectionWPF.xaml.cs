@@ -17,53 +17,6 @@ namespace Setup_database_for_device.View
 {
     public partial class CoolantSelectionWPF : UserControl
     {
-        public string coolantTypeValue
-        {
-            get { return (string)GetValue(coolantType); }
-            set { SetValue(coolantType, value); }
-        }
-
-        public static DependencyProperty coolantType =
-            DependencyProperty.Register("coolantType", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata(""));
-
-
-        public string flowMeterValue
-        {
-            get { return (string)GetValue(flowMeter); }
-            set { SetValue(flowMeter, value); }
-        }
-
-        public static DependencyProperty flowMeter =
-            DependencyProperty.Register("flowMeterValue", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata(""));
-
-
-        public string sensorTypeValue
-        {
-            get { return (string)GetValue(sensorType); }
-            set { SetValue(sensorType, value); }
-        }
-
-        public static DependencyProperty sensorType =
-            DependencyProperty.Register("sensorTypeValue", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata(""));
-
-        public string saturationWidthValue
-        {
-            get { return (string)GetValue(saturationWidth); }
-            set { SetValue(saturationWidth, value); }
-        }
-
-        public static DependencyProperty saturationWidth =
-            DependencyProperty.Register("saturationWidthValue", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata("0"));
-
-        public string drynessValue
-        {
-            get { return (string)GetValue(dryness); }
-            set { SetValue(dryness, value); }
-        }
-
-        public static DependencyProperty dryness =
-            DependencyProperty.Register("drynessValue", typeof(string), typeof(CoolantSelectionWPF), new PropertyMetadata("1"));
-
         public class Parameter
         {
             public string ParName { get; set; }
@@ -150,5 +103,6 @@ namespace Setup_database_for_device.View
             okBackButton.SetValue(Grid.RowSpanProperty, 2);
             CoolantSelectionGrid.Children.Add(okBackButton);
         }
+
     }
 }

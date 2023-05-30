@@ -61,17 +61,16 @@
             <StackPanel Background="Gainsboro" Margin="0,0,-0.2,0.4">
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10" Text="Задайте Ширину зоны насыщения по давлению для диагностики смены фазового состояни (пар или вода)"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ширина зоны насыщения:" VerticalAlignment="Top" Margin="20,0,10,10"/>
-                <TextBox x:Name="textbox1" Text ="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=saturationWidthValue}" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10"/>
+                <TextBox x:Name="textbox1" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="0"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Укажите Степень сухости насыщенного пара" VerticalAlignment="Top" Margin="10,5,10,10"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Степень сухости:" VerticalAlignment="Top" Margin="20,0,10,10"/>
-                <TextBox x:Name="textbox2" Text ="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=drynessValue}" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10"/>
+                <TextBox x:Name="textbox2" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="1"/>
             </StackPanel>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" FontSize="9 pt" FontFamily="Verdana" x:Name="ParamsGrid"
                   Margin="0,30,10,0" VerticalAlignment="Top"
                   VerticalScrollBarVisibility="Disabled" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False" CanUserReorderColumns="False" 
-                  CanUserSortColumns="False" Width="{Binding Path=ActualWidth, ElementName=grid}"
-                  Height="{Binding Path=ActualHeight, ElementName=grid}" Grid.Column="1" HorizontalAlignment="Left">
+                  CanUserSortColumns="False" Grid.Column="1" HorizontalAlignment="Left">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <!--Setter Property="Height" Value="50"/-->

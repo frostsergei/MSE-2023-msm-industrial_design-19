@@ -42,12 +42,12 @@ namespace Setup_database_for_device.View
 
         protected override bool IsAbleToGoToNext()
         {
-            Dictionary<string, string> result1 = _pipelineSettingsLimitsWPF.GetPipelineSettings();
+            string result = _pipelineSettingsLimitsWPF.GetPipelineSettings().ContainsKey("034н02") ? _pipelineSettingsLimitsWPF.GetPipelineSettings()["034н02"] : "0";
             if ("" == "")
             {
                 paramsToNextForm = new Dictionary<string, string>()
                 {
-                    { "lowLimit", "" }
+                    { "lowLimit", result }
                 };
                 return true;
             }

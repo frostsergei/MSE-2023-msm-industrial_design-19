@@ -7,14 +7,6 @@ namespace Setup_database_for_device.View
 {
     public partial class CoolantSelectionForm : WindowForm
     {
-        /*Данные из WPF могут быть получены следующим образом:
-         * (elementHost1.Child as CoolantSelectionWPF).coolantTypeValue - тип теплоносителя
-         * (elementHost1.Child as CoolantSelectionWPF).flowMeterValue - тип расходомера
-         * (elementHost1.Child as CoolantSelectionWPF).sensorTypeValue - тип датчика (возвращает индекс)
-         * (elementHost1.Child as CoolantSelectionWPF).saturationWidthValue - ширина зоны насыщения
-         * (elementHost1.Child as CoolantSelectionWPF).drynessValue - степень сухости
-        */
-        //
         private static readonly string SensorParamName = "034н00";
 
         private CoolantSelectionWPF _coolantSelectionWindow;
@@ -56,8 +48,8 @@ namespace Setup_database_for_device.View
 
         protected override bool IsAbleToGoToNext()
         {
-
-            string result = _coolantSelectionWindow.GetAllCoolantSettings()[SensorParamName];
+            string result = (CoolantSelectionBlock.Child as CoolantSelectionWPF).GetAllCoolantSettings()[SensorParamName];
+            result = result.Substring(0, result.Length - 1);
             if (result != "")
             {
                 paramsToNextForm = new Dictionary<string, string>()

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using System;
 
 namespace Setup_database_for_device.View
 {
     public partial class PipelineSettings2Form : WindowForm
     {
-
         private PipelineSettings2WPF _secondPipelineSettingsWindow;
-
 
         public PipelineSettings2Form(int index) : base($"Вторая настройка трубопровода {index}", true)
         {
@@ -32,7 +31,7 @@ namespace Setup_database_for_device.View
         {
             if (paramsFromPreviousForm.Params.ContainsKey("lowLimit"))
             {
-                // do something when the window is load
+                _secondPipelineSettingsWindow.lowerlimitValue = paramsFromPreviousForm.Params["lowLimit"];
             }
             
         }

@@ -36,8 +36,8 @@
 
         <TextBlock x:Name="lowerValueTextBlock" FontSize="9 pt" FontFamily="Verdana" Margin="25,280,22,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Вы ввели нижний предел частоты входного сигнала равный:"/></TextBlock>
         <TextBox FontSize="9 pt" x:Name="LowerValueTextBox" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=lowerlimitValue}" Height="23" Margin="25,316,0,0" TextWrapping="Wrap" FontFamily="Verdana" VerticalContentAlignment="Center" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"/>
-
-        <CheckBox Checked="CheckBoxChecked" Unchecked="CheckBoxUnchecked" Margin="18,282,0,0" VerticalAlignment="Top" IsChecked="True" Height="36" Grid.Column="1" HorizontalAlignment="Left" Width="257"/>
+        <TextBlock x:Name="measure_low1" FontSize="9 pt" FontFamily="Verdana" Margin="117,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" HorizontalAlignment="Left" Width="56"><Run Text="м³/час"/></TextBlock>
+        <CheckBox Checked="CheckBoxChecked" Unchecked="CheckBoxUnchecked" Margin="18,282,0,0" VerticalAlignment="Top" Height="36" Grid.Column="1" HorizontalAlignment="Left" Width="257"/>
         <ComboBox x:Name="Combo2" SelectionChanged="comboChanged" Margin="18,143,25,0" VerticalAlignment="Top" Grid.Column="1">
             <ComboBoxItem>
                 <StackPanel>
@@ -52,6 +52,7 @@
             </ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="textbox2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=constConsumptionValue}"  FontSize="9 pt" Height="23" Margin="25,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="87"/>
+        <TextBlock x:Name="measure_low1_Copy" FontSize="9 pt" FontFamily="Verdana" Margin="117,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" HorizontalAlignment="Left" Width="56"><Run Text="т"/><Run Text="/час"/></TextBlock>
         <Label FontSize="9 pt" x:Name="Par115" Content="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=par115t01n00Value}" FontFamily="Verdana" HorizontalAlignment="Left" Margin="215,26,0,0" VerticalAlignment="Top" Height="25" RenderTransformOrigin="0.497,0.528" Width="212" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <Label x:Name="notDefinedLabel" FontSize="9 pt" Content="не определено" Margin="215,26,0,0" VerticalAlignment="Top"  FontFamily="Verdana" FontWeight="Bold" HorizontalAlignment="Left" Width="201" Grid.ColumnSpan="2" />
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="18,106,25,0" TextWrapping="Wrap" Text="Вторая цифра - алгоритм усреднения температуры и давления" VerticalAlignment="Top"/>
@@ -63,7 +64,7 @@
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Текущее значение 115н00:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="391"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,69,0,0" TextWrapping="Wrap" Text="Признак выбора ограничения." VerticalAlignment="Top" Grid.ColumnSpan="2" Width="383"/>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" Margin="25,384,22,0" TextWrapping="Wrap" Text="Укажите константное значение массового расхода теплоносителя:" VerticalAlignment="Top"/>
-        <TextBlock FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="36,280,25,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Если введённое значение неверно, то"/><LineBreak/><Run Text="уберите галочку и измените данные"/><LineBreak/><Run Text=""/></TextBlock>
+        <TextBlock FontSize="9 pt" FontFamily="Verdana" Grid.Column="1" Margin="36,280,25,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Изменить нижний предел измерения?"/></TextBlock>
 
     </Grid>
 </UserControl>
