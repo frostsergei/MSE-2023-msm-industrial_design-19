@@ -57,6 +57,7 @@ namespace Setup_database_for_device.View
             _formName = name;
         }
 
+
         public string FormName => _formName;
         public int FormIndex => _formIndex;
 
