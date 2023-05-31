@@ -40,6 +40,8 @@ namespace Setup_database_for_device.View
         }
 
 
+
+
         public void SetFormIndex(int index)
         {
             _formIndex = index;
