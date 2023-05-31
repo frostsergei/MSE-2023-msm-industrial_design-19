@@ -71,6 +71,11 @@ namespace Setup_database_for_device.View
             return true;
         }
 
+        public virtual bool IsFormFilledOut()
+        {
+            return true;
+        }
+
         private void GoToNextForm(object sender, EventArgs e) {
             OnNextFormAction();
             if (IsAbleToGoToNext())

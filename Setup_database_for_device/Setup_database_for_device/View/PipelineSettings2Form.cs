@@ -46,5 +46,12 @@ namespace Setup_database_for_device.View
             return _secondPipelineSettingsWindow.GetPipelineSettings();
         }
 
+        public override bool IsFormFilledOut()
+        {
+            Dictionary<string, string> pars = _secondPipelineSettingsWindow.GetPipelineSettings();
+            if (pars["115н00"] == "" || pars["115н01"] == "" || pars["120"] == "")
+                return false;
+            return true;
+        }
     }
 }
