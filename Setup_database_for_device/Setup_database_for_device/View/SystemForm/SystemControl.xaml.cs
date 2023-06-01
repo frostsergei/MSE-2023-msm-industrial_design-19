@@ -19,6 +19,7 @@ namespace Setup_database_for_device.View.SystemForm
             InitializeComponent();
 
             _measureUnitsBlock = new MeasureUnitsControl();
+            _measureUnitsBlock.PowerCombobox.ComboboxInput.SelectionChanged += ComboboxInput_SelectionChanged;
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
             // Change back pipelineblock and participatedpipelines
@@ -54,6 +55,16 @@ namespace Setup_database_for_device.View.SystemForm
             SystemWindowBlock.Children.Add(_participatedPipelinesBlock);
             SystemWindowBlock.Children.Add(_pipelineBlock);
 
+        }
+
+        void ComboboxInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object energyLabel = _textDataBlock.FindName("energyLabel");
+            System.Windows.Controls.Label tmp = (System.Windows.Controls.Label)energyLabel;
+            int index = _measureUnitsBlock.PowerCombobox.ComboboxInput.SelectedIndex;
+            if (index == 0) tmp.Content = "ГДж";
+            if (index == 1) tmp.Content = "ГКал";
+            if (index == 2) tmp.Content = "МВт*ч";
         }
 
         public void SetOkBackButtons(Components.BackOkComponent backOkButtons)

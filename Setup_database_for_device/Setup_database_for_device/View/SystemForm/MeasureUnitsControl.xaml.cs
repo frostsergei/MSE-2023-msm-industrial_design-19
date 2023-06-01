@@ -10,6 +10,14 @@ namespace Setup_database_for_device.View.SystemForm
         private ComboboxControl _pressureCombobox;
         private ComboboxControl _powerCombobox;
 
+        public ComboboxControl PowerCombobox
+        {
+            get
+            {
+                return _powerCombobox;
+            }
+        }
+
         public MeasureUnitsControl()
         {
             InitializeComponent();
