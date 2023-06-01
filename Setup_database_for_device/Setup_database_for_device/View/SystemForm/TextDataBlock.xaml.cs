@@ -23,7 +23,7 @@ namespace Setup_database_for_device.View.SystemForm
             _textFields[3] = new TextBoxControl("Расчетный день для формирования архивов за месяц:");
             _textFields[4] = new TextBoxControl("Номер прибора для идентификации внешними системами:");
             _checkbox = new CheckboxControl("При записи НБД в прибор ввести текущие время/дату?");
-
+            
             for(int i = 0; i < _textFields.Length; i++)
             {
                 _textFields[i].SetValue(Grid.RowProperty, i);
