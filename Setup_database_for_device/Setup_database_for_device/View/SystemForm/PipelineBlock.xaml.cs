@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Setup_database_for_device.View.SystemForm
 {
@@ -22,17 +10,17 @@ namespace Setup_database_for_device.View.SystemForm
         private PipelineControl[] _pipelinesSettings;
 
 
-        public PipelineBlock(bool isEnabled)
+        public PipelineBlock()
         {
             InitializeComponent();
 
             _pipelinesSettings = new PipelineControl[4];
 
 
-            _pipelinesSettings[0] = new PipelineControl("Температура холодной воды:", "0", isEnabled);
-            _pipelinesSettings[1] = new PipelineControl("Давление холодной воды:", "0,1", isEnabled);
-            _pipelinesSettings[2] = new PipelineControl("Барометрическое давление:", "760", isEnabled);
-            _pipelinesSettings[3] = new PipelineControl("Температура наружного воздуха:", "20", isEnabled);
+            _pipelinesSettings[0] = new PipelineControl("Температура холодной воды:", "0");
+            _pipelinesSettings[1] = new PipelineControl("Давление холодной воды:", "0,1");
+            _pipelinesSettings[2] = new PipelineControl("Барометрическое давление:", "760");
+            _pipelinesSettings[3] = new PipelineControl("Температура наружного воздуха:", "20");
 
             for (int i = 0; i < _pipelinesSettings.Length; i++)
             {
@@ -42,6 +30,22 @@ namespace Setup_database_for_device.View.SystemForm
 
         }
     
+        public void EnableBlock()
+        {
+            foreach(PipelineControl control in _pipelinesSettings)
+            {
+                control.EnablePipelineControl();
+            }
+        }
+        
+        public void DisableBlock()
+        {
+            foreach (PipelineControl control in _pipelinesSettings)
+            {
+                control.DisablePipelineControl();
+            }
+        }
+
         public Dictionary<string, string> GetResult()
         {
             Dictionary<string, string> result = new Dictionary<string, string>();

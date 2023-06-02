@@ -8,8 +8,6 @@ namespace Setup_database_for_device.View.SystemForm
     public partial class SystemForm : WindowForm
     {
 
-        public event EventHandler PipelinesSelectedEvent;
-        public event EventHandler ConsumersSelectedEvent;
 
         private ADS_97_Form _ADS_97_Form;
         private SystemControl _systemWindow;
@@ -78,6 +76,17 @@ namespace Setup_database_for_device.View.SystemForm
             }
 
             return count;
+        }
+
+        public override void OnLoadForm(EventsArgs.NextFormArgs e, AppState appState)
+        {
+            if(appState.IsAllPipelinesFilledOut())
+            {
+                _systemWindow.EnableSensorsSettings();
+            } else
+            {
+                _systemWindow.DisableSensorsSettings();
+            }
         }
 
         protected override void OnNextFormAction()

@@ -39,6 +39,12 @@ namespace Setup_database_for_device.View.SystemForm
             CheckboxInput.IsEnabled = false;
         }
 
+        public void EnableControl()
+        {
+            CheckboxText.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            CheckboxInput.IsEnabled = true;
+        }
+
   
         private void CheckboxInput_Checked(object sender, RoutedEventArgs e)
         {

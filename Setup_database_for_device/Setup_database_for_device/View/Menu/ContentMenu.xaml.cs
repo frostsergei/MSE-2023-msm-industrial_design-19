@@ -19,8 +19,22 @@ namespace Setup_database_for_device.View
 
         private static readonly Dictionary<string, string> s_russianNames = new Dictionary<string, string>
         {
-            { "PipelinesButtons", "Трубопровод" },
-            { "ConsumersButtons", "Потребитель" }
+            { "PipelinesButtons", "т" },
+            { "ConsumersButtons", "п" }
+        };
+
+        private enum TopButtonsTypes
+        {
+            SYSTEM,
+            PIPELINES,
+            CONSUMERS
+        }
+
+        private static readonly Dictionary<TopButtonsTypes, string> topButtonsNames = new Dictionary<TopButtonsTypes, string>()
+        {
+            { TopButtonsTypes.SYSTEM, "Общесистемные параметры" },
+            { TopButtonsTypes.PIPELINES, "Настройка трубопроводов" },
+            { TopButtonsTypes.CONSUMERS, "Настройка потребителей" },
         };
 
         public enum DeepButtonsNames
@@ -46,10 +60,9 @@ namespace Setup_database_for_device.View
             
 
             _topButtons.Add(new ContentMenuButton(deviceName, s_topTreeGroupName));
-            _topButtons.Add(new ContentMenuButton("Общесистемные параметры", s_topTreeGroupName));
-            _topButtons.Add(new ContentMenuButton("Настройка трубопроводов", s_topTreeGroupName));
-            _topButtons.Add(new ContentMenuButton("Настройка датчиков", s_topTreeGroupName));
-            _topButtons.Add(new ContentMenuButton("Настройка потребителей", s_topTreeGroupName));
+            _topButtons.Add(new ContentMenuButton(topButtonsNames[TopButtonsTypes.SYSTEM], s_topTreeGroupName));
+            _topButtons.Add(new ContentMenuButton(topButtonsNames[TopButtonsTypes.PIPELINES], s_topTreeGroupName));
+            _topButtons.Add(new ContentMenuButton(topButtonsNames[TopButtonsTypes.CONSUMERS], s_topTreeGroupName));
 
             _topButtonsTreeViewItems = WrapButtonsInTreeViewItem(_topButtons);
 
@@ -77,20 +90,6 @@ namespace Setup_database_for_device.View
             return -1;
         }
 
-        public void GetButtonByName(string name)
-        {
-            foreach(ContentMenuButton button in _topButtons)
-            {
-
-                TreeViewItem buttonWrap = button.Parent as TreeViewItem;
-
-                if (buttonWrap.Items.Count != 0)
-                {
-
-                }
-            }
-        }
-
         public void EnableButtonByName(string name)
         {
             foreach (ContentMenuButton button in AllButtons)
@@ -98,18 +97,6 @@ namespace Setup_database_for_device.View
                 if (button.ButtonName == name)
                 {
                     button.EnableButton();
-                    break;
-                }
-            }
-        }
-
-        private void DisableButtonByName(string name)
-        {
-            foreach(ContentMenuButton button in AllButtons)
-            {
-                if(button.ButtonName == name)
-                {
-                    button.DisableButton();
                     break;
                 }
             }
@@ -163,11 +150,11 @@ namespace Setup_database_for_device.View
             switch (buttonName)
             {
                 case DeepButtonsNames.PIPELINES:
-                    container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName("Настройка трубопроводов")];
+                    container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName(topButtonsNames[TopButtonsTypes.PIPELINES])];
 
                     break;
                 case DeepButtonsNames.CONSUMERS:
-                    container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName("Настройка потребителей")];
+                    container = _topButtonsTreeViewItems[GetTopButtonIndexByButtonName(topButtonsNames[TopButtonsTypes.CONSUMERS])];
                     break;
                 default:
                     container = new TreeViewItem();
@@ -209,9 +196,7 @@ namespace Setup_database_for_device.View
 
                 if (buttonName == DeepButtonsNames.PIPELINES)
                 {
-                    AddPipelinesSettingsButtons(TreeViewItemsWithButtonInside[i], buttonsNumbers[i]);
-                    //DisableButtonByName($"Первая настройка трубопровода {buttonsNumbers[i]}");
-                    //DisableButtonByName($"Вторая настройка трубопровода {buttonsNumbers[i]}");
+                    AddPipelinesSettingsButtons(TreeViewItemsWithButtonInside[i], buttonsNumbers[i]);           
                 }
             }
 
@@ -241,11 +226,11 @@ namespace Setup_database_for_device.View
             {
                 case DeepButtonsNames.PIPELINES:
                     buttonGroupName = s_pipelineGroupName;
-                    buttonTitle = "Трубопровод";
+                    buttonTitle = "т";
                     break;
                 case DeepButtonsNames.CONSUMERS:
                     buttonGroupName = s_consumersGroupName;
-                    buttonTitle = "Потребитель";
+                    buttonTitle = "п";
                     break;
                 default:
                     break;
@@ -256,7 +241,7 @@ namespace Setup_database_for_device.View
 
             foreach (int number in deepButtonNumbers)
             {
-                ContentMenuButton currentButton = new ContentMenuButton($"{buttonTitle} {number}", buttonGroupName);
+                ContentMenuButton currentButton = new ContentMenuButton($"{buttonTitle}{number}", buttonGroupName);
                 currentButton.SetWidth(140);
                 currentButton.SetButtonType(deepButtonName);
                 currentButton.RadioButtonChecked += new EventHandler(ButtonClicked);

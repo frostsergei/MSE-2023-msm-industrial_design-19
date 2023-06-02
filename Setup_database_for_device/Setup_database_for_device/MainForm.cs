@@ -17,8 +17,6 @@ namespace Setup_database_for_device
 
         private Model.Model _model;
 
-        //private List<View.WindowForm> _allForms;
-
         private Controller.SystemController _sysController;
         private LinkedList<View.WindowForm> _allForms = new LinkedList<View.WindowForm>();
 
@@ -64,9 +62,9 @@ namespace Setup_database_for_device
             host.Dock = DockStyle.Fill;
             panelLeft.Controls.Add(host);
 
-
+            AppState appState = new AppState(_allForms);
             FormsBuilder formsBuilder = new FormsBuilder(_allForms);
-            FormSwitcher formSwitcher = new FormSwitcher(contentMenu, _allForms, panelContent);
+            FormSwitcher formSwitcher = new FormSwitcher(contentMenu, appState, panelContent);
             MenuBuilder menuBuilder = new MenuBuilder(contentMenu);
             formsBuilder.NewFormCreatedEvent += new EventHandler(formSwitcher.SetEventListenersForForm);
             formsBuilder.MenuShouldBeUpdatedEvent += new EventHandler<EventsArgs.MenuEventArgs>(menuBuilder.AddNewItemInMenu);

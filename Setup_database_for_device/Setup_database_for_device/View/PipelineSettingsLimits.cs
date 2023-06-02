@@ -29,9 +29,15 @@ namespace Setup_database_for_device.View
             Controls.Add(host);
         }
 
-        public override void OnLoadForm(NextFormArgs paramsFromPreviousForm)
+        public override void OnLoadForm(NextFormArgs paramsFromPreviousForm, AppState appState)
         {
-            if(paramsFromPreviousForm.Params.ContainsKey("curIndicator"))
+
+            if (paramsFromPreviousForm == null)
+            {
+                return;
+            }
+
+            if (paramsFromPreviousForm.Params.ContainsKey("curIndicator"))
             {
                 SetCurIndicator(paramsFromPreviousForm.Params["curIndicator"]);
             } else

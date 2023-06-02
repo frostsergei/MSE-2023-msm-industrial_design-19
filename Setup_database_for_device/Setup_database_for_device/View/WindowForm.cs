@@ -34,9 +34,9 @@ namespace Setup_database_for_device.View
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        public virtual void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm)
+        public virtual void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm, AppState appState)
         {
-
+            
         }
 
 

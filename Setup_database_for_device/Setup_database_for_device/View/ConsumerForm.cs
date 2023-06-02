@@ -9,8 +9,8 @@ namespace Setup_database_for_device.View
     {
         public ImageList newImageList;
         public List<ComboBox> ComboBoxesList;
-        //Конструктор принимает массив номеров активных трубопроводов  
-        public ConsumerForm(List<int> pipelinesNumbers, int consumerNumber) : base($"Потребитель {consumerNumber}")
+
+        public ConsumerForm(List<int> pipelinesNumbers, int consumerNumber) : base($"п{consumerNumber}")
         {
             InitializeComponent();
 

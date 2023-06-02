@@ -26,6 +26,7 @@ namespace Setup_database_for_device.View.SystemForm
 
         public void EnableTextBox()
         {
+            InputText.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             TextField.IsEnabled = true;
         }
 
