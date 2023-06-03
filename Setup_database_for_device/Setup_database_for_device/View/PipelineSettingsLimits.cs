@@ -29,9 +29,15 @@ namespace Setup_database_for_device.View
             Controls.Add(host);
         }
 
-        public override void OnLoadForm(NextFormArgs paramsFromPreviousForm)
+        public override void OnLoadForm(NextFormArgs paramsFromPreviousForm, AppState appState)
         {
-            if(paramsFromPreviousForm.Params.ContainsKey("curIndicator"))
+
+            if (paramsFromPreviousForm == null)
+            {
+                return;
+            }
+
+            if (paramsFromPreviousForm.Params.ContainsKey("curIndicator"))
             {
                 SetCurIndicator(paramsFromPreviousForm.Params["curIndicator"]);
             } else
@@ -53,6 +59,25 @@ namespace Setup_database_for_device.View
             }
 
             return false;
+        }
+
+        public override bool IsFormFilledOut()
+        {
+            Dictionary<string, string> pars = _pipelineSettingsLimitsWPF.GetPipelineSettings();
+            if (pars["109н00"] == "" || pars["032н00"] == "" || pars["032н01"] == "" || pars["032н08"] == "" || 
+                pars["113н00"] == "" || pars["033н00"] == "" || pars["033н01"] == "" || pars["033н02"] == "" ||
+                pars["114н00"] == "")
+                return false;
+
+            if (pars.ContainsKey("034н01"))
+            {
+                if (pars["034н01"] == "" || pars["034н02"] == "" || pars["034н06"] == "" || pars["034н07"] == "")
+                    return false;
+                return true;
+            }
+            if(pars["034н06"] == "" || pars["034н07"] == "" || pars["034н08"] == "")
+                return false;
+            return true;
         }
 
         public Dictionary<string, string> GetPipelineWindowData()

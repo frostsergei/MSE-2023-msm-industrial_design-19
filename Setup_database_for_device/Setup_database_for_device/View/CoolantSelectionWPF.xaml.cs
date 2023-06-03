@@ -50,7 +50,7 @@ namespace Setup_database_for_device.View
 
         public Dictionary<string, string> GetAllCoolantSettings()
         {
-            string flowMeter = "-1";
+            string flowMeter = "";
             if (Combo2.SelectedIndex == 0)
                 flowMeter = "0";
             else if (Combo2.SelectedIndex == 1)

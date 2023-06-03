@@ -11,23 +11,14 @@ namespace Setup_database_for_device.View.SystemForm
         private CheckboxControl _checkbox;
         private TextBoxControl _textbox;
 
-        public PipelineControl(string physicParam, string defaultValue, bool isEnabled = false)
+        public PipelineControl(string physicParam, string defaultValue)
         {
             InitializeComponent();
 
             _checkbox = new CheckboxControl("Датчик");
             _textbox = new TextBoxControl("Константное значение", defaultValue);
 
-            if (!isEnabled)
-            {
-                BorderBrush = new SolidColorBrush(Color.FromRgb(118, 118, 118));
-                PipelineSettingLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
-                _textbox.DisableControl();
-                _checkbox.DisableControl();
-            }
-
             PipelineSettingLabel.Content = physicParam;
-            DataContext = isEnabled;
 
 
             _checkbox.SetValue(Grid.RowProperty, 1);
@@ -39,6 +30,22 @@ namespace Setup_database_for_device.View.SystemForm
             PipelineControlBlock.Children.Add(_checkbox);
             PipelineControlBlock.Children.Add(_textbox);
 
+        }
+
+        public void DisablePipelineControl()
+        {
+            BorderBrush = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+            PipelineSettingLabel.Foreground = new SolidColorBrush(Color.FromRgb(118, 118, 118));
+            _textbox.DisableControl();
+            _checkbox.DisableControl();
+        }
+
+        public void EnablePipelineControl()
+        {
+            BorderBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            PipelineSettingLabel.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            _textbox.EnableTextBox();
+            _checkbox.EnableControl();
         }
 
         public Dictionary<string, string> Value => new Dictionary<string, string>()

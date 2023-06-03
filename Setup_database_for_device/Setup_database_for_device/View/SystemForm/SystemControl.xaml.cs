@@ -22,12 +22,12 @@ namespace Setup_database_for_device.View.SystemForm
             _measureUnitsBlock.PowerCombobox.ComboboxInput.SelectionChanged += ComboboxInput_SelectionChanged;
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
-            // Change back pipelineblock and participatedpipelines
+
             if (device == Model.Device.SPT963)
                 _participatedPipelinesBlock = new ParticipatedPipelinesBlock(16, 8);
             else
                 _participatedPipelinesBlock = new ParticipatedPipelinesBlock(12, 6);
-            _pipelineBlock = new PipelineBlock(false);
+            _pipelineBlock = new PipelineBlock();
 
             _participatedPipelinesBlock.SetValue(Grid.RowProperty, 0);
             _participatedPipelinesBlock.SetValue(Grid.RowSpanProperty, 5);
@@ -55,6 +55,7 @@ namespace Setup_database_for_device.View.SystemForm
             SystemWindowBlock.Children.Add(_participatedPipelinesBlock);
             SystemWindowBlock.Children.Add(_pipelineBlock);
 
+            DisableSensorsSettings();
         }
 
         void ComboboxInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,6 +73,16 @@ namespace Setup_database_for_device.View.SystemForm
             backOkButtons.SetValue(Grid.RowProperty, 11);
             backOkButtons.SetValue(Grid.RowSpanProperty, 2);
             SystemWindowBlock.Children.Add(backOkButtons);
+        }
+
+        public void DisableSensorsSettings()
+        {
+            _pipelineBlock.DisableBlock();
+        }
+
+        public void EnableSensorsSettings()
+        {
+            _pipelineBlock.EnableBlock();
         }
 
         public void DisableParticipatedPipelinesAndConsumersBlock()

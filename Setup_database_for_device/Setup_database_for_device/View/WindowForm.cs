@@ -34,10 +34,12 @@ namespace Setup_database_for_device.View
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        public virtual void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm)
+        public virtual void OnLoadForm(EventsArgs.NextFormArgs paramsFromPreviousForm, AppState appState)
         {
-
+            
         }
+
+
 
 
         public void SetFormIndex(int index)
@@ -67,6 +69,11 @@ namespace Setup_database_for_device.View
             return true;
         }
         protected virtual bool IsAbleToGoToPrevious()
+        {
+            return true;
+        }
+
+        public virtual bool IsFormFilledOut()
         {
             return true;
         }

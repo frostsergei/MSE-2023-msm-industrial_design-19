@@ -12,11 +12,14 @@ namespace Setup_database_for_device
         private LinkedList<View.WindowForm> _forms;
         private Panel _contentPanel;
         private LinkedListNode<View.WindowForm> _head;
+        private AppState _appState;
+        
 
-        public FormSwitcher(View.ContentMenu menu, LinkedList<View.WindowForm> forms, Panel contentPanel)
+        public FormSwitcher(View.ContentMenu menu, AppState appState, Panel contentPanel)
         {
             _menu = menu;
-            _forms = forms;
+            _forms = appState.GetForms();
+            _appState = appState;
             _contentPanel = contentPanel;
 
             _menu.FormChanged += new EventHandler(ChangeFormByClickOnMenu);
@@ -27,7 +30,10 @@ namespace Setup_database_for_device
                 form.PreviousFormEvent += new EventHandler<EventsArgs.NextFormArgs>(GoBack);
             }
 
-            SetFormByName("Общесистемные параметры");
+            _head = _forms.First;
+            SetForm(_head.Value);
+            _menu.SelectButtonByName(_head.Value.FormName);
+           
         }
 
         public void SetEventListenersForForm(object form, EventArgs args)
@@ -65,21 +71,20 @@ namespace Setup_database_for_device
             subForm.Show();
         }
 
-        private void SetFormByName(string name)
-        {
-            LinkedListNode<View.WindowForm> formNode = GetFormNodeByName(name);
-            _head = formNode;
-
-            if(formNode != null)
-            {
-                SetForm(formNode.Value);
-            }
-        }
-
         public void ChangeFormByClickOnMenu(object sender, EventArgs e)
         {
             View.ContentMenuButton button = (View.ContentMenuButton)sender;
-            SetFormByName(button.ButtonName);
+
+            LinkedListNode<View.WindowForm> formNode = GetFormNodeByName(button.ButtonName);
+            _head = formNode;
+
+            if (formNode != null)
+            {
+                View.WindowForm currentForm = formNode.Value;
+                currentForm.OnLoadForm(null, _appState);
+                SetForm(currentForm);
+            }
+            
         }
 
         public void GoBack(object sender, EventsArgs.NextFormArgs e) 
@@ -91,7 +96,7 @@ namespace Setup_database_for_device
                 View.WindowForm previousForm = previousFormNode.Value;
 
                 SetForm(previousForm);
-                previousForm.OnLoadForm(e);
+                previousForm.OnLoadForm(e, _appState);
                 _menu.SelectButtonByName(previousForm.FormName);
             }
         }
@@ -105,7 +110,7 @@ namespace Setup_database_for_device
                 View.WindowForm nextForm = nextFormNode.Value;
 
                 SetForm(nextForm);
-                nextFormNode.Value.OnLoadForm(e);
+                nextFormNode.Value.OnLoadForm(e, _appState);
                 _menu.SelectButtonByName(nextForm.FormName);
             }
         }

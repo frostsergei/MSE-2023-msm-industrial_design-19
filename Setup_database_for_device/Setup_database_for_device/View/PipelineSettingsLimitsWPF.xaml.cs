@@ -76,12 +76,12 @@ namespace Setup_database_for_device.View
         {
             string[] cv1 = { "040", "041", "042" };
 
-            string combo1Value = "042";
+            string combo1Value = ""; //"042" по умолчанию
             if (comboBox1.SelectedIndex != -1)
                 combo1Value = cv1[comboBox1.SelectedIndex];
 
             string[] cv2 = { "023", "024", "033", "034", "043", "044", "053", "054", "063", "064" };
-            string combo2Value = "043";
+            string combo2Value = ""; //"043" по умолчанию
             if (comboBox2.SelectedIndex != -1)
                 combo2Value = cv2[comboBox2.SelectedIndex];
 
