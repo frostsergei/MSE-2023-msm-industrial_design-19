@@ -16,19 +16,19 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" Text="Выберите тип теплоносителя" VerticalAlignment="Top" Height="15" Width="183"/>
-        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="177"><Run Text="Выберите тип "/><Run Text="расходомера"/></TextBlock>
-        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="25,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="162"><Run Text="Выберите тип "/><Run Text="датчика"/></TextBlock>
-        <ComboBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=coolantTypeValue}" x:Name="Combo1" SelectionChanged="comboChanged" Margin="25,59,103,0" VerticalAlignment="Top">
+        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="302,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="176" Grid.ColumnSpan="2"><Run Text="Выберите тип "/><Run Text="расходомера"/></TextBlock>
+        <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Margin="167,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Width="162" Grid.Column="1"><Run Text="Выберите тип "/><Run Text="датчика"/></TextBlock>
+        <ComboBox Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=coolantTypeValue}" x:Name="Combo1" SelectionChanged="comboChanged" Margin="25,59,0,0" HorizontalAlignment="Left" Width="196" Height="22" VerticalAlignment="Top">
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Вода"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Перегретый пар"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Насыщенный пар"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Жидкость"/>
         </ComboBox>
-        <ComboBox x:Name="Combo2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="25,139,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo2" Text = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=flowMeterValue}" Margin="302,59,0,0" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="196">
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Нет"/>
             <ComboBoxItem FontSize="9 pt" FontFamily="Verdana" Content="Объемный с импульсным выходом"/>
         </ComboBox>
-        <ComboBox x:Name="Combo3" SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="25,221,103,0" VerticalAlignment="Top">
+        <ComboBox x:Name="Combo3" SelectedIndex = "{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=sensorTypeValue}" Margin="167,59,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="196" Height="22" VerticalAlignment="Top">
             <ComboBoxItem>
                 <StackPanel>
                     <TextBlock  FontSize="9 pt" FontFamily="Verdana"><Run Text="Датчик объема с числоимпульсным"/></TextBlock>
@@ -56,8 +56,7 @@
         </ComboBox>
 
 
-        <GroupBox x:Name="Group1" Margin="0,30,31,0" VerticalAlignment="Top" BorderBrush="White"
-                  Grid.Column="1" Grid.Row="0">
+        <GroupBox x:Name="Group1" Margin="16,173,16,0" VerticalAlignment="Top" BorderBrush="White" Grid.Row="0">
             <StackPanel Background="Gainsboro" Margin="0,0,-0.2,0.4">
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10" Text="Задайте Ширину зоны насыщения по давлению для диагностики смены фазового состояни (пар или вода)"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ширина зоны насыщения:" VerticalAlignment="Top" Margin="20,0,10,10"/>
@@ -68,10 +67,10 @@
             </StackPanel>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" FontSize="9 pt" FontFamily="Verdana" x:Name="ParamsGrid"
-                  Margin="0,30,10,0" VerticalAlignment="Top"
+                  Margin="16,173,322,0" VerticalAlignment="Top"
                   VerticalScrollBarVisibility="Disabled" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False" CanUserReorderColumns="False" 
-                  CanUserSortColumns="False" Width="{Binding Path=ActualWidth, ElementName=grid}"
-                  Height="{Binding Path=ActualHeight, ElementName=grid}" Grid.Column="1" HorizontalAlignment="Left">
+                  CanUserSortColumns="False"
+                  Height="{Binding Path=ActualHeight, ElementName=grid}" Grid.ColumnSpan="2">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <!--Setter Property="Height" Value="50"/-->
