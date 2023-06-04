@@ -19,7 +19,8 @@ namespace Setup_database_for_device.View.SystemForm
             InitializeComponent();
 
             _measureUnitsBlock = new MeasureUnitsControl();
-            _measureUnitsBlock.PowerCombobox.ComboboxInput.SelectionChanged += ComboboxInput_SelectionChanged;
+            _measureUnitsBlock.PowerCombobox.ComboboxInput.SelectionChanged += PowerComboboxInput_SelectionChanged;
+            _measureUnitsBlock.PressureCombobox.ComboboxInput.SelectionChanged += PressureComboboxInput_SelectionChanged;
             _textDataBlock = new TextDataBlock();
             _specificationBlock = new SpecificationBlock();
 
@@ -58,7 +59,16 @@ namespace Setup_database_for_device.View.SystemForm
             DisableSensorsSettings();
         }
 
-        void ComboboxInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void PressureComboboxInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object objLabel = _pipelineBlock.PipelinesSettings[1].FindName("MeasurementUnitLabel");
+            System.Windows.Controls.Label label = (System.Windows.Controls.Label)objLabel;
+            int index = _measureUnitsBlock.PressureCombobox.ComboboxInput.SelectedIndex;
+            if (index == 0) label.Content = "МПа";
+            else label.Content = "кгс/см²";
+        }
+
+        void PowerComboboxInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object energyLabel = _textDataBlock.FindName("energyLabel");
             System.Windows.Controls.Label tmp = (System.Windows.Controls.Label)energyLabel;

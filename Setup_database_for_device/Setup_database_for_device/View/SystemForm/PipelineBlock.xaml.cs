@@ -9,6 +9,7 @@ namespace Setup_database_for_device.View.SystemForm
         private static readonly string[] s_parametersNames = { "035н0", "036н0", "037н0", "040н0" };
         private PipelineControl[] _pipelinesSettings;
 
+        public PipelineControl[] PipelinesSettings { get { return _pipelinesSettings; } }
 
         public PipelineBlock()
         {
@@ -21,6 +22,13 @@ namespace Setup_database_for_device.View.SystemForm
             _pipelinesSettings[1] = new PipelineControl("Давление холодной воды:", "0,1");
             _pipelinesSettings[2] = new PipelineControl("Барометрическое давление:", "760");
             _pipelinesSettings[3] = new PipelineControl("Температура наружного воздуха:", "20");
+
+            object objLabel = _pipelinesSettings[2].FindName("MeasurementUnitLabel");
+            System.Windows.Controls.Label label = (System.Windows.Controls.Label)objLabel;
+            label.Content = "мм.рт.ст.";
+            objLabel = _pipelinesSettings[1].FindName("MeasurementUnitLabel");
+            label = (System.Windows.Controls.Label)objLabel;
+            label.Content = "МПа";
 
             for (int i = 0; i < _pipelinesSettings.Length; i++)
             {
