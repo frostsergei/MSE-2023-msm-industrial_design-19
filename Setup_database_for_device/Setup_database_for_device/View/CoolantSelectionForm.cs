@@ -32,7 +32,7 @@ namespace Setup_database_for_device.View
         }
         public Dictionary<string, string> GetCoolantWindowData()
         {
-            return (CoolantSelectionBlock.Child as CoolantSelectionWPF).GetAllCoolantSettings();
+            return coolantSelectionWPF1.GetAllCoolantSettings();
         }
 
         public void SetPreviousPipelineSettings(WindowForm form)
