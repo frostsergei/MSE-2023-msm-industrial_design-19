@@ -61,10 +61,10 @@
             <StackPanel Background="Gainsboro" Margin="0,0,-0.2,0.4">
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10" Text="Задайте Ширину зоны насыщения по давлению для диагностики смены фазового состояни (пар или вода)"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ширина зоны насыщения:" VerticalAlignment="Top" Margin="20,0,10,10"/>
-                <TextBox x:Name="textbox1" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="0"/>
+                <TextBox LostFocus="TextField_LostFocus" x:Name="textbox1" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="0"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Укажите Степень сухости насыщенного пара" VerticalAlignment="Top" Margin="10,5,10,10"/>
                 <TextBlock FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Степень сухости:" VerticalAlignment="Top" Margin="20,0,10,10"/>
-                <TextBox x:Name="textbox2" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="1"/>
+                <TextBox LostFocus="TextField_LostFocus" x:Name="textbox2" FontSize="9 pt" FontFamily="Verdana" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Margin="20,0,10,10" Text="1"/>
             </StackPanel>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" FontSize="9 pt" FontFamily="Verdana" x:Name="ParamsGrid"

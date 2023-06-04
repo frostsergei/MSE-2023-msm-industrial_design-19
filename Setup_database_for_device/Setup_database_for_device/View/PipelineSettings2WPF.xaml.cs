@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Setup_database_for_device.View
 {
@@ -119,6 +109,29 @@ namespace Setup_database_for_device.View
                 combo1textblock22.Visibility = Visibility.Visible;
             }
             
+        }
+
+        private bool IsTextAllowed(string text)
+        {
+
+            return double.TryParse(text, out _) | double.TryParse(text.Replace('.', ','), out _); ;
+        }
+
+        private void TextField_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            TextBox textbox = (TextBox)sender;
+
+            if (!IsTextAllowed(textbox.Text))
+            {
+                textbox.BorderThickness = new Thickness(1);
+                textbox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            }
+            else
+            {
+                textbox.BorderThickness = new Thickness(1);
+                textbox.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+            }
         }
 
         public void SetOkBackButtons(Components.BackOkComponent okBackButton)

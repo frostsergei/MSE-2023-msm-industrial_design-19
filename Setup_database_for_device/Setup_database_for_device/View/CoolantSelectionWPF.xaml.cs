@@ -104,5 +104,28 @@ namespace Setup_database_for_device.View
             CoolantSelectionGrid.Children.Add(okBackButton);
         }
 
+        private bool IsTextAllowed(string text)
+        {
+
+            return double.TryParse(text, out _) | double.TryParse(text.Replace('.', ','), out _); ;
+        }
+
+        private void TextField_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            TextBox textbox = (TextBox)sender;
+
+            if (!IsTextAllowed(textbox.Text))
+            {
+                textbox.BorderThickness = new Thickness(1);
+                textbox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            }
+            else
+            {
+                textbox.BorderThickness = new Thickness(1);
+                textbox.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+            }
+        }
+
     }
 }
