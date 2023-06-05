@@ -48,7 +48,7 @@ namespace Setup_database_for_device.View
 
         protected override bool IsAbleToGoToNext()
         {
-            string result = (CoolantSelectionBlock.Child as CoolantSelectionWPF).GetAllCoolantSettings()[SensorParamName];
+            string result = coolantSelectionWPF1.GetAllCoolantSettings()[SensorParamName];
             result = result.Substring(0, result.Length - 1);
             if (result != "")
             {
@@ -63,7 +63,7 @@ namespace Setup_database_for_device.View
 
         public override bool IsFormFilledOut()
         {
-            Dictionary<string, string> pars = (CoolantSelectionBlock.Child as CoolantSelectionWPF).GetAllCoolantSettings();
+            Dictionary<string, string> pars = coolantSelectionWPF1.GetAllCoolantSettings();
             if (pars["101"] == "" || pars["102н00"] == "" || pars["034н00"] == "000")
                 return false;
 
