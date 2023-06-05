@@ -99,11 +99,14 @@ namespace Setup_database_for_device
                 
             }
 
-            EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, nextConsumersNumbers);
-            MenuShouldBeUpdatedEvent?.Invoke(this, args);
+            if(pipelinesNumbersToAdd.Count != 0 | pipelinesNumbersToDelete.Count != 0 | consumersNumbersToAdd.Count != 0 | consumersNumbersToDelete.Count != 0)
+            {
+                EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.CONSUMERS, nextConsumersNumbers);
+                MenuShouldBeUpdatedEvent?.Invoke(this, args);
 
-            EventsArgs.MenuEventArgs pipelinesArgs = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, nextPipelinesNumbers);
-            MenuShouldBeUpdatedEvent?.Invoke(this, pipelinesArgs);
+                EventsArgs.MenuEventArgs pipelinesArgs = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, nextPipelinesNumbers);
+                MenuShouldBeUpdatedEvent?.Invoke(this, pipelinesArgs);
+            }
 
             _currentConsumersNumbers = nextConsumersNumbers;
             _currentPipelinesNumbers = nextPipelinesNumbers;
@@ -147,11 +150,7 @@ namespace Setup_database_for_device
             {
                 InsertFormsListInLinkedList(_forms.First, forms);
             }
-
-            //_forms.AddAfter(_forms.Last, form);
         }
-
-        //private vo
 
         private LinkedListNode<View.WindowForm> GetBeforeNodeForNumber<T>(int number)
         {
@@ -231,36 +230,6 @@ namespace Setup_database_for_device
             return numbers;
         }
 
-
-        //private void InsertNewConsumerForm(View.WindowForm form, int number)
-        //{
-        //    int ind = GetIndexToInsert(_previousConsumersNumbers, number);
-        //    if(ind != -1)
-        //    {
-        //        _previousConsumersNumbers.Insert(ind, number);
-        //        _forms.Insert(ind, form);
-        //    } else
-        //    {
-        //        _previousConsumersNumbers.Add(number);
-        //        _forms.Add(form);
-        //    }
-        //}
-
-        //private void InsertNewPipelineForms(View.WindowForm[] forms, int number)
-        //{
-        //    int ind = GetIndexToInsert(_previousPipelinesNumbers, number);
-        //    if (ind != -1)
-        //    {
-        //        _previousConsumersNumbers.Insert(ind, number);
-        //        _forms.InsertRange(ind, forms);
-        //    }
-        //    else
-        //    {
-        //        _previousConsumersNumbers.Add(number);
-        //        _forms.AddRange(forms);
-        //    }
-        //}
-
         private void CreateConsumerWindows(List<int> consumersNumbers, List<int> pipelinesNumbers)
         {
             foreach (int consumerNumber in consumersNumbers)
@@ -290,11 +259,6 @@ namespace Setup_database_for_device
                 NewFormCreatedEvent?.Invoke(coolantSelectionForm, EventArgs.Empty);
                 NewFormCreatedEvent?.Invoke(pipelineSettingsLimits, EventArgs.Empty);
                 NewFormCreatedEvent?.Invoke(pipelineSettings2Form, EventArgs.Empty);
-
-                //InsertNewCustomer
-                //_forms.(coolantSelectionForm);
-                //_forms.Add(pipelineSettingsLimits);
-                //_forms.Add(pipelineSettings2Form);
             }
 
             EventsArgs.MenuEventArgs args = new EventsArgs.MenuEventArgs(View.ContentMenu.DeepButtonsNames.PIPELINES, pipelinesNumbers);
